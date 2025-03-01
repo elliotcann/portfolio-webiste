@@ -173,6 +173,23 @@ h6 {
     margin-left: -160px;
     width: 100vw;
   }
+  
+  /* Update these styles to balance the content horizontally */
+  .header~main section,
+  .header~main .section {
+    margin-left: -160px;
+    width: 100vw;
+    padding-left: 160px; /* Left padding to account for header */
+    padding-right: 160px; /* Add right padding for balance */
+    box-sizing: border-box;
+  }
+  
+  /* Add this to ensure content within sections is centered */
+  .header~main section .container,
+  .header~main .section .container {
+    max-width: calc(100% - 160px);
+    margin: 0 auto;
+  }
 }
 
 .header.header-show {
@@ -232,6 +249,7 @@ h6 {
   width: 100%;
   overflow: hidden;
   transition: 0.3s;
+  text-decoration: none;
 }
 
 .navmenu a i,
@@ -274,6 +292,26 @@ h6 {
 .navmenu a:hover span,
 .navmenu li:hover>a span {
   display: block;
+}
+
+/* Add this more comprehensive fix for nav links */
+.navmenu a,
+.navmenu a:hover,
+.navmenu a:focus,
+.navmenu a:active,
+.navmenu a:visited,
+.navmenu .active,
+.navmenu li:hover > a,
+.navmenu a *,
+.navmenu a:hover *,
+.navmenu a:focus *,
+.navmenu a:active *,
+.navmenu a:visited *,
+.navmenu .active *,
+.navmenu li:hover > a * {
+  text-decoration: none !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
 }
 
 /*--------------------------------------------------------------
@@ -533,11 +571,12 @@ section,
   height: 100%;
   object-fit: cover;
   z-index: 1;
+  filter: blur(8px); /* Apply blur effect */
 }
 
 .hero:before {
   content: "";
-  background: color-mix(in srgb, var(--background-color), transparent 30%);
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 50%, var(--background-color) 100%);
   position: absolute;
   inset: 0;
   z-index: 2;
@@ -622,6 +661,19 @@ section,
   line-height: 0;
 }
 
+.about .content {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 25px;
+  border-left: 5px solid var(--accent-color);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about .content:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+}
 
 /*--------------------------------------------------------------
 # Skills Section
@@ -664,52 +716,80 @@ section,
   margin-bottom: 20px;
 }
 
-.resume .resume-item {
-  padding: 0 0 20px 20px;
-  margin-top: -2px;
-  border-left: 2px solid var(--accent-color);
+.resume {
+  background-color: #f9f9f9;
+}
+
+.resume-item {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 25px;
+  margin-bottom: 30px;
   position: relative;
+  border-left: 5px solid var(--accent-color);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.resume-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
 }
 
 .resume .resume-item h4 {
-  line-height: 18px;
-  font-size: 18px;
-  font-weight: 600;
-  text-transform: uppercase;
-  color: color-mix(in srgb, var(--default-color), transparent 20%);
-  margin-bottom: 10px;
+  line-height: 1.4;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--accent-color);
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.resume .resume-item h4 i {
+  margin-right: 10px;
+  font-size: 24px;
 }
 
 .resume .resume-item h5 {
   font-size: 16px;
+  background-color: #f0f7ff;
+  color: var(--accent-color);
   padding: 5px 15px;
   display: inline-block;
   font-weight: 600;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
+  border-radius: 20px;
+}
+
+.resume .resume-item p em {
+  color: #777;
+  font-style: normal;
+  display: block;
+  margin-bottom: 15px;
+}
+
+.resume .resume-item p {
+  margin-bottom: 15px;
+  color: var(--default-color);
 }
 
 .resume .resume-item ul {
-  padding-left: 20px;
+  padding-left: 0;
+  list-style: none;
 }
 
 .resume .resume-item ul li {
-  padding-bottom: 10px;
+  padding: 8px 0 8px 25px;
+  position: relative;
 }
 
-.resume .resume-item:last-child {
-  padding-bottom: 0;
-}
-
-.resume .resume-item::before {
-  content: "";
+.resume .resume-item ul li:before {
+  content: "▹";
   position: absolute;
-  width: 16px;
-  height: 16px;
-  border-radius: 50px;
-  left: -9px;
-  top: 0;
-  background: var(--background-color);
-  border: 2px solid var(--accent-color);
+  left: 0;
+  color: var(--accent-color);
+  font-weight: bold;
 }
 
 /*--------------------------------------------------------------
@@ -813,6 +893,17 @@ section,
   bottom: 0;
 }
 
+ .portfolio .portfolio-item {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.portfolio .portfolio-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+}
 
 /*--------------------------------------------------------------
 # Contact Section
@@ -892,6 +983,31 @@ section,
 
 .contact .php-email-form button[type=submit]:hover {
   background: color-mix(in srgb, var(--accent-color), transparent 25%);
+}
+
+.contact .info-item {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 25px;
+  margin-bottom: 30px;
+  border-left: 5px solid var(--accent-color);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  align-items: flex-start;
+}
+
+.contact .info-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+}
+
+.contact .php-email-form {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 25px;
+  border-left: 5px solid var(--accent-color);
 }
 
 /*--------------------------------------------------------------
@@ -1120,7 +1236,7 @@ section,
 
 .service-details .services-list a:hover {
   background-color: color-mix(in srgb, var(--accent-color), transparent 95%);
-  color: var(--accent-color);
+  color: var (--accent-color);
 }
 
 .service-details .download-catalog a {
@@ -1203,4 +1319,149 @@ section,
 --------------------------------------------------------------*/
 .starter-section {
   /* Add your styles here */
+}
+
+/* Add this media query to manage the transition between desktop and mobile views */
+@media (min-width: 992px) and (max-width: 1199px) {
+  /* Control text sizing */
+  body {
+    font-size: 0.95rem; /* Slightly smaller base font size */
+  }
+
+  .hero h2 {
+    font-size: 48px; /* Reduce hero title size */
+  }
+
+  .hero p {
+    font-size: 22px; /* Reduce hero paragraph size */
+  }
+  
+  /* Control containers */
+  .container {
+    max-width: 960px;
+  }
+  
+  /* Ensure content doesn't overflow its container */
+  section .container,
+  .section .container {
+    padding: 0 20px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  /* Control image sizes if needed */
+  .img-fluid {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* About section specific fixes */
+  .about .row {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .about .col-lg-4 {
+    max-width: 100%;
+    flex: 0 0 100%;
+    margin-bottom: 30px;
+  }
+  
+  .about .col-lg-8 {
+    max-width: 100%;
+    flex: 0 0 100%;
+  }
+  
+  .about img {
+    max-width: 50%;
+    margin: 0 auto;
+    display: block;
+  }
+  
+  /* Ensure content stays within bounds */
+  .about .content {
+    padding: 0;
+  }
+  
+  .about .content h2 {
+    font-size: 22px;
+  }
+  
+  .about .content h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .about .content .lead {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+  
+  /* Ensure content stays within bounds */
+  .about .content {
+    padding: 15px;
+  }
+}
+
+/*--------------------------------------------------------------
+# Global Card Component
+--------------------------------------------------------------*/
+.card-item {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 25px;
+  margin-bottom: 30px;
+  position: relative;
+  border-left: 5px solid var(--accent-color);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+}
+
+.card-item h3, .card-item h4 {
+  line-height: 1.4;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--accent-color);
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.card-item h3 i, .card-item h4 i {
+  margin-right: 10px;
+  font-size: 24px;
+}
+
+.card-item .tag {
+  font-size: 16px;
+  background-color: #f0f7ff;
+  color: var(--accent-color);
+  padding: 5px 15px;
+  display: inline-block;
+  font-weight: 600;
+  margin-bottom: 15px;
+  border-radius: 20px;
+}
+
+.card-item ul {
+  padding-left: 0;
+  list-style: none;
+}
+
+.card-item ul li {
+  padding: 8px 0 8px 25px;
+  position: relative;
+}
+
+.card-item ul li:before {
+  content: "▹";
+  position: absolute;
+  left: 0;
+  color: var(--accent-color);
+  font-weight: bold;
 }
