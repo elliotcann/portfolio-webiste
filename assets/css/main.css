@@ -599,6 +599,10 @@ section,
   font-size: 24px;
 }
 
+.about .section-title h2{
+  color: var(--accent-color);
+}
+
 .about .content ul {
   list-style: none;
   padding: 0;
@@ -670,6 +674,29 @@ section,
 #skills h2 {
   font-weight: 700;
   font-size: 24px;
+}
+
+.skills {
+  background-color: #f9f9f9;
+}
+
+.skills .section-title h2 {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.skills .card {
+  border: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.skills .card-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.skills .card-body {
+  padding: 20px;
 }
 
 /*--------------------------------------------------------------
