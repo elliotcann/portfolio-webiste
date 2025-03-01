@@ -676,6 +676,51 @@ section,
 }
 
 /*--------------------------------------------------------------
+# About Section Enhancements
+--------------------------------------------------------------*/
+.about .card-item {
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.about .card-item img {
+  max-width: 100%;
+  transition: transform 0.5s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.about .card-item:hover img {
+  transform: scale(1.03);
+}
+
+.about h5 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--accent-color);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.about .list-unstyled li {
+  padding: 0.35rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.about .btn-outline-primary {
+  color: var(--accent-color);
+  border-color: var(--accent-color);
+}
+
+.about .btn-outline-primary:hover {
+  background-color: var(--accent-color);
+  color: #fff;
+}
+
+/*--------------------------------------------------------------
 # Skills Section
 --------------------------------------------------------------*/
 #skills .card {
