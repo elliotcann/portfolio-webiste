@@ -317,63 +317,76 @@ h6 {
 /*--------------------------------------------------------------
 # Global Footer
 --------------------------------------------------------------*/
+/*--------------------------------------------------------------
+# Footer Enhancements
+--------------------------------------------------------------*/
 .footer {
-  color: var(--default-color);
-  background-color: var(--background-color);
-  font-size: 14px;
-  text-align: center;
-  padding: 30px 0;
+  background-color: #f8f9fa;
+  padding: 50px 0 20px;
   position: relative;
+  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.footer .card-item {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  border-left: 5px solid var(--accent-color);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.footer .card-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
 }
 
 .footer h3 {
-  font-size: 36px;
+  color: var(--heading-color);
   font-weight: 700;
-  position: relative;
-  padding: 0;
-  margin: 0 0 15px 0;
+  margin-bottom: 15px;
 }
 
-.footer p {
-  font-size: 15;
-  font-style: italic;
-  padding: 0;
-  margin: 0 0 30px 0;
+.footer h3 i {
+  margin-right: 8px;
+  color: var(--accent-color);
 }
 
 .footer .social-links {
-  margin: 0 0 30px 0;
+  margin-top: 25px;
+  margin-bottom: 20px;
 }
 
 .footer .social-links a {
-  font-size: 16px;
-  display: flex;
+  font-size: 18px;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: var(--accent-color);
-  color: var(--contrast-color);
-  line-height: 1;
-  margin: 0 4px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  text-align: center;
-  width: 36px;
-  height: 36px;
-  transition: 0.3s;
+  background: rgba(var(--accent-color-rgb), 0.1);
+  color: var(--accent-color);
+  margin: 0 6px;
+  transition: all 0.3s ease;
 }
 
 .footer .social-links a:hover {
-  background: color-mix(in srgb, var(--accent-color), transparent 20%);
-  text-decoration: none;
+  background-color: var(--accent-color);
+  color: #fff;
+  transform: translateY(-3px);
 }
 
 .footer .copyright {
-  padding-top: 25px;
-  border-top: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
+  color: var(--default-color);
+  font-size: 14px;
+  padding-top: 15px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.footer .credits {
-  font-size: 13px;
-  padding-top: 5px;
+.footer .credits a {
+  color: var(--accent-color);
+  font-weight: 500;
 }
 
 /*--------------------------------------------------------------
