@@ -540,6 +540,8 @@ section,
   background-color: var(--background-color);
   padding: 60px 0;
   overflow: clip;
+  position: relative;
+  z-index: 2; /* Ensure content is above the fixed background */
 }
 
 /*--------------------------------------------------------------
@@ -599,6 +601,7 @@ section,
   align-items: center;
   padding: 80px 0;
   overflow: hidden;
+  background-attachment: fixed;
 }
 
 .hero img {
@@ -610,6 +613,8 @@ section,
   z-index: 1;
   filter: blur(3px) brightness(0.95);
   transition: filter 0.5s ease;
+  /* Add fixed positioning for parallax effect */
+  position: fixed;
 }
 
 .hero:before {
@@ -1550,6 +1555,9 @@ section,
   position: relative;
   border-left: 5px solid var(--accent-color);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  /* Add relative positioning for parallax scrolling */
+  position: relative;
+  z-index: 3;
 }
 
 .card-item:hover {
@@ -1696,5 +1704,27 @@ section,
   
   .navmenu {
     box-shadow: none;
+  }
+}
+
+/* Add a specific parallax class for enhanced effect */
+.parallax-bg {
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* Add subtle animations for scrolling elements to enhance parallax feel */
+@media (min-width: 992px) {
+  .animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  
+  .animate-on-scroll.active {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
