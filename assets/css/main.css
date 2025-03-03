@@ -56,13 +56,13 @@ body {
 
 a {
   color: var(--accent-color);
-  text-decoration: none;
+  text-decoration: none !important;
   transition: 0.3s;
 }
 
 a:hover {
   color: color-mix(in srgb, var(--accent-color), transparent 25%);
-  text-decoration: none;
+  text-decoration: none !important;
 }
 
 h1,
@@ -206,14 +206,13 @@ h6 {
 }
 
 /*--------------------------------------------------------------
-# Navigation Menu
+# Navigation Menu - Updated Styling
 --------------------------------------------------------------*/
 .navmenu {
   padding: 0;
   z-index: 9997;
-  background: transparent;
-  padding: 12px 8px;
-  border-radius: 0;
+  background: transparent; /* Remove container background */
+  padding: 12px 0; /* Adjusted padding */
   box-shadow: none;
   border-left: none;
   width: 120px;
@@ -221,9 +220,12 @@ h6 {
 
 .navmenu ul {
   list-style: none;
-  padding: 0 0 20px 0;
+  padding: 0;
   margin: 0;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Consistent spacing between buttons */
 }
 
 .navmenu a,
@@ -232,102 +234,112 @@ h6 {
   font-family: var(--nav-font);
   display: flex;
   align-items: center;
-  padding: 10px 12px;
-  margin-bottom: 6px;
+  padding: 12px;
   font-size: 15px;
+  font-weight: 500;
   border-radius: 50px;
-  background: rgba(255, 255, 255, 0.85);
-  height: 56px;
-  width: 100%;
+  background: rgba(255, 255, 255, 0.9);
+  height: 50px;
+  width: 50px; /* Make buttons circular by default */
   overflow: hidden;
-  transition: 0.3s;
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1); /* Smoother animation */
   text-decoration: none;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  position: relative;
 }
 
 .navmenu a i,
 .navmenu a:focus i {
-  font-size: 18px;
-  margin-right: 8px;
+  font-size: 20px;
+  transition: all 0.3s ease;
+  margin-right: 0; /* Remove default margin to center icons */
 }
 
+/* Add margin only when expanded (hover/active state) */
+.navmenu a:hover i,
+.navmenu .active i,
+.navmenu li:hover > a i {
+  margin-right: 12px; /* Add margin only when button expands */
+}
+
+/* Adjust the positioning of the text */
 .navmenu a span,
 .navmenu a:focus span {
-  padding: 0 5px 0 7px;
-  font-size: 14px;
+  position: absolute;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: all 0.3s ease;
+  left: 50px; /* Adjust text position */
 }
 
-@media (min-width: 992px) {
-
-  .navmenu a,
-  .navmenu a:focus {
-    max-width: 56px;
-  }
-
-  .navmenu a span,
-  .navmenu a:focus span {
-    display: none;
-  }
-}
-
+/* Hover and active states */
 .navmenu a:hover,
 .navmenu .active,
 .navmenu .active:focus,
-.navmenu li:hover>a {
-  color: var(--contrast-color);
-  background: var(--nav-hover-color);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
-}
-
-.navmenu a:hover,
-.navmenu li:hover>a {
-  max-width: 100%;
-  color: var(--contrast-color);
+.navmenu li:hover > a {
+  color: #fff;
+  background: var(--accent-color);
+  width: 140px; /* Expand on hover */
+  box-shadow: 0 6px 20px rgba(5, 99, 187, 0.25);
 }
 
 .navmenu a:hover span,
-.navmenu li:hover>a span {
+.navmenu .active span,
+.navmenu li:hover > a span {
+  opacity: 1;
+  transform: translateX(0);
   display: block;
 }
 
-/* Add this more comprehensive fix for nav links */
-.navmenu a,
-.navmenu a:hover,
-.navmenu a:focus,
-.navmenu a:active,
-.navmenu a:visited,
-.navmenu .active,
-.navmenu li:hover > a,
-.navmenu a *,
-.navmenu a:hover *,
-.navmenu a:focus *,
-.navmenu a:active *,
-.navmenu a:visited *,
-.navmenu .active *,
-.navmenu li:hover > a * {
-  text-decoration: none !important;
-  border-bottom: none !important;
-  box-shadow: none !important;
+/* Active button indicator */
+.navmenu .active:before {
+  content: "";
+  position: absolute;
+  left: -10px;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 8px;
+  width: 8px;
+  border-radius: 50%;
+  background-color: var(--accent-color);
 }
 
+/* Mobile navigation adjustments */
 @media (max-width: 1199px) {
   .header {
-    left: -200px;
-    padding: 10px;
-    background-color: #fff;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    width: 180px;
+    background-color: transparent; /* Remove header background */
+    border-right: none;
+    width: auto;
+    left: -100px;
   }
   
   .header.header-show {
-    left: 0;
+    left: 20px;
   }
   
   .navmenu {
     box-shadow: none;
-    width: 100%;
-    border-left: none;
-    border-top: 3px solid var(--accent-color);
+  }
+  
+  .navmenu a, 
+  .navmenu a:focus {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+  }
+}
+
+/* Fix for expanded screen sizes */
+@media (min-width: 1200px) and (max-width: 1600px) {
+  .header ~ main {
+    margin-left: 100px; /* Reduced margin to accommodate smaller nav */
+  }
+  
+  .header ~ main .hero,
+  .header ~ main section,
+  .header ~ main .section {
+    margin-left: -100px;
+    padding-left: 100px;
   }
 }
 
@@ -922,118 +934,6 @@ section,
   font-weight: bold;
 }
 
-/*--------------------------------------------------------------
-# Portfolio Section
---------------------------------------------------------------*/
-.portfolio .portfolio-filters {
-  padding: 0;
-  margin: 0 auto 20px auto;
-  list-style: none;
-  text-align: center;
-}
-
-.portfolio .portfolio-filters li {
-  cursor: pointer;
-  display: inline-block;
-  padding: 8px 20px 10px 20px;
-  margin: 0;
-  font-size: 15px;
-  font-weight: 500;
-  line-height: 1;
-  margin-bottom: 5px;
-  border-radius: 50px;
-  transition: all 0.3s ease-in-out;
-  font-family: var(--heading-font);
-}
-
-.portfolio .portfolio-filters li:hover,
-.portfolio .portfolio-filters li.filter-active {
-  color: var(--contrast-color);
-  background-color: var(--accent-color);
-}
-
-.portfolio .portfolio-filters li:first-child {
-  margin-left: 0;
-}
-
-.portfolio .portfolio-filters li:last-child {
-  margin-right: 0;
-}
-
-@media (max-width: 575px) {
-  .portfolio .portfolio-filters li {
-    font-size: 14px;
-    margin: 0 0 10px 0;
-  }
-}
-
-.portfolio .portfolio-item {
-  position: relative;
-  overflow: hidden;
-}
-
-.portfolio .portfolio-item .portfolio-info {
-  opacity: 0;
-  position: absolute;
-  left: 12px;
-  right: 12px;
-  bottom: -100%;
-  z-index: 3;
-  transition: all ease-in-out 0.5s;
-  background: color-mix(in srgb, var(--background-color), transparent 10%);
-  padding: 15px;
-}
-
-.portfolio .portfolio-item .portfolio-info h4 {
-  font-size: 18px;
-  font-weight: 600;
-  padding-right: 50px;
-}
-
-.portfolio .portfolio-item .portfolio-info p {
-  color: color-mix(in srgb, var(--default-color), transparent 30%);
-  font-size: 14px;
-  margin-bottom: 0;
-  padding-right: 50px;
-}
-
-.portfolio .portfolio-item .portfolio-info .preview-link,
-.portfolio .portfolio-item .portfolio-info .details-link {
-  position: absolute;
-  right: 50px;
-  font-size: 24px;
-  top: calc(50% - 14px);
-  color: color-mix(in srgb, var(--default-color), transparent 30%);
-  transition: 0.3s;
-  line-height: 0;
-}
-
-.portfolio .portfolio-item .portfolio-info .preview-link:hover,
-.portfolio .portfolio-item .portfolio-info .details-link:hover {
-  color: var(--accent-color);
-}
-
-.portfolio .portfolio-item .portfolio-info .details-link {
-  right: 14px;
-  font-size: 28px;
-}
-
-.portfolio .portfolio-item:hover .portfolio-info {
-  opacity: 1;
-  bottom: 0;
-}
-
- .portfolio .portfolio-item {
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.portfolio .portfolio-item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
-}
 
 /*--------------------------------------------------------------
 # Contact Section
@@ -1316,135 +1216,6 @@ section,
 }
 
 /*--------------------------------------------------------------
-# Service Details Section
---------------------------------------------------------------*/
-.service-details .service-box {
-  padding: 20px;
-  box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.1);
-}
-
-.service-details .service-box+.service-box {
-  margin-top: 30px;
-}
-
-.service-details .service-box h4 {
-  font-size: 20px;
-  font-weight: 700;
-  border-bottom: 2px solid color-mix(in srgb, var(--default-color), transparent 92%);
-  padding-bottom: 15px;
-  margin-bottom: 15px;
-}
-
-.service-details .services-list a {
-  color: color-mix(in srgb, var(--default-color), transparent 20%);
-  background-color: color-mix(in srgb, var(--default-color), transparent 96%);
-  display: flex;
-  align-items: center;
-  padding: 12px 15px;
-  margin-top: 15px;
-  transition: 0.3s;
-}
-
-.service-details .services-list a:first-child {
-  margin-top: 0;
-}
-
-.service-details .services-list a i {
-  font-size: 16px;
-  margin-right: 8px;
-  color: var(--accent-color);
-}
-
-.service-details .services-list a.active {
-  color: var(--contrast-color);
-  background-color: var(--accent-color);
-}
-
-.service-details .services-list a.active i {
-  color: var(--contrast-color);
-}
-
-.service-details .services-list a:hover {
-  background-color: color-mix(in srgb, var(--accent-color), transparent 95%);
-  color: var (--accent-color);
-}
-
-.service-details .download-catalog a {
-  color: var(--default-color);
-  display: flex;
-  align-items: center;
-  padding: 10px 0;
-  transition: 0.3s;
-  border-top: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
-}
-
-.service-details .download-catalog a:first-child {
-  border-top: 0;
-  padding-top: 0;
-}
-
-.service-details .download-catalog a:last-child {
-  padding-bottom: 0;
-}
-
-.service-details .download-catalog a i {
-  font-size: 24px;
-  margin-right: 8px;
-  color: var(--accent-color);
-}
-
-.service-details .download-catalog a:hover {
-  color: var(--accent-color);
-}
-
-.service-details .help-box {
-  background-color: var(--accent-color);
-  color: var(--contrast-color);
-  margin-top: 30px;
-  padding: 30px 15px;
-}
-
-.service-details .help-box .help-icon {
-  font-size: 48px;
-}
-
-.service-details .help-box h4,
-.service-details .help-box a {
-  color: var(--contrast-color);
-}
-
-.service-details .services-img {
-  margin-bottom: 20px;
-}
-
-.service-details h3 {
-  font-size: 26px;
-  font-weight: 700;
-}
-
-.service-details p {
-  font-size: 15px;
-}
-
-.service-details ul {
-  list-style: none;
-  padding: 0;
-  font-size: 15px;
-}
-
-.service-details ul li {
-  padding: 5px 0;
-  display: flex;
-  align-items: center;
-}
-
-.service-details ul i {
-  font-size: 20px;
-  margin-right: 8px;
-  color: var(--accent-color);
-}
-
-/*--------------------------------------------------------------
 # Starter Section Section
 --------------------------------------------------------------*/
 .starter-section {
@@ -1637,66 +1408,111 @@ section,
 }
 
 .navmenu {
-  background: rgba(255, 255, 255, 0.95);
-  padding: 15px 10px;
-  border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  background: transparent; /* Remove container background */
+  padding: 0; /* Remove padding */
+  border-radius: 0; /* Remove border radius */
+  box-shadow: none; /* Remove box shadow */
   transition: all 0.3s ease;
+  width: auto; /* Let width be determined by content */
 }
 
 .navmenu ul {
   list-style: none;
   padding: 0;
   margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px; /* Add consistent spacing between buttons */
 }
 
 .navmenu a,
 .navmenu a:focus {
   display: flex;
   align-items: center;
-  padding: 12px 15px;
-  margin-bottom: 8px;
-  border-radius: 6px;
-  transition: all 0.3s ease;
+  padding: 12px;
+  margin-bottom: 0;
+  border-radius: 50px; /* Circular buttons */
+  height: 50px;
+  width: 50px; /* Fixed size for circular buttons */
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
   color: var(--nav-color);
+  background: rgba(255, 255, 255, 0.9); /* Keep button background */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  justify-content: center; /* Center icon */
+  position: relative;
 }
 
 .navmenu a i,
 .navmenu a:focus i {
   font-size: 20px;
   transition: all 0.3s ease;
-  margin-right: 10px;
+  margin-right: 0; /* Remove default margin to center icons */
 }
 
-.navmenu a:hover,
-.navmenu .active {
-  background: rgba(var(--accent-color-rgb), 0.1);
-  color: var(--accent-color);
-  transform: translateX(5px);
-}
-
+/* Add margin only when expanded (hover/active state) */
 .navmenu a:hover i,
-.navmenu .active i {
-  color: var(--accent-color);
-  transform: scale(1.2);
+.navmenu .active i,
+.navmenu li:hover > a i {
+  margin-right: 12px; /* Add margin only when button expands */
+}
+
+/* Adjust the positioning of the text */
+.navmenu a span,
+.navmenu a:focus span {
+  position: absolute;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: all 0.3s ease;
+  left: 50px; /* Adjust text position */
+}
+
+/* Hover and active states */
+.navmenu a:hover,
+.navmenu .active,
+.navmenu .active:focus,
+.navmenu li:hover > a {
+  color: #fff;
+  background: var(--accent-color);
+  width: 140px; /* Expand on hover */
+  justify-content: flex-start; /* Left-align content when expanded */
+  padding-left: 15px; /* Add padding when expanded */
+}
+
+.navmenu a:hover span,
+.navmenu .active span,
+.navmenu li:hover > a span {
+  opacity: 1;
+  transform: translateX(0);
+  display: block;
+}
+
+/* Active button indicator */
+.navmenu .active:before {
+  content: "";
+  position: absolute;
+  left: -10px;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 8px;
+  width: 8px;
+  border-radius: 50%;
+  background-color: var(--accent-color);
 }
 
 @media (max-width: 1199px) {
   .header {
-    left: -300px;
-    padding: 10px;
-    background-color: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    left: -100px;
+    padding: 0;
+    background-color: transparent; /* Remove container background */
+    backdrop-filter: none; /* Remove backdrop filter */
+    box-shadow: none; /* Remove box shadow */
+    width: auto;
   }
   
   .header.header-show {
-    left: 0;
-  }
-  
-  .navmenu {
-    box-shadow: none;
+    left: 20px;
   }
 }
 
@@ -1720,4 +1536,109 @@ section,
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/*--------------------------------------------------------------
+# Global Button Styling
+--------------------------------------------------------------*/
+.btn,
+.php-email-form button[type=submit],
+.footer .social-links a,
+.hero .social-links a,
+.portfolio .btn {
+  border-radius: 50px;
+  padding: 10px 25px;
+  font-weight: 500;
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border: none;
+  text-decoration: none; /* Remove underlines */
+}
+
+/* Remove underlines from buttons on hover */
+a.btn:hover,
+.hero .social-links a:hover,
+.footer .social-links a:hover,
+.portfolio a.btn:hover,
+.navmenu a:hover {
+  text-decoration: none;
+}
+
+/* Primary buttons */
+.btn-primary,
+.php-email-form button[type=submit] {
+  background-color: var(--accent-color);
+  color: #fff;
+}
+
+.btn-primary:hover,
+.php-email-form button[type=submit]:hover {
+  background-color: color-mix(in srgb, var(--accent-color) 80%, white 20%);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(5, 99, 187, 0.3);
+  color: #fff;
+}
+
+/* Outline buttons */
+.btn-outline-primary {
+  background-color: transparent;
+  border: 2px solid var(--accent-color);
+  color: var(--accent-color);
+}
+
+.btn-outline-primary:hover {
+  background-color: var(--accent-color);
+  color: #fff;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(5, 99, 187, 0.3);
+}
+
+/* Social buttons */
+.hero .social-links a,
+.footer .social-links a {
+  width: 45px;
+  height: 45px;
+  padding: 0;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--accent-color);
+}
+
+.hero .social-links a:hover,
+.footer .social-links a:hover {
+  background: var(--accent-color);
+  color: #fff;
+  transform: translateY(-3px);
+}
+
+/* Icon positioning in buttons */
+.btn i,
+.php-email-form button[type=submit] i {
+  font-size: 1.1em;
+}
+
+/* Download button enhancement */
+.download-btn {
+  padding: 12px 30px;
+  font-weight: 600;
+}
+
+/* Large buttons */
+.btn-lg {
+  padding: 12px 30px;
+  font-size: 1.1rem;
+}
+
+/* Add this to your button styling section */
+.download-btn {
+  white-space: nowrap;
+  min-width: 200px; /* Ensures enough width for the text */
+}
+
+/* To prevent text wrapping in all buttons if needed */
+.btn {
+  white-space: nowrap;
 }
