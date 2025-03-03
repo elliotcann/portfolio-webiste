@@ -1,32 +1,53 @@
-/* Fonts */
+/*--------------------------------------------------------------
+# Variables
+--------------------------------------------------------------*/
 :root {
-  --default-font: "Roboto",  system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --heading-font: "Raleway",  sans-serif;
-  --nav-font: "Poppins",  sans-serif;
+  /* Fonts */
+  --default-font: "Roboto", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --heading-font: "Raleway", sans-serif;
+  --nav-font: "Poppins", sans-serif;
+  
+  /* Global Colors */
+  --background-color: #ffffff;
+  --default-color: #272829;
+  --heading-color: #45505b;
+  --accent-color: #0563bb;
+  --accent-color-light: color-mix(in srgb, var(--accent-color) 80%, white 20%);
+  --accent-color-transparent: color-mix(in srgb, var(--accent-color), transparent 25%);
+  --surface-color: #ffffff;
+  --contrast-color: #ffffff;
+  
+  /* Nav Menu Colors */
+  --nav-color: #45505b;
+  --nav-hover-color: #0563bb;
+  --nav-mobile-background-color: #ffffff;
+  --nav-dropdown-background-color: #ffffff;
+  --nav-dropdown-color: #212529;
+  --nav-dropdown-hover-color: #0563bb;
+  
+  /* Common Colors */
+  --light-bg: #f9f9f9;
+  --dark-bg: #060606;
+  --border-color: color-mix(in srgb, var(--default-color), transparent 80%);
+  --shadow-sm: 0 4px 8px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 6px 15px rgba(0, 0, 0, 0.15);
+  --shadow-accent: 0 6px 15px rgba(5, 99, 187, 0.3);
+  
+  /* Animation */
+  --transition-base: all 0.3s ease;
+  --transition-smooth: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  
+  /* Spacing */
+  --section-padding: 60px 0;
+  --card-padding: 25px;
+  
+  /* Misc */
+  scroll-behavior: smooth;
 }
 
-/* Global Colors - The following color variables are used throughout the website. Updating them here will change the color scheme of the entire website */
-:root { 
-  --background-color: #ffffff; /* Background color for the entire website, including individual sections */
-  --default-color: #272829; /* Default color used for the majority of the text content across the entire website */
-  --heading-color: #45505b; /* Color for headings, subheadings and title throughout the website */
-  --accent-color: #0563bb; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
-  --surface-color: #ffffff; /* The surface color is used as a background of boxed elements within sections, such as cards, icon boxes, or other elements that require a visual separation from the global background. */
-  --contrast-color: #ffffff; /* Contrast color for text, ensuring readability against backgrounds of accent, heading, or default colors. */
-}
-
-/* Nav Menu Colors - The following color variables are used specifically for the navigation menu. They are separate from the global colors to allow for more customization options */
-:root {
-  --nav-color: #45505b;  /* The default color of the main navmenu links */
-  --nav-hover-color: #0563bb; /* Applied to main navmenu links when they are hovered over or active */
-  --nav-mobile-background-color: #ffffff; /* Used as the background color for mobile navigation menu */
-  --nav-dropdown-background-color: #ffffff; /* Used as the background color for dropdown items that appear when hovering over primary navigation items */
-  --nav-dropdown-color: #212529; /* Used for navigation links of the dropdown items in the navigation menu. */
-  --nav-dropdown-hover-color: #0563bb; /* Similar to --nav-hover-color, this color is applied to dropdown navigation links when they are hovered over. */
-}
-
-/* Color Presets - These classes override global colors when applied to any section or element, providing reuse of the sam color scheme. */
-
+/*--------------------------------------------------------------
+# Color Presets
+--------------------------------------------------------------*/
 .light-background {
   --background-color: #f9f9f9;
   --surface-color: #ffffff;
@@ -40,13 +61,8 @@
   --contrast-color: #ffffff;
 }
 
-/* Smooth scroll */
-:root {
-  scroll-behavior: smooth;
-}
-
 /*--------------------------------------------------------------
-# General Styling & Shared Classes
+# Base Styles
 --------------------------------------------------------------*/
 body {
   color: var(--default-color);
@@ -57,26 +73,652 @@ body {
 a {
   color: var(--accent-color);
   text-decoration: none !important;
-  transition: 0.3s;
+  transition: var(--transition-base);
 }
 
 a:hover {
-  color: color-mix(in srgb, var(--accent-color), transparent 25%);
+  color: var(--accent-color-transparent);
   text-decoration: none !important;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1, h2, h3, h4, h5, h6 {
   color: var(--heading-color);
   font-family: var(--heading-font);
 }
 
-/* PHP Email Form Messages
-------------------------------*/
+
+/*--------------------------------------------------------------
+# Common Components
+--------------------------------------------------------------*/
+/* Section Styles */
+section, .section {
+  color: var(--default-color);
+  background-color: var(--background-color);
+  padding: var(--section-padding);
+  overflow: clip;
+  position: relative;
+  z-index: 2;
+}
+
+/* Section Title */
+.section-title {
+  text-align: center;
+  padding-bottom: 60px;
+  position: relative;
+}
+
+.section-title h2 {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  position: relative;
+}
+
+.section-title h2:before {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 160px;
+  height: 1px;
+  background: var(--border-color);
+  left: 0;
+  right: 0;
+  bottom: 1px;
+  margin: auto;
+}
+
+.section-title h2::after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: var(--accent-color);
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+.section-title p {
+  margin-bottom: 0;
+}
+
+/* Content Container Spacing */
+.container {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+@media (min-width: 768px) {
+  /* Medium screens and up */
+  .container {
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+}
+
+@media (min-width: 992px) {
+  /* For larger screens where the side nav is visible */
+  .container {
+    padding-left: 140px; /* Accommodate for the left side nav */
+    padding-right: 50px;
+  }
+}
+
+@media (min-width: 1200px) {
+  /* Extra large screens */
+  .container {
+    padding-left: 160px;
+    padding-right: 60px;
+  }
+}
+
+/* Ensure all section content has adequate spacing */
+section .row {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+/* Page Titles & Breadcrumbs */
+.page-title {
+  --background-color: color-mix(in srgb, var(--default-color), transparent 96%);
+  color: var(--default-color);
+  background-color: var(--background-color);
+  padding: 20px 0;
+  position: relative;
+}
+
+.page-title h1 {
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.page-title .breadcrumbs ol {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 0 0 10px 0;
+  margin: 0;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.page-title .breadcrumbs ol li+li {
+  padding-left: 10px;
+}
+
+.page-title .breadcrumbs ol li+li::before {
+  content: "/";
+  display: inline-block;
+  padding-right: 10px;
+  color: color-mix(in srgb, var(--default-color), transparent 70%);
+}
+
+/* Card Component */
+.card-item {
+  background-color: var(--surface-color);
+  border-radius: 8px;
+  box-shadow: var(--shadow-sm);
+  padding: var(--card-padding);
+  margin-bottom: 30px;
+  position: relative;
+  border-left: 5px solid var(--accent-color);
+  transition: var(--transition-base);
+  z-index: 3;
+}
+
+.card-item:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+}
+
+.card-item h3, .card-item h4 {
+  line-height: 1.4;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--accent-color);
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.card-item h3 i, .card-item h4 i {
+  margin-right: 10px;
+  font-size: 24px;
+}
+
+.card-item .tag {
+  font-size: 16px;
+  background-color: #f0f7ff;
+  color: var(--accent-color);
+  padding: 5px 15px;
+  display: inline-block;
+  font-weight: 600;
+  margin-bottom: 15px;
+  border-radius: 20px;
+}
+
+.card-item ul {
+  padding-left: 0;
+  list-style: none;
+}
+
+.card-item ul li {
+  padding: 8px 0 8px 25px;
+  position: relative;
+}
+
+.card-item ul li:before {
+  content: "▹";
+  position: absolute;
+  left: 0;
+  color: var(--accent-color);
+  font-weight: bold;
+}
+
+/* Buttons */
+.btn,
+.php-email-form button[type=submit],
+.footer .social-links a,
+.hero .social-links a,
+.portfolio .btn {
+  border-radius: 50px;
+  padding: 10px 25px;
+  font-weight: 500;
+  transition: var(--transition-smooth);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: var(--shadow-sm);
+  border: none;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+/* Remove underlines from buttons on hover */
+a.btn:hover,
+.hero .social-links a:hover,
+.footer .social-links a:hover,
+.portfolio a.btn:hover,
+.navmenu a:hover {
+  text-decoration: none;
+}
+
+/* Add consistent spacing to social links */
+.hero .social-links a,
+.footer .social-links a {
+  margin: 0 8px;
+}
+
+/* Primary buttons */
+.btn-primary,
+.php-email-form button[type=submit] {
+  background-color: var(--accent-color);
+  color: #fff;
+}
+.btn-primary:hover,
+.php-email-form button[type=submit]:hover {
+  background-color: var(--accent-color-light);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-accent);
+  color: #fff;
+}
+
+/* Outline buttons */
+.btn-outline-primary {
+  background-color: transparent;
+  border: 2px solid var(--accent-color);
+  color: var(--accent-color);
+}
+
+.btn-outline-primary:hover {
+  background-color: var(--accent-color);
+  color: #fff;
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-accent);
+}
+
+/* Social buttons */
+.hero .social-links a,
+.footer .social-links a {
+  width: 45px;
+  height: 45px;
+  padding: 0;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--accent-color);
+}
+
+.hero .social-links a:hover,
+.footer .social-links a:hover {
+  background: var(--accent-color);
+  color: #fff;
+  transform: translateY(-3px);
+}
+
+/* Button variants */
+.btn i,
+.php-email-form button[type=submit] i {
+  font-size: 1.1em;
+}
+
+.download-btn {
+  padding: 12px 30px;
+  font-weight: 600;
+  min-width: 200px;
+}
+
+.btn-lg {
+  padding: 12px 30px;
+  font-size: 1.1rem;
+}
+
+/* Badges */
+.badge {
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+/*--------------------------------------------------------------
+# Utilities
+--------------------------------------------------------------*/
+/* Animation Classes */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.transition-hover {
+  transition: var(--transition-base);
+}
+
+.parallax-bg {
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+@media (min-width: 992px) {
+  .animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  
+  .animate-on-scroll.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/*--------------------------------------------------------------
+# Preloader
+--------------------------------------------------------------*/
+#preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  overflow: hidden;
+  background: var(--background-color);
+  transition: all 0.6s ease-out;
+}
+
+#preloader:before {
+  content: "";
+  position: fixed;
+  top: calc(50% - 30px);
+  left: calc(50% - 30px);
+  border: 6px solid #ffffff;
+  border-color: var(--accent-color) transparent var(--accent-color) transparent;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: animate-preloader 1.5s linear infinite;
+}
+
+@keyframes animate-preloader {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/*--------------------------------------------------------------
+# Header and Navigation
+--------------------------------------------------------------*/
+/* Global Header */
+.header {
+  position: fixed;
+  top: 50%;
+  left: 20px;
+  transform: translateY(-50%);
+  z-index: 997;
+  transition: var(--transition-base);
+  background: transparent;
+}
+
+.header-toggle {
+  color: var(--contrast-color);
+  background-color: var(--accent-color);
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  z-index: 9999;
+  transition: var(--transition-base);
+  box-shadow: var(--shadow-sm);
+}
+
+.header-toggle:hover {
+  color: var(--contrast-color);
+  background-color: var(--accent-color-light);
+}
+
+/* Navigation Menu */
+.navmenu {
+  padding: 12px 0;
+  z-index: 9997;
+  background: transparent;
+  box-shadow: none;
+  border-left: none;
+  width: 120px;
+}
+
+.navmenu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.navmenu a,
+.navmenu a:focus {
+  color: var(--nav-color);
+  font-family: var(--nav-font);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.9);
+  height: 50px;
+  width: 50px;
+  overflow: hidden;
+  transition: var(--transition-smooth);
+  text-decoration: none;
+  box-shadow: var(--shadow-sm);
+  position: relative;
+}
+
+.navmenu a i,
+.navmenu a:focus i {
+  font-size: 20px;
+  transition: var(--transition-base);
+  margin-right: 0;
+}
+
+.navmenu a span,
+.navmenu a:focus span {
+  position: absolute;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: var(--transition-base);
+  left: 50px;
+}
+
+/* Hover and active states */
+.navmenu a:hover i,
+.navmenu .active i,
+.navmenu li:hover > a i {
+  margin-right: 12px;
+}
+
+.navmenu a:hover,
+.navmenu .active,
+.navmenu .active:focus,
+.navmenu li:hover > a {
+  color: #fff;
+  background: var(--accent-color);
+  width: 140px;
+  box-shadow: var(--shadow-accent);
+  justify-content: flex-start;
+  padding-left: 15px;
+}
+
+.navmenu a:hover span,
+.navmenu .active span,
+.navmenu li:hover > a span {
+  opacity: 1;
+  transform: translateX(0);
+  display: block;
+}
+
+/* Active button indicator */
+.navmenu .active:before {
+  content: "";
+  position: absolute;
+  left: -10px;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 8px;
+  width: 8px;
+  border-radius: 50%;
+  background-color: var(--accent-color);
+}
+
+/*--------------------------------------------------------------
+# Scroll Top Button
+--------------------------------------------------------------*/
+.scroll-top {
+  position: fixed;
+  visibility: hidden;
+  opacity: 0;
+  right: 15px;
+  bottom: -15px;
+  z-index: 99999;
+  background-color: var(--accent-color);
+  width: 44px;
+  height: 44px;
+  border-radius: 50px;
+  transition: var(--transition-base);
+}
+
+.scroll-top i {
+  font-size: 24px;
+  color: var(--contrast-color);
+  line-height: 0;
+}
+
+.scroll-top:hover {
+  background-color: var(--accent-color-transparent);
+  color: var(--contrast-color);
+}
+
+.scroll-top.active {
+  visibility: visible;
+  opacity: 1;
+  bottom: 15px;
+}
+
+/*--------------------------------------------------------------
+# Hero Section
+--------------------------------------------------------------*/
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 80px 0;
+  overflow: hidden;
+  background-attachment: fixed;
+}
+
+.hero img {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  filter: blur(2px) brightness(1);
+  transition: filter 0.5s ease;
+}
+
+.hero:before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: linear-gradient(to bottom, rgba(255,255,255,0) 95%, rgba(248,249,250,1) 100%);
+  z-index: 1;
+}
+
+.hero .container {
+  position: relative;
+  z-index: 3;
+}
+
+.hero h2 {
+  margin: 0 0 15px;
+  font-size: 64px;
+  font-weight: 700;
+  color: var(--heading-color);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  animation: fadeInDown 1s;
+  border-bottom: 3px solid var(--accent-color);
+  display: inline-block;
+  padding-bottom: 10px;
+}
+
+.hero p {
+  margin: 15px 0 25px 0;
+  font-size: 26px;
+  color: var(--default-color);
+  animation: fadeInUp 1s 0.3s both;
+}
+
+.hero p span {
+  color: var(--accent-color);
+  font-weight: 600;
+  letter-spacing: 1px;
+  border-bottom: 2px solid var(--accent-color);
+}
+
+.hero .social-links {
+  margin-top: 30px;
+  animation: fadeIn 1s 0.6s both;
+}
+
+/*--------------------------------------------------------------
+# PHP Email Form Messages
+--------------------------------------------------------------*/
 .php-email-form .error-message {
   display: none;
   background: #df1529;
@@ -118,619 +760,14 @@ h6 {
 }
 
 @keyframes php-email-form-loading {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(360deg);
-  }
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 /*--------------------------------------------------------------
-# Global Header
+# Section-specific Styles
 --------------------------------------------------------------*/
-.header {
-  color: var(--default-color);
-  position: fixed;
-  top: 50%;
-  left: 20px;
-  transform: translateY(-50%);
-  z-index: 997;
-  transition: all 0.3s ease;
-  background: transparent;
-}
-
-@media (max-width: 1199px) {
-  .header {
-    background-color: var(--background-color);
-    border-right: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
-    width: 300px;
-    left: -200px;
-  }
-}
-
-@media (min-width: 1200px) and (max-width: 1600px) {
-  .header~main {
-    margin-left: 160px;
-  }
-
-  .header~main .hero {
-    margin-left: -160px;
-    width: 100vw;
-  }
-  
-  /* Update these styles to balance the content horizontally */
-  .header~main section,
-  .header~main .section {
-    margin-left: -160px;
-    width: 100vw;
-    padding-left: 160px; /* Left padding to account for header */
-    padding-right: 160px; /* Add right padding for balance */
-    box-sizing: border-box;
-  }
-  
-  /* Add this to ensure content within sections is centered */
-  .header~main section .container,
-  .header~main .section .container {
-    max-width: calc(100% - 160px);
-    margin: 0 auto;
-  }
-}
-
-.header.header-show {
-  left: 0;
-}
-
-.header .header-toggle {
-  color: var(--contrast-color);
-  background-color: var(--accent-color);
-  font-size: 22px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  cursor: pointer;
-  position: fixed;
-  top: 15px;
-  right: 15px;
-  z-index: 9999;
-  transition: background-color 0.3s;
-}
-
-.header .header-toggle:hover {
-  color: var(--contrast-color);
-  background-color: color-mix(in srgb, var(--accent-color) 90%, white 15%);
-}
-
-/*--------------------------------------------------------------
-# Navigation Menu - Updated Styling
---------------------------------------------------------------*/
-.navmenu {
-  padding: 0;
-  z-index: 9997;
-  background: transparent; /* Remove container background */
-  padding: 12px 0; /* Adjusted padding */
-  box-shadow: none;
-  border-left: none;
-  width: 120px;
-}
-
-.navmenu ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 10px; /* Consistent spacing between buttons */
-}
-
-.navmenu a,
-.navmenu a:focus {
-  color: var(--nav-color);
-  font-family: var(--nav-font);
-  display: flex;
-  align-items: center;
-  padding: 12px;
-  font-size: 15px;
-  font-weight: 500;
-  border-radius: 50px;
-  background: rgba(255, 255, 255, 0.9);
-  height: 50px;
-  width: 50px; /* Make buttons circular by default */
-  overflow: hidden;
-  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1); /* Smoother animation */
-  text-decoration: none;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  position: relative;
-}
-
-.navmenu a i,
-.navmenu a:focus i {
-  font-size: 20px;
-  transition: all 0.3s ease;
-  margin-right: 0; /* Remove default margin to center icons */
-}
-
-/* Add margin only when expanded (hover/active state) */
-.navmenu a:hover i,
-.navmenu .active i,
-.navmenu li:hover > a i {
-  margin-right: 12px; /* Add margin only when button expands */
-}
-
-/* Adjust the positioning of the text */
-.navmenu a span,
-.navmenu a:focus span {
-  position: absolute;
-  white-space: nowrap;
-  opacity: 0;
-  transform: translateX(-10px);
-  transition: all 0.3s ease;
-  left: 50px; /* Adjust text position */
-}
-
-/* Hover and active states */
-.navmenu a:hover,
-.navmenu .active,
-.navmenu .active:focus,
-.navmenu li:hover > a {
-  color: #fff;
-  background: var(--accent-color);
-  width: 140px; /* Expand on hover */
-  box-shadow: 0 6px 20px rgba(5, 99, 187, 0.25);
-}
-
-.navmenu a:hover span,
-.navmenu .active span,
-.navmenu li:hover > a span {
-  opacity: 1;
-  transform: translateX(0);
-  display: block;
-}
-
-/* Active button indicator */
-.navmenu .active:before {
-  content: "";
-  position: absolute;
-  left: -10px;
-  top: 50%;
-  transform: translateY(-50%);
-  height: 8px;
-  width: 8px;
-  border-radius: 50%;
-  background-color: var(--accent-color);
-}
-
-/* Mobile navigation adjustments */
-@media (max-width: 1199px) {
-  .header {
-    background-color: transparent; /* Remove header background */
-    border-right: none;
-    width: auto;
-    left: -100px;
-  }
-  
-  .header.header-show {
-    left: 20px;
-  }
-  
-  .navmenu {
-    box-shadow: none;
-  }
-  
-  .navmenu a, 
-  .navmenu a:focus {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-  }
-}
-
-/* Fix for expanded screen sizes */
-@media (min-width: 1200px) and (max-width: 1600px) {
-  .header ~ main {
-    margin-left: 100px; /* Reduced margin to accommodate smaller nav */
-  }
-  
-  .header ~ main .hero,
-  .header ~ main section,
-  .header ~ main .section {
-    margin-left: -100px;
-    padding-left: 100px;
-  }
-}
-
-/*--------------------------------------------------------------
-# Global Footer
---------------------------------------------------------------*/
-/*--------------------------------------------------------------
-# Footer Enhancements
---------------------------------------------------------------*/
-.footer {
-  background-color: #f8f9fa;
-  padding: 50px 0 20px;
-  position: relative;
-  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.05);
-}
-
-.footer .card-item {
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 30px;
-  border-left: 5px solid var(--accent-color);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.footer .card-item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
-}
-
-.footer h3 {
-  color: var(--heading-color);
-  font-weight: 700;
-  margin-bottom: 15px;
-}
-
-.footer h3 i {
-  margin-right: 8px;
-  color: var(--accent-color);
-}
-
-.footer .social-links {
-  margin-top: 25px;
-  margin-bottom: 20px;
-}
-
-.footer .social-links a {
-  font-size: 18px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: rgba(var(--accent-color-rgb), 0.1);
-  color: var(--accent-color);
-  margin: 0 6px;
-  transition: all 0.3s ease;
-}
-
-.footer .social-links a:hover {
-  background-color: var(--accent-color);
-  color: #fff;
-  transform: translateY(-3px);
-}
-
-.footer .copyright {
-  color: var(--default-color);
-  font-size: 14px;
-  padding-top: 15px;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-.footer .credits a {
-  color: var(--accent-color);
-  font-weight: 500;
-}
-
-/*--------------------------------------------------------------
-# Preloader
---------------------------------------------------------------*/
-#preloader {
-  position: fixed;
-  inset: 0;
-  z-index: 999999;
-  overflow: hidden;
-  background: var(--background-color);
-  transition: all 0.6s ease-out;
-}
-
-#preloader:before {
-  content: "";
-  position: fixed;
-  top: calc(50% - 30px);
-  left: calc(50% - 30px);
-  border: 6px solid #ffffff;
-  border-color: var(--accent-color) transparent var(--accent-color) transparent;
-  border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  animation: animate-preloader 1.5s linear infinite;
-}
-
-@keyframes animate-preloader {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-/*--------------------------------------------------------------
-# Scroll Top Button
---------------------------------------------------------------*/
-.scroll-top {
-  position: fixed;
-  visibility: hidden;
-  opacity: 0;
-  right: 15px;
-  bottom: -15px;
-  z-index: 99999;
-  background-color: var(--accent-color);
-  width: 44px;
-  height: 44px;
-  border-radius: 50px;
-  transition: all 0.4s;
-}
-
-.scroll-top i {
-  font-size: 24px;
-  color: var(--contrast-color);
-  line-height: 0;
-}
-
-.scroll-top:hover {
-  background-color: color-mix(in srgb, var(--accent-color), transparent 20%);
-  color: var(--contrast-color);
-}
-
-.scroll-top.active {
-  visibility: visible;
-  opacity: 1;
-  bottom: 15px;
-}
-
-/*--------------------------------------------------------------
-# Disable aos animation delay on mobile devices
---------------------------------------------------------------*/
-@media screen and (max-width: 768px) {
-  [data-aos-delay] {
-    transition-delay: 0 !important;
-  }
-}
-
-/*--------------------------------------------------------------
-# Global Page Titles & Breadcrumbs
---------------------------------------------------------------*/
-.page-title {
-  --background-color: color-mix(in srgb, var(--default-color), transparent 96%);
-  color: var(--default-color);
-  background-color: var(--background-color);
-  padding: 20px 0;
-  position: relative;
-}
-
-.page-title h1 {
-  font-size: 28px;
-  font-weight: 700;
-  margin: 0;
-}
-
-.page-title .breadcrumbs ol {
-  display: flex;
-  flex-wrap: wrap;
-  list-style: none;
-  padding: 0 0 10px 0;
-  margin: 0;
-  font-size: 14px;
-  font-weight: 400;
-}
-
-.page-title .breadcrumbs ol li+li {
-  padding-left: 10px;
-}
-
-.page-title .breadcrumbs ol li+li::before {
-  content: "/";
-  display: inline-block;
-  padding-right: 10px;
-  color: color-mix(in srgb, var(--default-color), transparent 70%);
-}
-
-/*--------------------------------------------------------------
-# Global Sections
---------------------------------------------------------------*/
-section,
-.section {
-  color: var(--default-color);
-  background-color: var(--background-color);
-  padding: 60px 0;
-  overflow: clip;
-  position: relative;
-  z-index: 2; /* Ensure content is above the fixed background */
-}
-
-/*--------------------------------------------------------------
-# Global Section Titles
---------------------------------------------------------------*/
-.section-title {
-  text-align: center;
-  padding-bottom: 60px;
-  position: relative;
-}
-
-.section-title h2 {
-  font-size: 32px;
-  font-weight: 700;
-  margin-bottom: 20px;
-  padding-bottom: 20px;
-  position: relative;
-}
-
-.section-title h2:before {
-  content: "";
-  position: absolute;
-  display: block;
-  width: 160px;
-  height: 1px;
-  background: color-mix(in srgb, var(--default-color), transparent 60%);
-  left: 0;
-  right: 0;
-  bottom: 1px;
-  margin: auto;
-}
-
-.section-title h2::after {
-  content: "";
-  position: absolute;
-  display: block;
-  width: 60px;
-  height: 3px;
-  background: var(--accent-color);
-  left: 0;
-  right: 0;
-  bottom: 0;
-  margin: auto;
-}
-
-.section-title p {
-  margin-bottom: 0;
-}
-
-/*--------------------------------------------------------------
-# Hero Section Optimization
---------------------------------------------------------------*/
-.hero {
-  position: relative;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  padding: 80px 0;
-  overflow: hidden;
-  background-attachment: fixed;
-}
-
-.hero img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 1;
-  filter: blur(2px) brightness(1);
-  transition: filter 0.5s ease;
-  /* Add fixed positioning for parallax effect */
-  position: fixed;
-}
-
-.hero:before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  background-color: rgba(255, 255, 255, 0.5); /* Add white transparent overlay */
-}
-
-.hero::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 50%;  /* Adjust height of the gradient */
-  background: linear-gradient(to bottom, rgba(255,255,255,0) 95%, rgba(248,249,250,1) 100%); /* Fade to bg-light color */
-  z-index: 1;
-}
-
-.hero .container {
-  position: relative;
-  z-index: 3;
-}
-
-.hero h2 {
-  margin: 0 0 15px;
-  font-size: 64px;
-  font-weight: 700;
-  color: var(--heading-color);
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  animation: fadeInDown 1s;
-  border-bottom: 3px solid var(--accent-color);
-  display: inline-block;
-  padding-bottom: 10px;
-}
-
-.hero p {
-  margin: 15px 0 25px 0;
-  font-size: 26px;
-  color: var(--default-color);
-  animation: fadeInUp 1s 0.3s both;
-}
-
-.hero p span {
-  color: var(--accent-color);
-  font-weight: 600;
-  letter-spacing: 1px;
-  border-bottom: 2px solid var(--accent-color);
-}
-
-.hero .social-links {
-  margin-top: 30px;
-  animation: fadeIn 1s 0.6s both;
-}
-
-.hero .social-links a {
-  font-size: 22px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.8);
-  color: var(--accent-color);
-  margin-right: 12px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-}
-
-.hero .social-links a:hover {
-  background: var(--accent-color);
-  color: #fff;
-  transform: translateY(-5px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-}
-
-@keyframes fadeInDown {
-  from {
-    opacity: 0;
-    transform: translateY(-30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-/*--------------------------------------------------------------
-# About Section
---------------------------------------------------------------*/
+/* About Section */
 .about .content h2 {
   font-weight: 700;
   font-size: 24px;
@@ -760,33 +797,33 @@ section,
 }
 
 .about .content {
-  background-color: #fff;
+  background-color: var(--surface-color);
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-sm);
   padding: 25px;
   border-left: 5px solid var(--accent-color);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: var(--transition-base);
 }
 
 .about .content:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--shadow-md);
 }
 
-/* About section image optimization */
+/* Profile image */
 .about .profile-img-container {
   position: relative;
   padding: 10px;
-  max-width: 100%; /* Increased from 85% to fill more space */
+  max-width: 100%;
   margin: 0 auto;
 }
 
 .about .profile-img-container img {
   position: relative;
   z-index: 2;
-  transition: all 0.4s ease;
+  transition: var(--transition-base);
   border: 5px solid white;
-  width: 100%; /* Make image take full width of container */
+  width: 100%;
   height: auto;
 }
 
@@ -794,21 +831,19 @@ section,
   transform: translateY(-8px);
 }
 
-/* Decorative accent element behind the image */
 .about .profile-accent {
   position: absolute;
   bottom: -15px;
   right: -15px;
-  width: 80%; /* Increased from 70% for better visual impact */
-  height: 80%; /* Increased from 70% for better visual impact */
+  width: 80%;
+  height: 80%;
   background-color: var(--accent-color);
   opacity: 0.15;
   border-radius: 5px;
   z-index: 1;
-  transition: all 0.4s ease;
+  transition: var(--transition-base);
 }
 
-/* Fix the bullet point/icon overlap issue */
 .about .list-unstyled {
   list-style-type: none;
   padding-left: 0;
@@ -822,100 +857,10 @@ section,
 }
 
 .about .list-unstyled li:before {
-  display: none; /* Remove any :before pseudo-element */
+  display: none;
 }
 
-/* Improve vertical alignment on mobile */
-@media (max-width: 767px) {
-  .about .profile-img-container {
-    margin-bottom: 25px;
-    margin-top: 10px;
-    max-width: 75%; /* Adjusted from 60% for better appearance on mobile */
-  }
-  
-  .about .col-md-4 {
-    padding-bottom: 0;
-  }
-}
-
-/*--------------------------------------------------------------
-# About Section Enhancements
---------------------------------------------------------------*/
-.about .card-item {
-  overflow: hidden;
-  transition: all 0.3s ease;
-}
-
-.about .card-item img {
-  max-width: 100%;
-  transition: transform 0.5s ease;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.about .card-item:hover img {
-  transform: scale(1.03);
-}
-
-.about h5 {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: var(--accent-color);
-  margin-bottom: 1rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.about .list-unstyled li {
-  padding: 0.35rem 0;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.about .btn-outline-primary {
-  color: var(--accent-color);
-  border-color: var(--accent-color);
-}
-
-.about .btn-outline-primary:hover {
-  background-color: var(--accent-color);
-  color: #fff;
-}
-
-/*--------------------------------------------------------------
-# Skills Section
---------------------------------------------------------------*/
-#skills .card {
-  border: none;
-}
-
-#skills h3 {
-  font-weight: 700;
-  font-size: 24px;
-}
-
-.skills {
-  background-color: #f9f9f9;
-}
-
-.skills .card {
-  border: none;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.skills .card-title {
-  font-size: 1.2rem;
-  font-weight: bold;
-}
-
-.skills .card-body {
-  padding: 20px;
-}
-
-/*--------------------------------------------------------------
-# Resume Section
---------------------------------------------------------------*/
+/* Resume Section */
 .resume .resume-title {
   color: var(--heading-color);
   font-size: 26px;
@@ -925,23 +870,23 @@ section,
 }
 
 .resume {
-  background-color: #f9f9f9;
+  background-color: var(--light-bg);
 }
 
 .resume-item {
-  background-color: #fff;
+  background-color: var(--surface-color);
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-sm);
   padding: 25px;
   margin-bottom: 30px;
   position: relative;
   border-left: 5px solid var(--accent-color);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: var(--transition-base);
 }
 
 .resume-item:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--shadow-md);
 }
 
 .resume .resume-item h4 {
@@ -1000,729 +945,41 @@ section,
   font-weight: bold;
 }
 
-
-/*--------------------------------------------------------------
-# Contact Section
---------------------------------------------------------------*/
-.contact .info-item+.info-item {
-  margin-top: 40px;
-}
-
-.contact .info-item i {
-  color: var(--accent-color);
-  background: color-mix(in srgb, var(--accent-color), transparent 92%);
-  font-size: 20px;
-  width: 44px;
-  height: 44px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50px;
-  transition: all 0.3s ease-in-out;
-  margin-right: 15px;
-}
-
-.contact .info-item h3 {
-  padding: 0;
-  font-size: 18px;
-  font-weight: 700;
-  margin-bottom: 5px;
-}
-
-.contact .info-item p {
-  padding: 0;
-  margin-bottom: 0;
-  font-size: 14px;
-}
-
-.contact .info-item:hover i {
-  background: var(--accent-color);
-  color: var(--contrast-color);
-}
-
-.contact .php-email-form {
-  height: 100%;
-}
-
-.contact .php-email-form input[type=text],
-.contact .php-email-form input[type=email],
-.contact .php-email-form textarea {
-  font-size: 14px;
-  padding: 10px 15px;
-  box-shadow: none;
-  border-radius: 0;
-  color: var(--default-color);
-  background-color: color-mix(in srgb, var(--background-color), transparent 50%);
-  border-color: color-mix(in srgb, var(--default-color), transparent 80%);
-}
-
-.contact .php-email-form input[type=text]:focus,
-.contact .php-email-form input[type=email]:focus,
-.contact .php-email-form textarea:focus {
-  border-color: var(--accent-color);
-}
-
-.contact .php-email-form input[type=text]::placeholder,
-.contact .php-email-form input[type=email]::placeholder,
-.contact .php-email-form textarea::placeholder {
-  color: color-mix(in srgb, var(--default-color), transparent 70%);
-}
-
-.contact .php-email-form button[type=submit] {
-  color: var(--contrast-color);
-  background: var(--accent-color);
-  border: 0;
-  padding: 10px 30px;
-  transition: 0.4s;
-  border-radius: 50px;
-}
-
-.contact .php-email-form button[type=submit]:hover {
-  background: color-mix(in srgb, var(--accent-color), transparent 25%);
-}
-
-.contact .info-item {
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 25px;
-  margin-bottom: 30px;
-  border-left: 5px solid var(--accent-color);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  display: flex;
-  align-items: flex-start;
-}
-
-.contact .info-item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
-}
-
-.contact .php-email-form {
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 25px;
-  border-left: 5px solid var(--accent-color);
-}
-
-/*--------------------------------------------------------------
-# Portfolio Details Section
---------------------------------------------------------------*/
-.portfolio-details .portfolio-details-slider img {
-  width: 100%;
-}
-
-.portfolio-details .swiper-wrapper {
-  height: auto;
-}
-
-.portfolio-details .swiper-button-prev,
-.portfolio-details .swiper-button-next {
-  width: 48px;
-  height: 48px;
-}
-
-.portfolio-details .swiper-button-prev:after,
-.portfolio-details .swiper-button-next:after {
-  color: rgba(255, 255, 255, 0.8);
-  background-color: rgba(0, 0, 0, 0.15);
-  font-size: 24px;
-  border-radius: 50%;
-  width: 48px;
-  height: 48px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: 0.3s;
-}
-
-.portfolio-details .swiper-button-prev:hover:after,
-.portfolio-details .swiper-button-next:hover:after {
-  background-color: rgba(0, 0, 0, 0.3);
-}
-
-@media (max-width: 575px) {
-
-  .portfolio-details .swiper-button-prev,
-  .portfolio-details .swiper-button-next {
-    display: none;
-  }
-}
-
-.portfolio-details .swiper-pagination {
-  margin-top: 20px;
-  position: relative;
-}
-
-.portfolio-details .swiper-pagination .swiper-pagination-bullet {
-  width: 10px;
-  height: 10px;
-  background-color: color-mix(in srgb, var(--default-color), transparent 85%);
-  opacity: 1;
-}
-
-.portfolio-details .swiper-pagination .swiper-pagination-bullet-active {
-  background-color: var(--accent-color);
-}
-
-.portfolio-details .portfolio-info h3 {
-  font-size: 22px;
-  font-weight: 700;
-  margin-bottom: 20px;
-  padding-bottom: 20px;
-  position: relative;
-}
-
-.portfolio-details .portfolio-info h3:after {
-  content: "";
-  position: absolute;
-  display: block;
-  width: 50px;
-  height: 3px;
-  background: var(--accent-color);
-  left: 0;
-  bottom: 0;
-}
-
-.portfolio-details .portfolio-info ul {
-  list-style: none;
-  padding: 0;
-  font-size: 15px;
-}
-
-.portfolio-details .portfolio-info ul li {
-  display: flex;
-  flex-direction: column;
-  padding-bottom: 15px;
-}
-
-.portfolio-details .portfolio-info ul strong {
-  text-transform: uppercase;
-  font-weight: 400;
-  color: color-mix(in srgb, var(--default-color), transparent 50%);
-  font-size: 14px;
-}
-
-.portfolio-details .portfolio-info .btn-visit {
-  padding: 8px 40px;
-  background: var(--accent-color);
-  color: var(--contrast-color);
-  border-radius: 50px;
-  transition: 0.3s;
-}
-
-.portfolio-details .portfolio-info .btn-visit:hover {
-  background: color-mix(in srgb, var(--accent-color), transparent 20%);
-}
-
-.portfolio-details .portfolio-description h2 {
-  font-size: 26px;
-  font-weight: 700;
-  margin-bottom: 20px;
-}
-
-.portfolio-details .portfolio-description p {
-  padding: 0;
-}
-
-.portfolio-details .portfolio-description .testimonial-item {
-  padding: 30px 30px 0 30px;
-  position: relative;
-  background: color-mix(in srgb, var(--default-color), transparent 97%);
-  margin-bottom: 50px;
-}
-
-.portfolio-details .portfolio-description .testimonial-item .testimonial-img {
-  width: 90px;
-  border-radius: 50px;
-  border: 6px solid var(--background-color);
-  float: left;
-  margin: 0 10px 0 0;
-}
-
-.portfolio-details .portfolio-description .testimonial-item h3 {
-  font-size: 18px;
-  font-weight: bold;
-  margin: 15px 0 5px 0;
-  padding-top: 20px;
-}
-
-.portfolio-details .portfolio-description .testimonial-item h4 {
-  font-size: 14px;
-  color: #6c757d;
-  margin: 0;
-}
-
-.portfolio-details .portfolio-description .testimonial-item .quote-icon-left,
-.portfolio-details .portfolio-description .testimonial-item .quote-icon-right {
-  color: color-mix(in srgb, var(--accent-color), transparent 50%);
-  font-size: 26px;
-  line-height: 0;
-}
-
-.portfolio-details .portfolio-description .testimonial-item .quote-icon-left {
-  display: inline-block;
-  left: -5px;
-  position: relative;
-}
-
-.portfolio-details .portfolio-description .testimonial-item .quote-icon-right {
-  display: inline-block;
-  right: -5px;
-  position: relative;
-  top: 10px;
-  transform: scale(-1, -1);
-}
-
-.portfolio-details .portfolio-description .testimonial-item p {
-  font-style: italic;
-  margin: 0 0 15px 0 0 0;
-  padding: 0;
-}
-
-/*--------------------------------------------------------------
-# Starter Section Section
---------------------------------------------------------------*/
-.starter-section {
-  /* Add your styles here */
-}
-
-/* Add this media query to manage the transition between desktop and mobile views */
-@media (min-width: 992px) and (max-width: 1199px) {
-  /* Control text sizing */
-  body {
-    font-size: 0.95rem; /* Slightly smaller base font size */
-  }
-
-  .hero h2 {
-    font-size: 48px; /* Reduce hero title size */
-  }
-
-  .hero p {
-    font-size: 22px; /* Reduce hero paragraph size */
-  }
-  
-  /* Control containers */
-  .container {
-    max-width: 960px;
-  }
-  
-  /* Ensure content doesn't overflow its container */
-  section .container,
-  .section .container {
-    padding: 0 20px;
-    width: 100%;
-    box-sizing: border-box;
-  }
-  
-  /* Control image sizes if needed */
-  .img-fluid {
-    max-width: 100%;
-    height: auto;
-  }
-  
-  /* About section specific fixes */
-  .about .row {
-    display: flex;
-    flex-wrap: wrap;
-  }
-  
-  .about .col-lg-4 {
-    max-width: 100%;
-    flex: 0 0 100%;
-    margin-bottom: 30px;
-  }
-  
-  .about .col-lg-8 {
-    max-width: 100%;
-    flex: 0 0 100%;
-  }
-  
-  .about img {
-    max-width: 50%;
-    margin: 0 auto;
-    display: block;
-  }
-  
-  /* Ensure content stays within bounds */
-  .about .content {
-    padding: 0;
-  }
-  
-  .about .content h2 {
-    font-size: 22px;
-  }
-  
-  .about .content h2 {
-    font-size: 24px;
-    margin-bottom: 10px;
-  }
-  
-  .about .content .lead {
-    font-size: 1rem;
-    line-height: 1.5;
-  }
-  
-  /* Ensure content stays within bounds */
-  .about .content {
-    padding: 15px;
-  }
-}
-
-/*--------------------------------------------------------------
-# Global Card Component
---------------------------------------------------------------*/
-.card-item {
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 25px;
-  margin-bottom: 30px;
-  position: relative;
-  border-left: 5px solid var(--accent-color);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  /* Add relative positioning for parallax scrolling */
-  position: relative;
-  z-index: 3;
-}
-
-.card-item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
-}
-
-.card-item h3, .card-item h4 {
-  line-height: 1.4;
-  font-size: 20px;
-  font-weight: 700;
-  color: var(--accent-color);
-  margin-bottom: 15px;
-  display: flex;
-  align-items: center;
-}
-
-.card-item h3 i, .card-item h4 i {
-  margin-right: 10px;
-  font-size: 24px;
-}
-
-.card-item .tag {
-  font-size: 16px;
-  background-color: #f0f7ff;
-  color: var(--accent-color);
-  padding: 5px 15px;
-  display: inline-block;
-  font-weight: 600;
-  margin-bottom: 15px;
-  border-radius: 20px;
-}
-
-.card-item ul {
-  padding-left: 0;
-  list-style: none;
-}
-
-.card-item ul li {
-  padding: 8px 0 8px 25px;
-  position: relative;
-}
-
-.card-item ul li:before {
-  content: "▹";
-  position: absolute;
-  left: 0;
-  color: var(--accent-color);
-  font-weight: bold;
-}
-
-/*--------------------------------------------------------------
-# Navigation Menu Optimization
---------------------------------------------------------------*/
-.header {
-  position: fixed;
-  top: 50%;
-  left: 20px;
-  transform: translateY(-50%);
-  z-index: 997;
-  transition: all 0.3s ease;
-  background: transparent;
-}
-
-.header-toggle {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  width: 40px;
-  height: 40px;
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 20px;
-  color: var(--accent-color);
-  z-index: 999;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.header-toggle:hover {
-  background-color: var(--accent-color);
-  color: #fff;
-}
-
-.navmenu {
-  background: transparent; /* Remove container background */
-  padding: 0; /* Remove padding */
-  border-radius: 0; /* Remove border radius */
-  box-shadow: none; /* Remove box shadow */
-  transition: all 0.3s ease;
-  width: auto; /* Let width be determined by content */
-}
-
-.navmenu ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 12px; /* Add consistent spacing between buttons */
-}
-
-.navmenu a,
-.navmenu a:focus {
-  display: flex;
-  align-items: center;
-  padding: 12px;
-  margin-bottom: 0;
-  border-radius: 50px; /* Circular buttons */
-  height: 50px;
-  width: 50px; /* Fixed size for circular buttons */
-  overflow: hidden;
-  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
-  color: var(--nav-color);
-  background: rgba(255, 255, 255, 0.9); /* Keep button background */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  justify-content: center; /* Center icon */
-  position: relative;
-}
-
-.navmenu a i,
-.navmenu a:focus i {
-  font-size: 20px;
-  transition: all 0.3s ease;
-  margin-right: 0; /* Remove default margin to center icons */
-}
-
-/* Add margin only when expanded (hover/active state) */
-.navmenu a:hover i,
-.navmenu .active i,
-.navmenu li:hover > a i {
-  margin-right: 12px; /* Add margin only when button expands */
-}
-
-/* Adjust the positioning of the text */
-.navmenu a span,
-.navmenu a:focus span {
-  position: absolute;
-  white-space: nowrap;
-  opacity: 0;
-  transform: translateX(-10px);
-  transition: all 0.3s ease;
-  left: 50px; /* Adjust text position */
-}
-
-/* Hover and active states */
-.navmenu a:hover,
-.navmenu .active,
-.navmenu .active:focus,
-.navmenu li:hover > a {
-  color: #fff;
-  background: var(--accent-color);
-  width: 140px; /* Expand on hover */
-  justify-content: flex-start; /* Left-align content when expanded */
-  padding-left: 15px; /* Add padding when expanded */
-}
-
-.navmenu a:hover span,
-.navmenu .active span,
-.navmenu li:hover > a span {
-  opacity: 1;
-  transform: translateX(0);
-  display: block;
-}
-
-/* Active button indicator */
-.navmenu .active:before {
-  content: "";
-  position: absolute;
-  left: -10px;
-  top: 50%;
-  transform: translateY(-50%);
-  height: 8px;
-  width: 8px;
-  border-radius: 50%;
-  background-color: var(--accent-color);
-}
-
-@media (max-width: 1199px) {
-  .header {
-    left: -100px;
-    padding: 0;
-    background-color: transparent; /* Remove container background */
-    backdrop-filter: none; /* Remove backdrop filter */
-    box-shadow: none; /* Remove box shadow */
-    width: auto;
-  }
-  
-  .header.header-show {
-    left: 20px;
-  }
-}
-
-/* Add a specific parallax class for enhanced effect */
-.parallax-bg {
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-/* Add subtle animations for scrolling elements to enhance parallax feel */
-@media (min-width: 992px) {
-  .animate-on-scroll {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-  }
-  
-  .animate-on-scroll.active {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* Skills Section */
+.skills {
+  background-color: var(--light-bg);
 }
 
-/*--------------------------------------------------------------
-# Global Button Styling
---------------------------------------------------------------*/
-.btn,
-.php-email-form button[type=submit],
-.footer .social-links a,
-.hero .social-links a,
-.portfolio .btn {
-  border-radius: 50px;
-  padding: 10px 25px;
-  font-weight: 500;
-  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+.skills .card {
   border: none;
-  text-decoration: none; /* Remove underlines */
+  box-shadow: var(--shadow-sm);
 }
 
-/* Remove underlines from buttons on hover */
-a.btn:hover,
-.hero .social-links a:hover,
-.footer .social-links a:hover,
-.portfolio a.btn:hover,
-.navmenu a:hover {
-  text-decoration: none;
+.skills .card-title {
+  font-size: 1.2rem;
+  font-weight: bold;
 }
 
-/* Primary buttons */
-.btn-primary,
-.php-email-form button[type=submit] {
-  background-color: var(--accent-color);
-  color: #fff;
+.skills .card-body {
+  padding: 20px;
 }
 
-.btn-primary:hover,
-.php-email-form button[type=submit]:hover {
-  background-color: color-mix(in srgb, var(--accent-color) 80%, white 20%);
-  transform: translateY(-3px);
-  box-shadow: 0 6px 15px rgba(5, 99, 187, 0.3);
-  color: #fff;
-}
-
-/* Outline buttons */
-.btn-outline-primary {
-  background-color: transparent;
-  border: 2px solid var(--accent-color);
-  color: var(--accent-color);
-}
-
-.btn-outline-primary:hover {
-  background-color: var(--accent-color);
-  color: #fff;
-  transform: translateY(-3px);
-  box-shadow: 0 6px 15px rgba(5, 99, 187, 0.3);
-}
-
-/* Social buttons */
-.hero .social-links a,
-.footer .social-links a {
-  width: 45px;
-  height: 45px;
-  padding: 0;
-  background: rgba(255, 255, 255, 0.9);
-  color: var(--accent-color);
-}
-
-.hero .social-links a:hover,
-.footer .social-links a:hover {
-  background: var(--accent-color);
-  color: #fff;
-  transform: translateY(-3px);
-}
-
-/* Icon positioning in buttons */
-.btn i,
-.php-email-form button[type=submit] i {
-  font-size: 1.1em;
-}
-
-/* Download button enhancement */
-.download-btn {
-  padding: 12px 30px;
-  font-weight: 600;
-}
-
-/* Large buttons */
-.btn-lg {
-  padding: 12px 30px;
-  font-size: 1.1rem;
-}
-
-/* Add this to your button styling section */
-.download-btn {
-  white-space: nowrap;
-  min-width: 200px; /* Ensures enough width for the text */
-}
-
-/* To prevent text wrapping in all buttons if needed */
-.btn {
-  white-space: nowrap;
-}
-
-/* Portfolio section styles */
+/*--------------------------------------------------------------
+# Portfolio Section
+--------------------------------------------------------------*/
 .portfolio-card {
   border-radius: 8px;
   overflow: hidden;
   border: none;
-  background-color: #fff;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: var(--surface-color);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-base);
   border-left: 5px solid var(--accent-color);
 }
 
 .portfolio-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15) !important;
+  box-shadow: var(--shadow-md) !important;
 }
 
 .portfolio-img-container {
@@ -1754,45 +1011,158 @@ a.btn:hover,
   align-items: center;
 }
 
-/* Make portfolio cards responsive on small screens */
-@media (max-width: 767px) {
-  .portfolio-img-container {
-    height: 200px;
-  }
-  
-  .portfolio-card .row {
-    flex-direction: column;
-  }
-  
-  .portfolio-card .col-md-5:first-child {
-    border-radius: 8px 8px 0 0;
-  }
-  
-  .portfolio .card-body {
-    padding: 1.5rem !important;
-  }
+/* Portfolio Details */
+.portfolio-details .portfolio-details-slider img {
+  width: 100%;
 }
 
-.badge {
-  font-weight: 500;
-  letter-spacing: 0.5px;
+.portfolio-details .swiper-wrapper {
+  height: auto;
 }
 
-.transition-hover {
-  transition: all 0.3s ease;
+.portfolio-details .swiper-button-prev,
+.portfolio-details .swiper-button-next {
+  width: 48px;
+  height: 48px;
 }
 
-/* Make portfolio cards responsive on small screens */
-@media (max-width: 767px) {
-  .portfolio-img-container {
-    height: 200px;
-  }
-  
-  .portfolio-card .row {
-    flex-direction: column;
-  }
-  
-  .portfolio-card .col-md-6:first-child {
-    border-radius: 10px 10px 0 0;
-  }
+.portfolio-details .swiper-button-prev:after,
+.portfolio-details .swiper-button-next:after {
+  color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(0, 0, 0, 0.15);
+  font-size: 24px;
+  border-radius: 50%;
+  width:auto;
+}
+
+/*--------------------------------------------------------------
+# Contact Section
+--------------------------------------------------------------*/
+#contact {
+  position: relative;
+  z-index: 5;
+  background-color: var(--light-bg);
+}
+
+.contact .info-item {
+  background-color: var(--surface-color);
+  border-radius: 8px;
+  box-shadow: var(--shadow-sm);
+  padding: 25px;
+  margin-bottom: 30px;
+  border-left: 5px solid var(--accent-color);
+  transition: var(--transition-base);
+  display: flex;
+  align-items: flex-start;
+}
+
+.contact .info-item:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+}
+
+.contact .info-item+.info-item {
+  margin-top: 40px;
+}
+
+.contact .info-item i {
+  color: var(--accent-color);
+  background: color-mix(in srgb, var(--accent-color), transparent 92%);
+  font-size: 20px;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50px;
+  transition: var(--transition-base);
+  margin-right: 15px;
+}
+
+.contact .info-item h3 {
+  padding: 0;
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.contact .info-item p {
+  padding: 0;
+  margin-bottom: 0;
+  font-size: 14px;
+}
+
+.contact .info-item:hover i {
+  background: var(--accent-color);
+  color: var(--contrast-color);
+}
+
+.contact .php-email-form {
+  height: 100%;
+  background-color: var(--surface-color);
+  border-radius: 8px;
+  box-shadow: var(--shadow-sm);
+  padding: 25px;
+  border-left: 5px solid var(--accent-color);
+}
+
+.contact .php-email-form input[type=text],
+.contact .php-email-form input[type=email],
+.contact .php-email-form textarea {
+  font-size: 14px;
+  padding: 10px 15px;
+  box-shadow: none;
+  border-radius: 0;
+  color: var(--default-color);
+  background-color: color-mix(in srgb, var(--background-color), transparent 50%);
+  border-color: var(--border-color);
+}
+
+.contact .php-email-form input[type=text]:focus,
+.contact .php-email-form input[type=email]:focus,
+.contact .php-email-form textarea:focus {
+  border-color: var(--accent-color);
+}
+
+.contact .php-email-form input[type=text]::placeholder,
+.contact .php-email-form input[type=email]::placeholder,
+.contact .php-email-form textarea::placeholder {
+  color: color-mix(in srgb, var(--default-color), transparent 70%);
+}
+
+/*--------------------------------------------------------------
+# Footer
+--------------------------------------------------------------*/
+.footer {
+  padding: 50px 0 20px;
+  border-top: 1px solid var(--border-color);
+  color: var(--default-color);
+  box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.05);
+  position: relative;
+  z-index: 10;
+  background-color: var(--light-bg);
+  margin-top: 0; /* Remove the gap */
+}
+
+.footer h3 {
+  color: var(--accent-color);
+  font-weight: 600;
+}
+
+.footer .social-links {
+  margin: 20px 0;
+}
+
+.footer .social-links a {
+  margin: 0 8px;
+}
+
+.footer .copyright {
+  font-size: 0.9rem;
+  border-top: 1px solid var(--border-color);
+  margin-top: 20px;
+}
+
+.footer .credits a {
+  color: var(--accent-color);
 }
