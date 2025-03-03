@@ -1,114 +1,173 @@
 /*--------------------------------------------------------------
-# Variables
+# TABLE OF CONTENTS
+--------------------------------------------------------------*/
+/*
+1. Variables & Custom Properties
+2. Base & Typography
+3. Layout & Containers
+4. Components
+   4.1 Buttons
+   4.2 Cards
+   4.3 Forms
+   4.4 Navigation
+   4.5 Social Links
+5. Utilities
+   5.1 Animations
+   5.2 Helper Classes
+6. Section-Specific Styles
+   6.1 Preloader
+   6.2 Header & Navigation
+   6.3 Hero
+   6.4 About
+   6.5 Skills
+   6.6 Resume
+   6.7 Portfolio
+   6.8 Contact
+   6.9 Footer
+*/
+
+/*--------------------------------------------------------------
+# 1. Variables & Custom Properties
 --------------------------------------------------------------*/
 :root {
-  /* Fonts */
-  --default-font: "Roboto", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --heading-font: "Raleway", sans-serif;
-  --nav-font: "Poppins", sans-serif;
+  /* Typography */
+  --font-base: "Roboto", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-heading: "Poppins", sans-serif;
+  --line-height-base: 1.6;
+  --line-height-heading: 1.3;
   
-  /* Global Colors */
-  --background-color: #ffffff;
-  --default-color: #272829;
-  --heading-color: #45505b;
-  --accent-color: #0563bb;
-  --accent-color-light: color-mix(in srgb, var(--accent-color) 80%, white 20%);
-  --accent-color-transparent: color-mix(in srgb, var(--accent-color), transparent 25%);
-  --surface-color: #ffffff;
-  --contrast-color: #ffffff;
+  /* Colors - Main palette */
+  --color-white: #ffffff;
+  --color-black: #060606;
+  --color-gray-100: #f9f9f9;
+  --color-gray-200: #f0f7ff;
+  --color-gray-300: #e9ecef;
+  --color-gray-400: #ced4da;
+  --color-gray-500: #adb5bd;
+  --color-gray-600: #6c757d;
+  --color-gray-700: #495057;
+  --color-gray-800: #343a40;
+  --color-gray-900: #212529;
   
-  /* Nav Menu Colors */
-  --nav-color: #45505b;
-  --nav-hover-color: #0563bb;
-  --nav-mobile-background-color: #ffffff;
-  --nav-dropdown-background-color: #ffffff;
-  --nav-dropdown-color: #212529;
-  --nav-dropdown-hover-color: #0563bb;
+  /* Theme colors */
+  --color-primary: #0563bb;
+  --color-primary-dark: #0353a4;
+  --color-primary-light: #eef7ff;
+  --color-success: #28a745;
+  --color-danger: #dc3545;
   
-  /* Common Colors */
-  --light-bg: #f9f9f9;
-  --dark-bg: #060606;
-  --border-color: color-mix(in srgb, var(--default-color), transparent 80%);
+  /* Semantic colors */
+  --color-bg: var(--color-white);
+  --color-bg-light: var(--color-gray-100);
+  --color-bg-dark: var(--color-black);
+  --color-text: #272829;
+  --color-text-light: var(--color-gray-600);
+  --color-text-heading: #45505b;
+  --color-border: rgba(39, 40, 41, 0.2);
+  --color-accent: var(--color-primary);
+  --color-accent-hover: var(--color-primary-dark);
+  
+  /* Shadows */
   --shadow-sm: 0 4px 8px rgba(0, 0, 0, 0.1);
   --shadow-md: 0 6px 15px rgba(0, 0, 0, 0.15);
   --shadow-accent: 0 6px 15px rgba(5, 99, 187, 0.3);
   
-  /* Animation */
-  --transition-base: all 0.3s ease;
-  --transition-smooth: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  /* Transitions */
+  --transition-fast: 0.2s ease;
+  --transition-base: 0.3s ease;
+  --transition-slow: 0.5s ease;
   
-  /* Spacing */
-  --section-padding: 60px 0;
+  /* Spacing & Layout */
+  --section-padding-y: 60px;
   --card-padding: 25px;
+  --border-radius-sm: 4px;
+  --border-radius-md: 8px;
+  --border-radius-lg: 50px;
+  --border-width: 5px;
+  --navbar-width: 140px;
   
-  /* Misc */
+  /* Global settings */
   scroll-behavior: smooth;
 }
 
 /*--------------------------------------------------------------
-# Color Presets
---------------------------------------------------------------*/
-.light-background {
-  --background-color: #f9f9f9;
-  --surface-color: #ffffff;
-}
-
-.dark-background {
-  --background-color: #060606;
-  --default-color: #ffffff;
-  --heading-color: #ffffff;
-  --surface-color: #252525;
-  --contrast-color: #ffffff;
-}
-
-/*--------------------------------------------------------------
-# Base Styles
+# 2. Base & Typography
 --------------------------------------------------------------*/
 body {
-  color: var(--default-color);
-  background-color: var(--background-color);
-  font-family: var(--default-font);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  font-family: var(--font-base);
+  font-size: 1rem;
+  line-height: var(--line-height-base);
+  margin: 0;
 }
 
 a {
-  color: var(--accent-color);
-  text-decoration: none !important;
-  transition: var(--transition-base);
+  color: var(--color-accent);
+  text-decoration: none;
+  transition: all var(--transition-base);
 }
 
 a:hover {
-  color: var(--accent-color-transparent);
-  text-decoration: none !important;
+  color: var(--color-accent-hover);
 }
 
 h1, h2, h3, h4, h5, h6 {
-  color: var(--heading-color);
-  font-family: var(--heading-font);
+  color: var(--color-text-heading);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  line-height: var(--line-height-heading);
+  margin-top: 0;
 }
 
+p {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+ul {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
 
 /*--------------------------------------------------------------
-# Common Components
+# 3. Layout & Containers
 --------------------------------------------------------------*/
-/* Section Styles */
-section, .section {
-  color: var(--default-color);
-  background-color: var(--background-color);
-  padding: var(--section-padding);
-  overflow: clip;
+.section, section {
+  padding: var(--section-padding-y) 0;
   position: relative;
+  overflow: hidden;
   z-index: 2;
 }
 
-/* Section Title */
+.container {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media (min-width: 992px) {
+  .container {
+    padding-left: var(--navbar-width); /* Accommodate for the left side nav */
+  }
+}
+
 .section-title {
   text-align: center;
-  padding-bottom: 60px;
+  padding-bottom: 40px;
   position: relative;
 }
 
 .section-title h2 {
-  font-size: 32px;
+  font-size: 2rem;
   font-weight: 700;
   margin-bottom: 20px;
   padding-bottom: 20px;
@@ -121,10 +180,10 @@ section, .section {
   display: block;
   width: 160px;
   height: 1px;
-  background: var(--border-color);
+  background: var(--color-border);
+  bottom: 1px;
   left: 0;
   right: 0;
-  bottom: 1px;
   margin: auto;
 }
 
@@ -134,99 +193,65 @@ section, .section {
   display: block;
   width: 60px;
   height: 3px;
-  background: var(--accent-color);
+  background: var(--color-accent);
+  bottom: 0;
   left: 0;
   right: 0;
-  bottom: 0;
   margin: auto;
 }
 
 .section-title p {
   margin-bottom: 0;
+  font-size: 1.1rem;
+  color: var(--color-text-light);
 }
 
-/* Content Container Spacing */
-.container {
-  padding-left: 30px;
-  padding-right: 30px;
+/*--------------------------------------------------------------
+# 4. Components
+--------------------------------------------------------------*/
+
+/* 4.1 Buttons */
+.btn,
+.php-email-form button[type=submit] {
+  border-radius: var(--border-radius-lg);
+  padding: 10px 25px;
+  font-weight: 500;
+  transition: all var(--transition-base);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: var(--shadow-sm);
+  border: none;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
 }
 
-@media (min-width: 768px) {
-  /* Medium screens and up */
-  .container {
-    padding-left: 50px;
-    padding-right: 50px;
-  }
+.btn-primary,
+.php-email-form button[type=submit] {
+  background-color: var(--color-accent);
+  color: var(--color-white);
 }
 
-@media (min-width: 992px) {
-  /* For larger screens where the side nav is visible */
-  .container {
-    padding-left: 140px; /* Accommodate for the left side nav */
-    padding-right: 50px;
-  }
+.btn-primary:hover,
+.php-email-form button[type=submit]:hover {
+  background-color: var(--color-accent-hover);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-accent);
+  color: var(--color-white);
 }
 
-@media (min-width: 1200px) {
-  /* Extra large screens */
-  .container {
-    padding-left: 160px;
-    padding-right: 60px;
-  }
-}
-
-/* Ensure all section content has adequate spacing */
-section .row {
-  margin-left: 10px;
-  margin-right: 10px;
-}
-
-/* Page Titles & Breadcrumbs */
-.page-title {
-  --background-color: color-mix(in srgb, var(--default-color), transparent 96%);
-  color: var(--default-color);
-  background-color: var(--background-color);
-  padding: 20px 0;
-  position: relative;
-}
-
-.page-title h1 {
-  font-size: 28px;
-  font-weight: 700;
-  margin: 0;
-}
-
-.page-title .breadcrumbs ol {
-  display: flex;
-  flex-wrap: wrap;
-  list-style: none;
-  padding: 0 0 10px 0;
-  margin: 0;
-  font-size: 14px;
-  font-weight: 400;
-}
-
-.page-title .breadcrumbs ol li+li {
-  padding-left: 10px;
-}
-
-.page-title .breadcrumbs ol li+li::before {
-  content: "/";
-  display: inline-block;
-  padding-right: 10px;
-  color: color-mix(in srgb, var(--default-color), transparent 70%);
-}
-
-/* Card Component */
+/* 4.2 Cards */
 .card-item {
-  background-color: var(--surface-color);
-  border-radius: 8px;
+  background-color: var(--color-bg);
+  border-radius: var(--border-radius-md);
   box-shadow: var(--shadow-sm);
   padding: var(--card-padding);
   margin-bottom: 30px;
   position: relative;
-  border-left: 5px solid var(--accent-color);
-  transition: var(--transition-base);
+  border-left: var(--border-width) solid var(--color-accent);
+  transition: all var(--transition-base);
   z-index: 3;
 }
 
@@ -235,30 +260,20 @@ section .row {
   box-shadow: var(--shadow-md);
 }
 
-.card-item h3, .card-item h4 {
-  line-height: 1.4;
-  font-size: 20px;
+.card-item h3, 
+.card-item h4 {
+  font-size: 1.4rem;
   font-weight: 700;
-  color: var(--accent-color);
+  color: var(--color-accent);
   margin-bottom: 15px;
   display: flex;
   align-items: center;
 }
 
-.card-item h3 i, .card-item h4 i {
+.card-item h3 i, 
+.card-item h4 i {
   margin-right: 10px;
-  font-size: 24px;
-}
-
-.card-item .tag {
-  font-size: 16px;
-  background-color: #f0f7ff;
-  color: var(--accent-color);
-  padding: 5px 15px;
-  display: inline-block;
-  font-weight: 600;
-  margin-bottom: 15px;
-  border-radius: 20px;
+  font-size: 1.5rem;
 }
 
 .card-item ul {
@@ -275,243 +290,72 @@ section .row {
   content: "▹";
   position: absolute;
   left: 0;
-  color: var(--accent-color);
+  color: var(--color-accent);
   font-weight: bold;
 }
 
-/* Buttons */
-.btn,
-.php-email-form button[type=submit],
-.footer .social-links a,
-.hero .social-links a,
-.portfolio .btn {
-  border-radius: 50px;
-  padding: 10px 25px;
-  font-weight: 500;
-  transition: var(--transition-smooth);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  box-shadow: var(--shadow-sm);
-  border: none;
-  text-decoration: none;
-  white-space: nowrap;
+/* 4.3 Forms */
+.php-email-form input,
+.php-email-form textarea {
+  padding: 10px 15px;
+  border-radius: var(--border-radius-sm);
+  border: 1px solid var(--color-gray-400);
+  box-shadow: none;
+  font-size: 14px;
+  width: 100%;
 }
 
-/* Remove underlines from buttons on hover */
-a.btn:hover,
-.hero .social-links a:hover,
-.footer .social-links a:hover,
-.portfolio a.btn:hover,
-.navmenu a:hover {
-  text-decoration: none;
+.php-email-form input:focus,
+.php-email-form textarea:focus {
+  border-color: var(--color-accent);
+  outline: none;
 }
 
-/* Add consistent spacing to social links */
-.hero .social-links a,
-.footer .social-links a {
-  margin: 0 8px;
-}
-
-/* Primary buttons */
-.btn-primary,
-.php-email-form button[type=submit] {
-  background-color: var(--accent-color);
-  color: #fff;
-}
-.btn-primary:hover,
-.php-email-form button[type=submit]:hover {
-  background-color: var(--accent-color-light);
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-accent);
-  color: #fff;
-}
-
-/* Outline buttons */
-.btn-outline-primary {
-  background-color: transparent;
-  border: 2px solid var(--accent-color);
-  color: var(--accent-color);
-}
-
-.btn-outline-primary:hover {
-  background-color: var(--accent-color);
-  color: #fff;
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-accent);
-}
-
-/* Social buttons */
-.hero .social-links a,
-.footer .social-links a {
-  width: 45px;
-  height: 45px;
-  padding: 0;
-  background: rgba(255, 255, 255, 0.9);
-  color: var(--accent-color);
-}
-
-.hero .social-links a:hover,
-.footer .social-links a:hover {
-  background: var(--accent-color);
-  color: #fff;
-  transform: translateY(-3px);
-}
-
-/* Button variants */
-.btn i,
-.php-email-form button[type=submit] i {
-  font-size: 1.1em;
-}
-
-.download-btn {
-  padding: 12px 30px;
+.php-email-form .error-message,
+.php-email-form .sent-message {
+  display: none;
+  text-align: center;
+  padding: 15px;
+  margin-bottom: 24px;
   font-weight: 600;
-  min-width: 200px;
+  border-radius: var(--border-radius-sm);
 }
 
-.btn-lg {
-  padding: 12px 30px;
-  font-size: 1.1rem;
+.php-email-form .error-message {
+  background: var(--color-danger);
+  color: var(--color-white);
 }
 
-/* Badges */
-.badge {
-  font-weight: 500;
-  letter-spacing: 0.5px;
+.php-email-form .sent-message {
+  color: var(--color-white);
+  background: var(--color-success);
 }
 
-/*--------------------------------------------------------------
-# Utilities
---------------------------------------------------------------*/
-/* Animation Classes */
-@keyframes fadeInDown {
-  from {
-    opacity: 0;
-    transform: translateY(-30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.php-email-form .loading {
+  display: none;
+  background: var(--color-bg);
+  text-align: center;
+  padding: 15px;
+  margin-bottom: 24px;
 }
 
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-.transition-hover {
-  transition: var(--transition-base);
-}
-
-.parallax-bg {
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-@media (min-width: 992px) {
-  .animate-on-scroll {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-  }
-  
-  .animate-on-scroll.active {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/*--------------------------------------------------------------
-# Preloader
---------------------------------------------------------------*/
-#preloader {
-  position: fixed;
-  inset: 0;
-  z-index: 999999;
-  overflow: hidden;
-  background: var(--background-color);
-  transition: all 0.6s ease-out;
-}
-
-#preloader:before {
+.php-email-form .loading:before {
   content: "";
-  position: fixed;
-  top: calc(50% - 30px);
-  left: calc(50% - 30px);
-  border: 6px solid #ffffff;
-  border-color: var(--accent-color) transparent var(--accent-color) transparent;
+  display: inline-block;
   border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  animation: animate-preloader 1.5s linear infinite;
+  width: 24px;
+  height: 24px;
+  margin: 0 10px -6px 0;
+  border: 3px solid var(--color-accent);
+  border-top-color: var(--color-bg);
+  animation: form-loading 1s linear infinite;
 }
 
-@keyframes animate-preloader {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-/*--------------------------------------------------------------
-# Header and Navigation
---------------------------------------------------------------*/
-/* Global Header */
-.header {
-  position: fixed;
-  top: 50%;
-  left: 20px;
-  transform: translateY(-50%);
-  z-index: 997;
-  transition: var(--transition-base);
-  background: transparent;
-}
-
-.header-toggle {
-  color: var(--contrast-color);
-  background-color: var(--accent-color);
-  font-size: 22px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  cursor: pointer;
-  position: fixed;
-  top: 15px;
-  right: 15px;
-  z-index: 9999;
-  transition: var(--transition-base);
-  box-shadow: var(--shadow-sm);
-}
-
-.header-toggle:hover {
-  color: var(--contrast-color);
-  background-color: var(--accent-color-light);
-}
-
-/* Navigation Menu */
+/* 4.4 Navigation */
 .navmenu {
   padding: 12px 0;
   z-index: 9997;
   background: transparent;
-  box-shadow: none;
-  border-left: none;
   width: 120px;
 }
 
@@ -525,45 +369,39 @@ a.btn:hover,
   gap: 10px;
 }
 
-.navmenu a,
-.navmenu a:focus {
-  color: var(--nav-color);
-  font-family: var(--nav-font);
+.navmenu a {
+  font-family: var(--font-heading);
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 12px;
   font-size: 15px;
   font-weight: 500;
-  border-radius: 50px;
+  border-radius: var(--border-radius-lg);
   background: rgba(255, 255, 255, 0.9);
   height: 50px;
   width: 50px;
   overflow: hidden;
-  transition: var(--transition-smooth);
-  text-decoration: none;
+  transition: all var(--transition-base);
   box-shadow: var(--shadow-sm);
   position: relative;
 }
 
-.navmenu a i,
-.navmenu a:focus i {
+.navmenu a i {
   font-size: 20px;
-  transition: var(--transition-base);
+  transition: all var(--transition-base);
   margin-right: 0;
 }
 
-.navmenu a span,
-.navmenu a:focus span {
+.navmenu a span {
   position: absolute;
   white-space: nowrap;
   opacity: 0;
   transform: translateX(-10px);
-  transition: var(--transition-base);
+  transition: all var(--transition-base);
   left: 50px;
 }
 
-/* Hover and active states */
 .navmenu a:hover i,
 .navmenu .active i,
 .navmenu li:hover > a i {
@@ -572,11 +410,10 @@ a.btn:hover,
 
 .navmenu a:hover,
 .navmenu .active,
-.navmenu .active:focus,
 .navmenu li:hover > a {
-  color: #fff;
-  background: var(--accent-color);
-  width: 140px;
+  color: var(--color-white);
+  background: var(--color-accent);
+  width: var(--navbar-width);
   box-shadow: var(--shadow-accent);
   justify-content: flex-start;
   padding-left: 15px;
@@ -590,56 +427,159 @@ a.btn:hover,
   display: block;
 }
 
-/* Active button indicator */
-.navmenu .active:before {
-  content: "";
-  position: absolute;
-  left: -10px;
-  top: 50%;
-  transform: translateY(-50%);
-  height: 8px;
-  width: 8px;
+/* 4.5 Social Links */
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.social-links a {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--color-accent);
   border-radius: 50%;
-  background-color: var(--accent-color);
+  transition: all var(--transition-base);
+  box-shadow: var(--shadow-sm);
+}
+
+.social-links a:hover {
+  background: var(--color-accent);
+  color: var(--color-white);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-accent);
+}
+
+.social-links a i {
+  font-size: 1.25rem;
 }
 
 /*--------------------------------------------------------------
-# Scroll Top Button
+# 5. Utilities
 --------------------------------------------------------------*/
-.scroll-top {
+
+/* 5.1 Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes form-loading {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes animate-preloader {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.8s ease forwards;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+.animate-fade-in-down {
+  animation: fadeInDown 0.8s ease forwards;
+}
+
+/* 5.2 Helper Classes */
+.delay-200 { animation-delay: 0.2s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-600 { animation-delay: 0.6s; }
+
+/*--------------------------------------------------------------
+# 6. Section-Specific Styles
+--------------------------------------------------------------*/
+
+/* 6.1 Preloader */
+#preloader {
   position: fixed;
-  visibility: hidden;
-  opacity: 0;
+  inset: 0;
+  z-index: 999999;
+  overflow: hidden;
+  background: var(--color-bg);
+  transition: all 0.6s ease-out;
+}
+
+#preloader:before {
+  content: "";
+  position: fixed;
+  top: calc(50% - 30px);
+  left: calc(50% - 30px);
+  border: 6px solid var(--color-bg);
+  border-color: var(--color-accent) transparent var(--color-accent) transparent;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: animate-preloader 1.5s linear infinite;
+}
+
+/* 6.2 Header & Navigation */
+.header {
+  position: fixed;
+  top: 50%;
+  left: 20px;
+  transform: translateY(-50%);
+  z-index: 997;
+  transition: all var(--transition-base);
+  background: transparent;
+}
+
+.header-toggle {
+  color: var(--color-white);
+  background-color: var(--color-accent);
+  font-size: 1.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  position: fixed;
+  top: 15px;
   right: 15px;
-  bottom: -15px;
-  z-index: 99999;
-  background-color: var(--accent-color);
-  width: 44px;
-  height: 44px;
-  border-radius: 50px;
-  transition: var(--transition-base);
+  z-index: 9999;
+  transition: all var(--transition-base);
+  box-shadow: var(--shadow-sm);
 }
 
-.scroll-top i {
-  font-size: 24px;
-  color: var(--contrast-color);
-  line-height: 0;
+.header-toggle:hover {
+  color: var(--color-white);
+  background-color: var(--color-accent-hover);
 }
 
-.scroll-top:hover {
-  background-color: var(--accent-color-transparent);
-  color: var(--contrast-color);
-}
-
-.scroll-top.active {
-  visibility: visible;
-  opacity: 1;
-  bottom: 15px;
-}
-
-/*--------------------------------------------------------------
-# Hero Section
---------------------------------------------------------------*/
+/* 6.3 Hero */
 .hero {
   position: relative;
   min-height: 100vh;
@@ -647,7 +587,6 @@ a.btn:hover,
   align-items: center;
   padding: 80px 0;
   overflow: hidden;
-  background-attachment: fixed;
 }
 
 .hero img {
@@ -658,7 +597,6 @@ a.btn:hover,
   object-fit: cover;
   z-index: 1;
   filter: blur(2px) brightness(1);
-  transition: filter 0.5s ease;
 }
 
 .hero:before {
@@ -687,28 +625,24 @@ a.btn:hover,
 
 .hero h2 {
   margin: 0 0 15px;
-  font-size: 64px;
+  font-size: 3.5rem;
   font-weight: 700;
-  color: var(--heading-color);
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   animation: fadeInDown 1s;
-  border-bottom: 3px solid var(--accent-color);
+  border-bottom: 3px solid var(--color-accent);
   display: inline-block;
   padding-bottom: 10px;
 }
 
 .hero p {
   margin: 15px 0 25px 0;
-  font-size: 26px;
-  color: var(--default-color);
+  font-size: 1.5rem;
   animation: fadeInUp 1s 0.3s both;
 }
 
 .hero p span {
-  color: var(--accent-color);
+  color: var(--color-accent);
   font-weight: 600;
-  letter-spacing: 1px;
-  border-bottom: 2px solid var(--accent-color);
+  border-bottom: 2px solid var(--color-accent);
 }
 
 .hero .social-links {
@@ -716,101 +650,7 @@ a.btn:hover,
   animation: fadeIn 1s 0.6s both;
 }
 
-/*--------------------------------------------------------------
-# PHP Email Form Messages
---------------------------------------------------------------*/
-.php-email-form .error-message {
-  display: none;
-  background: #df1529;
-  color: #ffffff;
-  text-align: left;
-  padding: 15px;
-  margin-bottom: 24px;
-  font-weight: 600;
-}
-
-.php-email-form .sent-message {
-  display: none;
-  color: #ffffff;
-  background: #059652;
-  text-align: center;
-  padding: 15px;
-  margin-bottom: 24px;
-  font-weight: 600;
-}
-
-.php-email-form .loading {
-  display: none;
-  background: var(--surface-color);
-  text-align: center;
-  padding: 15px;
-  margin-bottom: 24px;
-}
-
-.php-email-form .loading:before {
-  content: "";
-  display: inline-block;
-  border-radius: 50%;
-  width: 24px;
-  height: 24px;
-  margin: 0 10px -6px 0;
-  border: 3px solid var(--accent-color);
-  border-top-color: var(--surface-color);
-  animation: php-email-form-loading 1s linear infinite;
-}
-
-@keyframes php-email-form-loading {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-/*--------------------------------------------------------------
-# Section-specific Styles
---------------------------------------------------------------*/
-/* About Section */
-.about .content h2 {
-  font-weight: 700;
-  font-size: 24px;
-  color: var(--heading-color);
-}
-
-.about .content ul {
-  list-style: none;
-  padding: 0;
-}
-
-.about .content ul li {
-  margin-bottom: 20px;
-  display: flex;
-  align-items: center;
-}
-
-.about .content ul strong {
-  margin-right: 10px;
-}
-
-.about .content ul i {
-  font-size: 16px;
-  margin-right: 5px;
-  color: var(--accent-color);
-  line-height: 0;
-}
-
-.about .content {
-  background-color: var(--surface-color);
-  border-radius: 8px;
-  box-shadow: var(--shadow-sm);
-  padding: 25px;
-  border-left: 5px solid var(--accent-color);
-  transition: var(--transition-base);
-}
-
-.about .content:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--shadow-md);
-}
-
-/* Profile image */
+/* 6.4 About */
 .about .profile-img-container {
   position: relative;
   padding: 10px;
@@ -821,15 +661,12 @@ a.btn:hover,
 .about .profile-img-container img {
   position: relative;
   z-index: 2;
-  transition: var(--transition-base);
-  border: 5px solid white;
+  transition: all var(--transition-base);
+  border: 5px solid var(--color-white);
   width: 100%;
   height: auto;
 }
 
-.about .card-item:hover .profile-img-container img {
-  transform: translateY(-8px);
-}
 
 .about .profile-accent {
   position: absolute;
@@ -837,51 +674,45 @@ a.btn:hover,
   right: -15px;
   width: 80%;
   height: 80%;
-  background-color: var(--accent-color);
+  background-color: var(--color-accent);
   opacity: 0.15;
-  border-radius: 5px;
+  border-radius: var(--border-radius-sm);
   z-index: 1;
-  transition: var(--transition-base);
 }
 
-.about .list-unstyled {
-  list-style-type: none;
-  padding-left: 0;
+/* 6.5 Skills */
+.skills .skill-icon {
+  padding: 15px;
+  text-align: center;
 }
 
-.about .list-unstyled li {
-  padding: 0.35rem 0;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+.skills .skill-icon h6 {
+  font-weight: 600;
+  margin-top: 10px;
+  font-size: 0.9rem;
 }
 
-.about .list-unstyled li:before {
-  display: none;
-}
+/* 6.6 Resume */
 
-/* Resume Section */
+.resume {
+  background-color: var(--color-bg-light);
+}
 .resume .resume-title {
-  color: var(--heading-color);
-  font-size: 26px;
+  font-size: 1.6rem;
   font-weight: 700;
   margin-top: 20px;
   margin-bottom: 20px;
 }
 
-.resume {
-  background-color: var(--light-bg);
-}
-
 .resume-item {
-  background-color: var(--surface-color);
-  border-radius: 8px;
+  background-color: var(--color-bg);
+  border-radius: var(--border-radius-md);
   box-shadow: var(--shadow-sm);
   padding: 25px;
   margin-bottom: 30px;
   position: relative;
-  border-left: 5px solid var(--accent-color);
-  transition: var(--transition-base);
+  border-left: var(--border-width) solid var(--color-accent);
+  transition: all var(--transition-base);
 }
 
 .resume-item:hover {
@@ -889,108 +720,31 @@ a.btn:hover,
   box-shadow: var(--shadow-md);
 }
 
-.resume .resume-item h4 {
-  line-height: 1.4;
-  font-size: 20px;
-  font-weight: 700;
-  color: var(--accent-color);
-  margin-bottom: 15px;
-  display: flex;
-  align-items: center;
-}
-
-.resume .resume-item h4 i {
-  margin-right: 10px;
-  font-size: 24px;
-}
-
-.resume .resume-item h5 {
-  font-size: 16px;
-  background-color: #f0f7ff;
-  color: var(--accent-color);
-  padding: 5px 15px;
-  display: inline-block;
-  font-weight: 600;
-  margin-bottom: 15px;
-  border-radius: 20px;
-}
-
-.resume .resume-item p em {
-  color: #777;
-  font-style: normal;
-  display: block;
-  margin-bottom: 15px;
-}
-
-.resume .resume-item p {
-  margin-bottom: 15px;
-  color: var(--default-color);
-}
-
-.resume .resume-item ul {
-  padding-left: 0;
-  list-style: none;
-}
-
-.resume .resume-item ul li {
-  padding: 8px 0 8px 25px;
-  position: relative;
-}
-
-.resume .resume-item ul li:before {
-  content: "▹";
-  position: absolute;
-  left: 0;
-  color: var(--accent-color);
-  font-weight: bold;
-}
-
-/* Skills Section */
-.skills {
-  background-color: var(--light-bg);
-}
-
-.skills .card {
-  border: none;
-  box-shadow: var(--shadow-sm);
-}
-
-.skills .card-title {
-  font-size: 1.2rem;
-  font-weight: bold;
-}
-
-.skills .card-body {
-  padding: 20px;
-}
-
-/*--------------------------------------------------------------
-# Portfolio Section
---------------------------------------------------------------*/
+/* 6.7 Portfolio */
 .portfolio-card {
-  border-radius: 8px;
+  border-radius: var(--border-radius-md);
   overflow: hidden;
   border: none;
-  background-color: var(--surface-color);
+  background-color: var(--color-bg);
   box-shadow: var(--shadow-sm);
-  transition: var(--transition-base);
-  border-left: 5px solid var(--accent-color);
+  transition: all var(--transition-base);
+  border-left: var(--border-width) solid var(--color-accent);
+  height: 100%;
 }
 
 .portfolio-card:hover {
   transform: translateY(-5px);
-  box-shadow: var(--shadow-md) !important;
+  box-shadow: var(--shadow-md);
 }
 
 .portfolio-img-container {
-  height: 100%;
   overflow: hidden;
-  background-color: #f8f9fa;
+  background-color: var(--color-gray-100);
 }
 
 .portfolio-img {
-  height: 100%;
   width: 100%;
+  height: 100%;
   object-fit: cover;
   transition: transform 0.5s ease;
 }
@@ -999,170 +753,91 @@ a.btn:hover,
   transform: scale(1.05);
 }
 
-.portfolio .badge {
-  font-weight: 500;
-  letter-spacing: 0.5px;
-  display: inline-block;
-}
-
 .tech-stack {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  gap: 5px;
 }
 
-/* Portfolio Details */
-.portfolio-details .portfolio-details-slider img {
-  width: 100%;
+.tech-stack .badge {
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  background-color: var(--color-gray-200);
+  color: var(--color-text-light);
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-size: 0.75rem;
 }
 
-.portfolio-details .swiper-wrapper {
-  height: auto;
-}
-
-.portfolio-details .swiper-button-prev,
-.portfolio-details .swiper-button-next {
-  width: 48px;
-  height: 48px;
-}
-
-.portfolio-details .swiper-button-prev:after,
-.portfolio-details .swiper-button-next:after {
-  color: rgba(255, 255, 255, 0.8);
-  background-color: rgba(0, 0, 0, 0.15);
-  font-size: 24px;
-  border-radius: 50%;
-  width:auto;
-}
-
-/*--------------------------------------------------------------
-# Contact Section
---------------------------------------------------------------*/
-#contact {
-  position: relative;
-  z-index: 5;
-  background-color: var(--light-bg);
-}
-
-.contact .info-item {
-  background-color: var(--surface-color);
-  border-radius: 8px;
-  box-shadow: var(--shadow-sm);
-  padding: 25px;
-  margin-bottom: 30px;
-  border-left: 5px solid var(--accent-color);
-  transition: var(--transition-base);
-  display: flex;
-  align-items: flex-start;
-}
-
-.contact .info-item:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--shadow-md);
-}
-
-.contact .info-item+.info-item {
-  margin-top: 40px;
-}
-
-.contact .info-item i {
-  color: var(--accent-color);
-  background: color-mix(in srgb, var(--accent-color), transparent 92%);
-  font-size: 20px;
-  width: 44px;
-  height: 44px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50px;
-  transition: var(--transition-base);
-  margin-right: 15px;
-}
-
-.contact .info-item h3 {
-  padding: 0;
-  font-size: 18px;
-  font-weight: 700;
-  margin-bottom: 5px;
-}
-
-.contact .info-item p {
-  padding: 0;
-  margin-bottom: 0;
-  font-size: 14px;
-}
-
-.contact .info-item:hover i {
-  background: var(--accent-color);
-  color: var(--contrast-color);
-}
-
+/* 6.8 Contact */
 .contact .php-email-form {
   height: 100%;
-  background-color: var(--surface-color);
-  border-radius: 8px;
+  background-color: var(--color-bg);
+  border-radius: var(--border-radius-md);
   box-shadow: var(--shadow-sm);
   padding: 25px;
-  border-left: 5px solid var(--accent-color);
+  border-left: var(--border-width) solid var(--color-accent);
 }
 
-.contact .php-email-form input[type=text],
-.contact .php-email-form input[type=email],
-.contact .php-email-form textarea {
-  font-size: 14px;
-  padding: 10px 15px;
-  box-shadow: none;
-  border-radius: 0;
-  color: var(--default-color);
-  background-color: color-mix(in srgb, var(--background-color), transparent 50%);
-  border-color: var(--border-color);
-}
-
-.contact .php-email-form input[type=text]:focus,
-.contact .php-email-form input[type=email]:focus,
-.contact .php-email-form textarea:focus {
-  border-color: var(--accent-color);
-}
-
-.contact .php-email-form input[type=text]::placeholder,
-.contact .php-email-form input[type=email]::placeholder,
-.contact .php-email-form textarea::placeholder {
-  color: color-mix(in srgb, var(--default-color), transparent 70%);
-}
-
-/*--------------------------------------------------------------
-# Footer
---------------------------------------------------------------*/
+/* 6.9 Footer */
 .footer {
   padding: 50px 0 20px;
-  border-top: 1px solid var(--border-color);
-  color: var(--default-color);
+  border-top: 1px solid var(--color-border);
+  color: var(--color-text);
   box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.05);
   position: relative;
   z-index: 10;
-  background-color: var(--light-bg);
-  margin-top: 0; /* Remove the gap */
+  background-color: var(--color-bg-light);
 }
 
 .footer h3 {
-  color: var(--accent-color);
+  color: var(--color-accent);
   font-weight: 600;
-}
-
-.footer .social-links {
-  margin: 20px 0;
-}
-
-.footer .social-links a {
-  margin: 0 8px;
+  font-size: 1.5rem;
 }
 
 .footer .copyright {
   font-size: 0.9rem;
-  border-top: 1px solid var(--border-color);
+  border-top: 1px solid var(--color-border);
   margin-top: 20px;
+  padding-top: 15px;
+  text-align: center;
 }
 
-.footer .credits a {
-  color: var(--accent-color);
+/* Back to top button */
+.scroll-top {
+  position: fixed;
+  visibility: hidden;
+  opacity: 0;
+  right: 15px;
+  bottom: -15px;
+  z-index: 99999;
+  background-color: var(--color-accent);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-base);
 }
+
+.scroll-top i {
+  font-size: 1.5rem;
+  color: var(--color-white);
+  line-height: 0;
+}
+
+.scroll-top:hover {
+  background-color: var(--color-accent-hover);
+  transform: translateY(-3px);
+}
+
+.scroll-top.active {
+  visibility: visible;
+  opacity: 1;
+  bottom: 15px;
+}
+
+/* Media queries for responsive design would go here */
