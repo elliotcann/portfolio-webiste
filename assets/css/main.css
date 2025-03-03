@@ -614,7 +614,7 @@ section,
   height: 100%;
   object-fit: cover;
   z-index: 1;
-  filter: blur(3px) brightness(0.95);
+  filter: blur(2px) brightness(1);
   transition: filter 0.5s ease;
   /* Add fixed positioning for parallax effect */
   position: fixed;
@@ -625,6 +625,7 @@ section,
   position: absolute;
   inset: 0;
   z-index: 2;
+  background-color: rgba(255, 255, 255, 0.5); /* Add white transparent overlay */
 }
 
 .hero::after {
@@ -640,7 +641,7 @@ section,
 
 .hero .container {
   position: relative;
-  z-index: 2;
+  z-index: 3;
 }
 
 .hero h2 {
@@ -770,6 +771,71 @@ section,
 .about .content:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* About section image optimization */
+.about .profile-img-container {
+  position: relative;
+  padding: 10px;
+  max-width: 100%; /* Increased from 85% to fill more space */
+  margin: 0 auto;
+}
+
+.about .profile-img-container img {
+  position: relative;
+  z-index: 2;
+  transition: all 0.4s ease;
+  border: 5px solid white;
+  width: 100%; /* Make image take full width of container */
+  height: auto;
+}
+
+.about .card-item:hover .profile-img-container img {
+  transform: translateY(-8px);
+}
+
+/* Decorative accent element behind the image */
+.about .profile-accent {
+  position: absolute;
+  bottom: -15px;
+  right: -15px;
+  width: 80%; /* Increased from 70% for better visual impact */
+  height: 80%; /* Increased from 70% for better visual impact */
+  background-color: var(--accent-color);
+  opacity: 0.15;
+  border-radius: 5px;
+  z-index: 1;
+  transition: all 0.4s ease;
+}
+
+/* Fix the bullet point/icon overlap issue */
+.about .list-unstyled {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.about .list-unstyled li {
+  padding: 0.35rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.about .list-unstyled li:before {
+  display: none; /* Remove any :before pseudo-element */
+}
+
+/* Improve vertical alignment on mobile */
+@media (max-width: 767px) {
+  .about .profile-img-container {
+    margin-bottom: 25px;
+    margin-top: 10px;
+    max-width: 75%; /* Adjusted from 60% for better appearance on mobile */
+  }
+  
+  .about .col-md-4 {
+    padding-bottom: 0;
+  }
 }
 
 /*--------------------------------------------------------------
@@ -1641,4 +1707,92 @@ a.btn:hover,
 /* To prevent text wrapping in all buttons if needed */
 .btn {
   white-space: nowrap;
+}
+
+/* Portfolio section styles */
+.portfolio-card {
+  border-radius: 8px;
+  overflow: hidden;
+  border: none;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-left: 5px solid var(--accent-color);
+}
+
+.portfolio-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15) !important;
+}
+
+.portfolio-img-container {
+  height: 100%;
+  overflow: hidden;
+  background-color: #f8f9fa;
+}
+
+.portfolio-img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.portfolio-card:hover .portfolio-img {
+  transform: scale(1.05);
+}
+
+.portfolio .badge {
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  display: inline-block;
+}
+
+.tech-stack {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* Make portfolio cards responsive on small screens */
+@media (max-width: 767px) {
+  .portfolio-img-container {
+    height: 200px;
+  }
+  
+  .portfolio-card .row {
+    flex-direction: column;
+  }
+  
+  .portfolio-card .col-md-5:first-child {
+    border-radius: 8px 8px 0 0;
+  }
+  
+  .portfolio .card-body {
+    padding: 1.5rem !important;
+  }
+}
+
+.badge {
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.transition-hover {
+  transition: all 0.3s ease;
+}
+
+/* Make portfolio cards responsive on small screens */
+@media (max-width: 767px) {
+  .portfolio-img-container {
+    height: 200px;
+  }
+  
+  .portfolio-card .row {
+    flex-direction: column;
+  }
+  
+  .portfolio-card .col-md-6:first-child {
+    border-radius: 10px 10px 0 0;
+  }
 }
