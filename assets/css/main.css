@@ -309,6 +309,20 @@ img {
   font-weight: bold;
 }
 
+.card-heading {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.card-heading i {
+  margin-right: 10px;
+  font-size: 1.5rem;
+}
+
 /* 4.3 Forms */
 .php-email-form input,
 .php-email-form textarea {
@@ -892,7 +906,7 @@ body.mobile-nav-active .navmenu {
   font-weight: 500;
   letter-spacing: 0.5px;
   background-color: var(--color-gray-200);
-  color: var(--color-text-light);
+  color: var(--color-white);
   padding: 5px 10px;
   border-radius: 15px;
   font-size: 0.75rem;
