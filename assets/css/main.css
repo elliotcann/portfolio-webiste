@@ -156,7 +156,13 @@ img {
 
 @media (min-width: 992px) {
   .container {
-    padding-left: var(--navbar-width); /* Accommodate for the left side nav */
+    max-width: 960px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1140px;
   }
 }
 
@@ -553,6 +559,7 @@ img {
   z-index: 997;
   transition: all var(--transition-base);
   background: transparent;
+  pointer-events: none;
 }
 
 .header-toggle {
@@ -572,6 +579,12 @@ img {
   z-index: 9999;
   transition: all var(--transition-base);
   box-shadow: var(--shadow-sm);
+}
+
+.header-toggle,
+.navmenu,
+.navmenu a {
+  pointer-events: auto;
 }
 
 .header-toggle:hover {
