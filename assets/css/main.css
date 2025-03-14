@@ -93,6 +93,12 @@
 /*--------------------------------------------------------------
 # 2. Base & Typography
 --------------------------------------------------------------*/
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 body {
   color: var(--color-text);
   background-color: var(--color-bg);
@@ -579,6 +585,7 @@ img {
   z-index: 9999;
   transition: all var(--transition-base);
   box-shadow: var(--shadow-sm);
+  display: none; /* Hide by default on desktop */
 }
 
 .header-toggle,
@@ -590,6 +597,125 @@ img {
 .header-toggle:hover {
   color: var(--color-white);
   background-color: var(--color-accent-hover);
+}
+
+/* Mobile navigation */
+@media (max-width: 991px) {
+  .header {
+    position: fixed;
+    background: transparent;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: auto;
+    z-index: 997;
+    pointer-events: none;
+  }
+
+  .header-toggle {
+    display: flex; /* Show the toggle button on mobile */
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    right: auto;
+    z-index: 9999;
+    color: var(--color-white);
+    background-color: var(--color-accent);
+  }
+
+  /* Side drawer navigation - ensure full height */
+  .navmenu {
+    position: fixed;
+    top: 0;
+    left: -280px; /* Start offscreen */
+    width: 280px;
+    height: 100vh; /* Use viewport height explicitly */
+    min-height: 100%; /* Ensure it covers minimum full height */
+    max-height: none; /* Remove max-height constraints */
+    background: var(--color-bg);
+    box-shadow: var(--shadow-md);
+    transition: all var(--transition-base);
+    opacity: 1;
+    visibility: visible;
+    z-index: 9998;
+    padding: 60px 20px 30px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    bottom: 0; /* Ensure it extends to the bottom */
+  }
+
+  /* Add overlay for the background when menu is open */
+  body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 996;
+    visibility: hidden;
+    opacity: 0;
+    transition: all var(--transition-base);
+  }
+
+  body.mobile-nav-active::after {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  body.mobile-nav-active .navmenu {
+    left: 0;
+  }
+
+  .navmenu ul {
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    margin-top: 20px;
+    flex: 1;
+  }
+
+  .navmenu a {
+    width: 100% !important;
+    border-radius: var(--border-radius-sm);
+    height: 50px;
+    justify-content: flex-start;
+    padding: 10px 20px;
+    background: var(--color-bg-light);
+  }
+
+  .navmenu a i {
+    margin-right: 12px;
+  }
+
+  .navmenu a span {
+    opacity: 1;
+    position: relative;
+    left: 0;
+    transform: none;
+    display: inline;
+  }
+
+  .navmenu a:hover,
+  .navmenu .active,
+  .navmenu li:hover > a {
+    width: 100%;
+  }
+
+  /* Logo or site title for mobile menu header */
+  .mobile-nav-logo {
+    display: none;
+  }
+}
+
+/* Add this to ensure the mobile-nav-active state works properly */
+body.mobile-nav-active .navmenu {
+  left: 0;
+  opacity: 1;
+  visibility: visible;
+  max-height: none; /* Override any max-height */
 }
 
 /* 6.3 Hero */

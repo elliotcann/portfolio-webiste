@@ -226,4 +226,53 @@
   window.addEventListener('load', navmenuScrollspy);
   document.addEventListener('scroll', navmenuScrollspy);
 
+  /**
+   * Mobile nav toggle - Clean implementation
+   */
+  document.addEventListener('DOMContentLoaded', function() {
+    // Remove existing header toggle functionality to avoid conflicts
+    const originalHeaderToggleBtn = document.querySelector('.header-toggle');
+    if (originalHeaderToggleBtn) {
+      // Remove all existing event listeners
+      const newToggleBtn = originalHeaderToggleBtn.cloneNode(true);
+      originalHeaderToggleBtn.parentNode.replaceChild(newToggleBtn, originalHeaderToggleBtn);
+      
+      // Add our new event listener
+      newToggleBtn.addEventListener('click', function() {
+        document.body.classList.toggle('mobile-nav-active');
+        this.classList.toggle('bi-list');
+        this.classList.toggle('bi-x');
+      });
+    }
+
+    // Close mobile menu when clicking on a nav link
+    document.querySelectorAll('.navmenu a').forEach(function(navLink) {
+      navLink.addEventListener('click', function() {
+        if (document.body.classList.contains('mobile-nav-active')) {
+          document.body.classList.remove('mobile-nav-active');
+          const headerToggle = document.querySelector('.header-toggle');
+          if (headerToggle) {
+            headerToggle.classList.add('bi-list');
+            headerToggle.classList.remove('bi-x');
+          }
+        }
+      });
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', function(e) {
+      if (document.body.classList.contains('mobile-nav-active') && 
+          !e.target.closest('.navmenu') && 
+          !e.target.closest('.header-toggle')) {
+        document.body.classList.remove('mobile-nav-active');
+        const headerToggle = document.querySelector('.header-toggle');
+        if (headerToggle) {
+          headerToggle.classList.add('bi-list');
+          headerToggle.classList.remove('bi-x');
+        }
+      }
+    });
+  });
+
 })();
+
