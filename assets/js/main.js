@@ -274,5 +274,52 @@
     });
   });
 
+  /**
+   * Portfolio mobile touch handling - Fixed height version
+   */
+  document.addEventListener('DOMContentLoaded', function() {
+    const portfolioCards = document.querySelectorAll('.portfolio-card');
+    
+    // Function to handle card interaction - simplified without height changes
+    function handleCardInteraction(card, event) {
+      // Only apply this behavior on mobile devices
+      if (window.innerWidth <= 768) {
+        event.preventDefault();
+        
+        // Toggle the touched class on this card
+        const wasAlreadyTouched = card.classList.contains('touched');
+        
+        // First remove touched class from any other cards
+        portfolioCards.forEach(c => c.classList.remove('touched'));
+        
+        // Only add the touched class if it wasn't already touched
+        if (!wasAlreadyTouched) {
+          card.classList.add('touched');
+          event.stopPropagation(); // Prevent immediate propagation
+        }
+      }
+    }
+    
+    // Add both click and touch events for better mobile support
+    portfolioCards.forEach(card => {
+      card.addEventListener('click', function(e) {
+        handleCardInteraction(this, e);
+      }, { passive: false });
+      
+      card.addEventListener('touchend', function(e) {
+        handleCardInteraction(this, e);
+      }, { passive: false });
+    });
+    
+    // Reset cards when clicking elsewhere
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.portfolio-card')) {
+        portfolioCards.forEach(card => {
+          card.classList.remove('touched');
+        });
+      }
+    });
+  });
+
 })();
 
