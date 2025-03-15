@@ -602,7 +602,7 @@ img {
   z-index: 9999;
   transition: all var(--transition-base);
   box-shadow: var(--shadow-sm);
-  display: none; /* Hide by default on desktop */
+  display: none; 
 }
 
 .header-toggle,
@@ -646,9 +646,9 @@ img {
     top: 0;
     left: -280px; /* Start offscreen */
     width: 280px;
-    height: 100vh; /* Use viewport height explicitly */
-    min-height: 100%; /* Ensure it covers minimum full height */
-    max-height: none; /* Remove max-height constraints */
+    height: 100vh; 
+    min-height: 100%; 
+    max-height: none; 
     background: var(--color-bg);
     box-shadow: var(--shadow-md);
     transition: all var(--transition-base);
@@ -659,7 +659,7 @@ img {
     overflow-y: auto;
     display: flex;
     flex-direction: column;
-    bottom: 0; /* Ensure it extends to the bottom */
+    bottom: 0; 
   }
 
   /* Add overlay for the background when menu is open */
@@ -696,7 +696,7 @@ img {
 
   .navmenu a {
     width: 100% !important;
-    border-radius: var(--border-radius-sm);
+    border-radius: var(--border-radius-lg);
     height: 50px;
     justify-content: flex-start;
     padding: 10px 20px;
