@@ -395,15 +395,16 @@ img {
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px; /* Slightly increased spacing between nav items */
 }
 
+/* Base nav item styling */
 .navmenu a {
   font-family: var(--font-heading);
   display: flex;
   align-items: center;
-  justify-content: center;
-  padding: 12px;
+  justify-content: flex-start; /* Changed from center to flex-start */
+  padding: 12px 12px 12px 15px; /* Added consistent padding */
   font-size: 15px;
   font-weight: 500;
   border-radius: var(--border-radius-lg);
@@ -411,49 +412,113 @@ img {
   height: 50px;
   width: 50px;
   overflow: hidden;
-  transition: all var(--transition-base);
+  transition: width 0.3s cubic-bezier(0.25, 1, 0.5, 1),
+              background-color 0.3s ease,
+              color 0.1s ease, /* Faster color transition */
+              box-shadow 0.3s ease;
   box-shadow: var(--shadow-sm);
   position: relative;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
 }
 
+/* Icon styling */
 .navmenu a i {
   font-size: 20px;
-  transition: all var(--transition-base);
+  /* Split the transitions for better control */
+  transition: margin-right 0.3s cubic-bezier(0.25, 1, 0.5, 1),
+              color 0.1s ease; /* Much faster color transition */
   margin-right: 0;
+  min-width: 20px; /* Ensure consistent width */
 }
 
+/* Text label styling */
 .navmenu a span {
   position: absolute;
   white-space: nowrap;
   opacity: 0;
-  transform: translateX(-10px);
-  transition: all var(--transition-base);
+  transform: translateX(10px); /* Changed from -10px to 10px */
+  transition: opacity 0.25s ease,
+              transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
   left: 50px;
+  font-weight: 600;
 }
 
-.navmenu a:hover i,
-.navmenu .active i,
-.navmenu li:hover > a i {
-  margin-right: 12px;
+/* Active state styling - keeping it compact */
+.navmenu .active {
+  color: var(--color-white);
+  background: var(--color-accent);
+  box-shadow: var(--shadow-accent);
+  position: relative;
 }
 
+/* Add subtle indicator for active state */
+.navmenu .active::after {
+  content: "";
+  position: absolute;
+  left: -10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 5px;
+  height: 25px;
+  background-color: var(--color-accent);
+  border-radius: 4px;
+  box-shadow: var(--shadow-accent);
+}
+
+/* Hover effects - removed transform and padding changes */
 .navmenu a:hover,
-.navmenu .active,
 .navmenu li:hover > a {
   color: var(--color-white);
   background: var(--color-accent);
   width: var(--navbar-width);
   box-shadow: var(--shadow-accent);
-  justify-content: flex-start;
-  padding-left: 15px;
+  /* Removed transform and justify-content changes */
+}
+
+.navmenu a:hover i,
+.navmenu li:hover > a i {
+  margin-right: 12px;
+  color: var(--color-white); /* Explicitly set color */
+  transition: margin-right 0.3s cubic-bezier(0.25, 1, 0.5, 1),
+              color 0.1s ease; /* Repeat for specificity */
+  /* Removed transform scale to prevent icon growing */
 }
 
 .navmenu a:hover span,
-.navmenu .active span,
 .navmenu li:hover > a span {
   opacity: 1;
   transform: translateX(0);
   display: block;
+}
+
+/* Add subtle pulse animation to active icon */
+@keyframes subtle-pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+
+.navmenu .active i {
+  animation: subtle-pulse 2s infinite ease-in-out;
+}
+
+/* For mobile devices, maintain consistent styles */
+@media (max-width: 991px) {
+  /* Make active items have the same width as other items without expanding */
+  .navmenu .active {
+    color: var(--color-white);
+    background: var(--color-accent);
+    box-shadow: var(--shadow-accent);
+    /* In mobile view, active state should still have full width since all items are full width */
+    width: 100%;
+  }
+  
+  /* Keep hover and active separate for mobile */
+  .navmenu a:hover,
+  .navmenu li:hover > a {
+    width: 100%;
+  }
 }
 
 /* 4.5 Social Links */
