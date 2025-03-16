@@ -268,6 +268,7 @@ img {
   border-left: var(--border-width) solid var(--color-accent);
   transition: all var(--transition-base);
   z-index: 3;
+  overflow: hidden; /* Added for consistent handling of child content */
 }
 
 .card-item:hover {
@@ -321,6 +322,28 @@ img {
 .card-heading i {
   margin-right: 10px;
   font-size: 1.5rem;
+}
+
+/* Special handling for portfolio cards to maintain their unique style while being consistent */
+.portfolio-card.card-item {
+  padding: 0;
+  overflow: hidden;
+  border-left: var(--border-width) solid var(--color-accent);
+  box-shadow: var(--shadow-sm);
+}
+
+.portfolio-card.card-item:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+}
+
+.portfolio-card.card-item .portfolio-img-container {
+  border-left: none; /* Remove extra border since card-item already has border */
+}
+
+/* Special styling for form inside card */
+.php-email-form {
+  padding: 0; /* Remove default padding since it's inside a card */
 }
 
 /* 4.3 Forms */
@@ -911,20 +934,10 @@ body.mobile-nav-active .navmenu {
   margin-bottom: var(--element-spacing);
 }
 
+/* Remove duplicate card styling since we're using card-item consistently */
 .resume-item {
-  background-color: var(--color-bg);
-  border-radius: var(--border-radius-md);
-  box-shadow: var(--shadow-sm);
-  padding: var(--card-padding);
+  /* Styles now come from card-item */
   margin-bottom: var(--item-gap);
-  position: relative;
-  border-left: var(--border-width) solid var(--color-accent);
-  transition: all var(--transition-base);
-}
-
-.resume-item:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--shadow-md);
 }
 
 /* 6.7 Portfolio - Updated hover-based design */
@@ -942,31 +955,24 @@ body.mobile-nav-active .navmenu {
   justify-content: center;
 }
 
+/* Adapt portfolio card styles to work with card-item */
 .portfolio-card {
   position: relative;
-  border-radius: var(--border-radius-md);
   overflow: hidden;
-  width: 360px; /* Increased from 300px (20% larger) */
-  height: 420px; /* Increased from 350px (20% larger, maintaining aspect ratio) */
-  border: none;
-  box-shadow: var(--shadow-sm);
+  width: 360px; 
+  height: 420px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   background-color: transparent;
   margin: 0;
 }
 
-.portfolio-card:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--shadow-md);
-}
-
+/* Keep specific portfolio styles but make them work with card-item */
 .portfolio-img-container {
   position: relative;
   width: auto;
   height: 420px; /* Match the card height */
   overflow: hidden;
   border-radius: var(--border-radius-md);
-  border-left: var(--border-width) solid var(--color-accent);
 }
 
 .portfolio-img {
@@ -1221,88 +1227,96 @@ body.mobile-nav-active .navmenu {
   .portfolio-img-container {
     height: 384px; /* Match the mobile card height */
   }
-}
-
-/* Smaller device optimizations */
-@media (max-width: 480px) {
-  /* Further reduce padding */
-  .card-item, .resume-item, .php-email-form {
-    padding: 12px;
+  
+  /* General text adjustments */
+  body {
+    font-size: 0.95rem;
+    line-height: 1.5;
   }
   
-  /* Smaller headings */
+  /* Section padding adjustment */
+  .section, section {
+    padding: var(--section-padding-y-mobile) 0;
+  }
+  
+  /* Card padding reduction */
+  .card-item, .resume-item {
+    padding: var(--card-padding-mobile);
+    margin-bottom: 20px;
+  }
+  
+  /* Section title size reduction */
   .section-title h2 {
-    font-size: 1.6rem;
+    font-size: 1.75rem;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
   }
   
+  .section-title p {
+    font-size: 1rem;
+  }
+  
+  /* Headings size reduction */
   .card-item h3, .card-item h4, .card-heading {
-    font-size: 1.2rem;
+    font-size: 1.25rem;
+    margin-bottom: 10px;
   }
   
-  /* Adjust hero text */
+  /* List item spacing */
+  .card-item ul li {
+    padding: 6px 0 6px 20px;
+    font-size: 0.95rem;
+  }
+  
+  /* Form elements */
+  .php-email-form input, .php-email-form textarea {
+    padding: 8px 12px;
+    font-size: 0.95rem;
+  }
+  
+  .php-email-form .form-group {
+    margin-bottom: 15px;
+  }
+  
+  /* Buttons */
+  .btn, .php-email-form button[type=submit] {
+    padding: 8px 20px;
+    font-size: 0.95rem;
+  }
+  
+  /* Resume section */
+  .resume .resume-title {
+    font-size: 1.4rem;
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+  
+  /* Portfolio card adjustments */
+  .portfolio-card.card-item {
+    padding: 0; /* Keep zero padding for portfolio cards */
+  }
+  
+  /* Hero section */
   .hero h2 {
-    font-size: 2.2rem;
+    font-size: 2.5rem;
   }
   
   .hero p {
-    font-size: 1.1rem;
-  }
-  
-  /* Portfolio items - slightly smaller than tablets but still larger than original */
-  .portfolio-card {
-    width: 312px; /* Increased from 260px (20% larger) */
-    height: 360px; /* Increased from 300px (20% larger) */
-    max-width: 90vw; /* Prevent overflow on very small screens */
-  }
-  
-  .portfolio-img-container {
-    height: 360px; /* Match the small mobile card height */
-  }
-  
-  .portfolio-card.touched .portfolio-img-container {
-    height: 360px; /* Match the small mobile card height */
-  }
-  
-  /* Portfolio overlay content */
-  .portfolio-title {
-    font-size: 1.2rem;
-    margin-bottom: 0.4rem;
-  }
-  
-  .portfolio-description {
-    font-size: 0.85rem;
-    margin-bottom: 0.5rem;
-  }
-  
-  .portfolio-overlay {
-    padding: 0.75rem;
-  }
-  
-  /* Social links */
-  .social-links a {
-    width: 35px;
-    height: 35px;
-  }
-  
-  /* Improve navigation items */
-  .navmenu a {
-    height: 45px;
+    font-size: 1.25rem;
   }
 }
 
 /* 6.8 Contact */
-.contact .php-email-form {
+.contact .card-item {
   height: 100%;
   background-color: var(--color-bg);
-  border-radius: var(--border-radius-md);
-  box-shadow: var(--shadow-sm);
-  padding: var(--card-padding);
-  border-left: var(--border-width) solid var(--color-accent);
 }
 
-.php-email-form .form-group,
-.php-email-form .row > div {
-  margin-bottom: var(--element-spacing);
+/* Remove duplicate styling since the form is inside card-item */
+.contact .php-email-form {
+  height: 100%;
+  padding: var(--card-padding);
+  /* Other styles come from card-item */
 }
 
 /* 6.9 Footer */
@@ -1332,6 +1346,11 @@ body.mobile-nav-active .navmenu {
   margin-top: var(--content-margin);
   padding-top: var(--element-spacing);
   text-align: center;
+}
+
+/* Footer cards */
+.footer .card-item {
+  background-color: var(--color-bg);
 }
 
 /* Back to top button */
@@ -1437,6 +1456,11 @@ body.mobile-nav-active .navmenu {
   }
   
   /* Portfolio adjustments */
+  .portfolio-card.card-item {
+    padding: 0; /* Keep zero padding for portfolio cards */
+  }
+  
+  /* Portfolio card adjustments */
   .portfolio-card {
     height: 384px; /* Increased from 320px (20% larger) */
     width: 336px; /* Increased from 280px (20% larger) */
