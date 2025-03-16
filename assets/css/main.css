@@ -1315,8 +1315,6 @@ body.mobile-nav-active .navmenu {
 /* Remove duplicate styling since the form is inside card-item */
 .contact .php-email-form {
   height: 100%;
-  padding: var(--card-padding);
-  /* Other styles come from card-item */
 }
 
 /* 6.9 Footer */
