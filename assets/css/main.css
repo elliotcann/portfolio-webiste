@@ -216,9 +216,11 @@ img {
 }
 
 .section-title p {
-  margin-bottom: 0;
-  font-size: 1.1rem;
-  color: var(--color-text-light);
+  font-size: 1rem; /* Set a consistent font size */
+  color: var(--color-text-light); /* Use a consistent text color */
+  margin-bottom: var(--element-spacing); /* Maintain consistent spacing */
+  line-height: 1.6; /* Ensure readability */
+  text-align: center; /* Center-align for uniformity */
 }
 
 /*--------------------------------------------------------------
@@ -267,11 +269,6 @@ img {
   transition: all var(--transition-base);
   z-index: 3;
   overflow: hidden; /* Added for consistent handling of child content */
-}
-
-.card-item:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--shadow-md);
 }
 
 .card-item h3, 
@@ -326,11 +323,6 @@ img {
 .portfolio-card.card-item {
   padding: 0;
   overflow: hidden;
-  box-shadow: var(--shadow-md);
-}
-
-.portfolio-card.card-item:hover {
-  transform: translateY(-5px);
   box-shadow: var(--shadow-md);
 }
 
@@ -892,11 +884,6 @@ body.mobile-nav-active .navmenu {
 }
 
 /* 6.4 About */
-.about .section-title p {
-  font-size: 1.1rem;
-  color: var(--color-text-light);
-}
-
 .about .profile-img-container {
   position: relative;
   width: 200px;
@@ -927,10 +914,12 @@ body.mobile-nav-active .navmenu {
 }
 
 .about .card-title {
-  font-size: 1.8rem;
-  font-weight: 600;
-  color: var(--color-primary); /* Apply blue accent color */
+  font-size: 1.4rem; /* Match the size of other card titles */
+  font-weight: 700; /* Ensure consistent font weight */
+  color: var(--color-accent); /* Use the same accent color */
+  margin-bottom: var(--element-spacing); /* Maintain consistent spacing */
 }
+
 
 .about .card ul {
   padding-left: 0;
@@ -984,15 +973,16 @@ body.mobile-nav-active .navmenu {
 
 /* 6.5 Skills */
 .skills .skill-icon {
-  padding: 15px;
+  padding: 12px;
   text-align: center;
 }
 
 .skills .skill-icon h6 {
   font-weight: 600;
-  margin-top: 10px;
+  margin-top: 5px;
   font-size: 0.9rem;
 }
+
 
 /* 6.6 Resume */
 .resume {
@@ -1009,6 +999,15 @@ body.mobile-nav-active .navmenu {
 .resume-item {
   margin-bottom: var(--item-gap);
 }
+
+/* Style links in the resume section for proper spacing and responsiveness */
+.resume-item a {
+  display: block; /* Ensure the link spans the full width */
+  margin-bottom: var(--small-spacing); /* Add consistent spacing below the link */
+  font-size: 0.95rem; /* Adjust font size for readability */
+  word-wrap: break-word; /* Allow long URLs to wrap on smaller screens */
+}
+
 
 /* 6.7 Portfolio - Updated hover-based design */
 .portfolio-cards-container {
@@ -1198,6 +1197,7 @@ body.mobile-nav-active .navmenu {
   height: 4px;
   background-color: var(--color-accent);
   transition: width 0.3s ease;
+  content: none;
 }
 
 .portfolio-card:hover::after {
@@ -1320,6 +1320,11 @@ body.mobile-nav-active .navmenu {
   .resume .resume-item { /* More specific selector for resume items */
     padding: var(--card-padding-mobile); /* Ensure padding is consistent */
   }
+
+  .resume-item a {
+    font-size: 0.85rem; /* Reduce font size for smaller screens */
+  }
+
   
   /* Section title size reduction */
   .section-title h2 {
@@ -1453,11 +1458,6 @@ body.mobile-nav-active .navmenu {
     opacity: 1;
     transform: translateY(0);
   }
-  
-  /* Add a subtle visual feedback when card is touched */
-  .portfolio-card:active {
-    transform: scale(0.98);
-  }
 
   /* Smaller buttons with less padding */
   .portfolio-actions .btn {
@@ -1495,7 +1495,6 @@ body.mobile-nav-active .navmenu {
   }
   
   .portfolio-description {
-    font-size: 1.5rem;
     margin-bottom: 0.75rem;
     line-height: 1.4;
   }
@@ -1519,6 +1518,7 @@ body.mobile-nav-active .navmenu {
     padding: 0.35rem 0.75rem;
     font-size: 0.85rem;
   }
+
 }
 
 /* Smaller device optimizations */
