@@ -263,7 +263,6 @@ img {
   border-radius: var(--border-radius-md);
   box-shadow: var(--shadow-sm);
   padding: var(--card-padding);
-  margin-bottom: var(--item-gap);
   position: relative;
   border-left: var(--border-width) solid var(--color-accent);
   transition: all var(--transition-base);
@@ -951,7 +950,6 @@ body.mobile-nav-active .navmenu {
 .portfolio-card-wrapper {
   display: flex;
   justify-content: center;
-  margin-bottom: var(--item-gap)
 }
 
 .portfolio-card {
@@ -1226,9 +1224,12 @@ body.mobile-nav-active .navmenu {
   }
   
   /* Card padding reduction */
-  .card-item, .resume-item {
+  .card-item {
     padding: var(--card-padding-mobile);
-    margin-bottom: 20px;
+  }
+
+  .resume .resume-item { /* More specific selector for resume items */
+    padding: var(--card-padding-mobile); /* Ensure padding is consistent */
   }
   
   /* Section title size reduction */
@@ -1320,7 +1321,6 @@ body.mobile-nav-active .navmenu {
 
   .portfolio-card-wrapper {
     width: 100%; /* Make the wrapper full width too */
-    margin-bottom: var(--item-gap);
   }
   
   .portfolio-card.touched .portfolio-overlay {
@@ -1452,7 +1452,6 @@ body.mobile-nav-active .navmenu {
   /* Further reduce padding */
   .card-item, .resume-item, .php-email-form {
     padding: 12px;
-    margin-bottom: var(--item-gap);
   }
   
   /* Smaller headings */
@@ -1472,6 +1471,14 @@ body.mobile-nav-active .navmenu {
   .hero p {
     font-size: 1.1rem;
   }
+
+  .card-item { /* Keep general card padding */
+    padding: 12px;
+  }
+
+  .resume .resume-item { /* More specific selector */
+    padding: 12px; /* Ensure padding is consistent */
+  }
   
   /* Portfolio items - slightly smaller than tablets */
   .portfolio-card {
@@ -1486,16 +1493,7 @@ body.mobile-nav-active .navmenu {
   .portfolio-card.touched .portfolio-img-container {
     height: auto;
   }
-
-  /* Smaller screens */
-  .portfolio-card-wrapper {
-    margin-bottom: var(--item-gap); /* Use smaller spacing on very small screens */
-  }
   
-  .portfolio-cards-container {
-    gap: var(--item-gap);
-  }
-
   /* Portfolio overlay content */
   .portfolio-title {
     font-size: 2rem;
