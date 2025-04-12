@@ -261,10 +261,9 @@ img {
 .card-item {
   background-color: var(--color-bg);
   border-radius: var(--border-radius-md);
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--shadow-md);
   padding: var(--card-padding);
   position: relative;
-  border-left: var(--border-width) solid var(--color-accent);
   transition: all var(--transition-base);
   z-index: 3;
   overflow: hidden; /* Added for consistent handling of child content */
@@ -327,8 +326,7 @@ img {
 .portfolio-card.card-item {
   padding: 0;
   overflow: hidden;
-  border-left: var(--border-width) solid var(--color-accent);
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--shadow-md);
 }
 
 .portfolio-card.card-item:hover {
@@ -894,11 +892,84 @@ body.mobile-nav-active .navmenu {
 }
 
 /* 6.4 About */
+.about .section-title p {
+  font-size: 1.1rem;
+  color: var(--color-text-light);
+}
+
+.about .profile-img-container {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+}
+
+.about .profile-img-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: var(--shadow-md);
+}
+
+.about .profile-img-container .profile-accent {
+  width: 220px;
+  height: 220px;
+  background: var(--color-accent-light);
+  z-index: -1;
+  border: 5px solid var(--color-accent);
+}
+
+.about .card {
+  background-color: var(--color-bg);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-md);
+}
+
+.about .card-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--color-primary); /* Apply blue accent color */
+}
+
+.about .card ul {
+  padding-left: 0;
+  list-style: none;
+}
+
+.about .card ul li {
+  font-size: 1rem;
+  color: var(--color-text-light);
+}
+
+.about .card ul li i {
+  color: var(--color-primary); /* Apply blue accent color to bullet icons */
+}
+
+.about .card-item {
+  padding: var(--card-padding-mobile); /* Use consistent padding for smaller cards */
+  font-size: 0.95rem; /* Reduce text size for consistency */
+  line-height: 1.5; /* Adjust line height for better readability */
+  margin: var(--element-spacing) auto; /* Reduce space around the card */
+}
+
+.about .card-item h3, 
+.about .card-item h4 {
+  font-size: 1.2rem; /* Reduce heading size for consistency */
+  margin-bottom: var(--small-spacing); /* Reduce space below headings */
+}
+
+.about .card-item p {
+  margin: var(--small-spacing) 0; /* Reduce space around paragraphs */
+  font-size: 0.9rem; /* Slightly smaller paragraph text */
+  line-height: 1.4; /* Adjust line height for better readability */
+}
+
 .about .profile-img-container {
   position: relative;
   padding: 10px;
   max-width: 100%;
-  margin: 0 auto;
+  margin-bottom: var(--element-spacing); /* Adjust spacing below the image */
 }
 
 .about .profile-img-container img {
@@ -907,6 +978,8 @@ body.mobile-nav-active .navmenu {
   transition: all var(--transition-base);
   width: 100%;
   height: auto;
+  border-radius: var(--border-radius-md); /* Ensure consistent border radius */
+  max-width: 100%; /* Ensure the image fits within the container */
 }
 
 /* 6.5 Skills */
