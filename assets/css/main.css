@@ -923,10 +923,10 @@ body.mobile-nav-active .navmenu {
 }
 
 /* 6.6 Resume */
-
 .resume {
   background-color: var(--color-bg-light);
 }
+
 .resume .resume-title {
   font-size: 1.6rem;
   font-weight: 700;
@@ -934,9 +934,7 @@ body.mobile-nav-active .navmenu {
   margin-bottom: var(--element-spacing);
 }
 
-/* Remove duplicate card styling since we're using card-item consistently */
 .resume-item {
-  /* Styles now come from card-item */
   margin-bottom: var(--item-gap);
 }
 
@@ -947,7 +945,7 @@ body.mobile-nav-active .navmenu {
   flex-wrap: wrap;
   gap: var(--item-gap);
   margin: 0 auto;
-  max-width: 1200px; /* Increased from 1000px to accommodate larger cards */
+  max-width: 1200px;
 }
 
 .portfolio-card-wrapper {
@@ -955,7 +953,6 @@ body.mobile-nav-active .navmenu {
   justify-content: center;
 }
 
-/* Adapt portfolio card styles to work with card-item */
 .portfolio-card {
   position: relative;
   overflow: hidden;
@@ -966,11 +963,10 @@ body.mobile-nav-active .navmenu {
   margin: 0;
 }
 
-/* Keep specific portfolio styles but make them work with card-item */
 .portfolio-img-container {
   position: relative;
   width: auto;
-  height: 420px; /* Match the card height */
+  height: 420px;
   overflow: hidden;
   border-radius: var(--border-radius-md);
 }
@@ -1091,22 +1087,189 @@ body.mobile-nav-active .navmenu {
   width: 100%;
 }
 
+/* 6.8 Contact */
+.contact .card-item {
+  height: 100%;
+  background-color: var(--color-bg);
+}
+
+.php-email-form button[type=submit] {
+  margin-top: 1rem;
+  margin-bottom: 0;
+}
+
+/* 6.9 Footer */
+.footer {
+  padding: var(--section-padding-y) 0 var(--content-margin);
+  border-top: 1px solid var(--color-border);
+  color: var(--color-text);
+  box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.05);
+  position: relative;
+  z-index: 10;
+  background-color: var(--color-bg-light);
+}
+
+.footer h3 {
+  color: var(--color-accent);
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+.footer .social-links {
+  margin: var(--element-spacing) 0;
+}
+
+.footer .copyright {
+  font-size: 0.9rem;
+  border-top: 1px solid var(--color-border);
+  margin-top: var(--content-margin);
+  padding-top: var(--element-spacing);
+  text-align: center;
+}
+
+.footer .card-item {
+  background-color: var(--color-bg);
+}
+
+/* Back to top button */
+.scroll-top {
+  position: fixed;
+  visibility: hidden;
+  opacity: 0;
+  right: 15px;
+  bottom: -15px;
+  z-index: 99999;
+  background-color: var(--color-accent);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-base);
+}
+
+.scroll-top i {
+  font-size: 1.5rem;
+  color: var(--color-white);
+  line-height: 0;
+}
+
+.scroll-top:hover {
+  background-color: var(--color-accent-hover);
+  transform: translateY(-3px);
+}
+
+.scroll-top.active {
+  visibility: visible;
+  opacity: 1;
+  bottom: 15px;
+}
+
+/* Media queries for responsive design */
+
 /* Mobile specific styles */
 @media (max-width: 768px) {
+  /* General text adjustments */
+  body {
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+  
+  /* Section padding adjustment */
+  .section, section {
+    padding: var(--section-padding-y-mobile) 0;
+  }
+  
+  /* Card padding reduction */
+  .card-item, .resume-item {
+    padding: var(--card-padding-mobile);
+    margin-bottom: 20px;
+  }
+  
+  /* Section title size reduction */
+  .section-title h2 {
+    font-size: 1.75rem;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+  }
+  
+  .section-title p {
+    font-size: 1rem;
+  }
+  
+  /* Headings size reduction */
+  .card-item h3, .card-item h4, .card-heading {
+    font-size: 1.25rem;
+    margin-bottom: 10px;
+  }
+  
+  /* List item spacing */
+  .card-item ul li {
+    padding: 6px 0 6px 20px;
+    font-size: 0.95rem;
+  }
+  
+  /* Form elements */
+  .php-email-form input, .php-email-form textarea {
+    padding: 8px 12px;
+    font-size: 0.95rem;
+  }
+  
+  .php-email-form .form-group {
+    margin-bottom: 15px;
+  }
+  
+  /* Buttons */
+  .btn, .php-email-form button[type=submit] {
+    padding: 8px 20px;
+    font-size: 0.95rem;
+  }
+  
+  /* Resume section */
+  .resume .resume-title {
+    font-size: 1.4rem;
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+  
+  /* Portfolio card adjustments */
+  .portfolio-card.card-item {
+    padding: 0;
+  }
+  
+  .portfolio-card {
+    height: 384px;
+    width: 336px;
+  }
+  
+  .portfolio-img-container {
+    height: 384px;
+  }
+  
+  /* Hero section */
+  .hero h2 {
+    font-size: 2.5rem;
+  }
+  
+  .hero p {
+    font-size: 1.25rem;
+  }
+  
+  /* Portfolio mobile-specific styles */
   .portfolio-overlay {
     opacity: 0;
-    background: rgba(0, 0, 0, 0.9); /* Darker background for better readability */
-    transition: opacity 0.3s ease; /* Make sure transition is defined */
-    z-index: 5; /* Ensure overlay is above other elements */
+    background: rgba(0, 0, 0, 0.9);
+    transition: opacity 0.3s ease;
+    z-index: 5;
+    padding: 1rem;
+    overflow-y: auto;
+    max-height: 100%;
   }
   
   .portfolio-card.touched .portfolio-overlay {
     opacity: 1;
-    display: flex; /* Ensure it's displayed as flex */
-  }
-  
-  .portfolio-img-container {
-    position: relative; /* Keep this */
+    display: flex;
   }
   
   /* Visual cue for tapping */
@@ -1165,24 +1328,7 @@ body.mobile-nav-active .navmenu {
     border-radius: 4px;
   }
   
-  /* Fixed consistent height for all portfolio cards */
-  .portfolio-card.touched .portfolio-img-container {
-    height: 384px; /* Match the mobile card height */
-  }
-  
-  /* Make overlay scrollable if content is too tall */
-  .portfolio-overlay {
-    padding: 1rem;
-    overflow-y: auto;
-    max-height: 100%;
-  }
-  
-  .portfolio-card.touched .portfolio-overlay {
-    opacity: 1;
-    display: flex;
-  }
-  
-  /* More compact content for fixed space */
+  /* Portfolio styling for mobile */
   .portfolio-title {
     font-size: 1.25rem;
     margin-bottom: 0.5rem;
@@ -1216,265 +1362,6 @@ body.mobile-nav-active .navmenu {
   .portfolio-actions .btn {
     padding: 0.35rem 0.75rem;
     font-size: 0.85rem;
-  }
-  
-  /* Portfolio adjustments */
-  .portfolio-card {
-    height: 384px; /* Increased from 320px (20% larger) */
-    width: 336px; /* Increased from 280px (20% larger) */
-  }
-  
-  .portfolio-img-container {
-    height: 384px; /* Match the mobile card height */
-  }
-  
-  /* General text adjustments */
-  body {
-    font-size: 0.95rem;
-    line-height: 1.5;
-  }
-  
-  /* Section padding adjustment */
-  .section, section {
-    padding: var(--section-padding-y-mobile) 0;
-  }
-  
-  /* Card padding reduction */
-  .card-item, .resume-item {
-    padding: var(--card-padding-mobile);
-    margin-bottom: 20px;
-  }
-  
-  /* Section title size reduction */
-  .section-title h2 {
-    font-size: 1.75rem;
-    padding-bottom: 15px;
-    margin-bottom: 15px;
-  }
-  
-  .section-title p {
-    font-size: 1rem;
-  }
-  
-  /* Headings size reduction */
-  .card-item h3, .card-item h4, .card-heading {
-    font-size: 1.25rem;
-    margin-bottom: 10px;
-  }
-  
-  /* List item spacing */
-  .card-item ul li {
-    padding: 6px 0 6px 20px;
-    font-size: 0.95rem;
-  }
-  
-  /* Form elements */
-  .php-email-form input, .php-email-form textarea {
-    padding: 8px 12px;
-    font-size: 0.95rem;
-  }
-  
-  .php-email-form .form-group {
-    margin-bottom: 15px;
-  }
-  
-  /* Buttons */
-  .btn, .php-email-form button[type=submit] {
-    padding: 8px 20px;
-    font-size: 0.95rem;
-  }
-  
-  /* Resume section */
-  .resume .resume-title {
-    font-size: 1.4rem;
-    margin-top: 15px;
-    margin-bottom: 15px;
-  }
-  
-  /* Portfolio card adjustments */
-  .portfolio-card.card-item {
-    padding: 0; /* Keep zero padding for portfolio cards */
-  }
-  
-  /* Hero section */
-  .hero h2 {
-    font-size: 2.5rem;
-  }
-  
-  .hero p {
-    font-size: 1.25rem;
-  }
-}
-
-/* 6.8 Contact */
-.contact .card-item {
-  height: 100%;
-  background-color: var(--color-bg);
-}
-
-/* Remove duplicate styling since the form is inside card-item */
-.contact .php-email-form {
-  height: 100%;
-}
-
-/* 6.9 Footer */
-.footer {
-  padding: var(--section-padding-y) 0 var(--content-margin);
-  border-top: 1px solid var(--color-border);
-  color: var(--color-text);
-  box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.05);
-  position: relative;
-  z-index: 10;
-  background-color: var(--color-bg-light);
-}
-
-.footer h3 {
-  color: var(--color-accent);
-  font-weight: 600;
-  font-size: 1.5rem;
-}
-
-.footer .social-links {
-  margin: var(--element-spacing) 0;
-}
-
-.footer .copyright {
-  font-size: 0.9rem;
-  border-top: 1px solid var(--color-border);
-  margin-top: var(--content-margin);
-  padding-top: var(--element-spacing);
-  text-align: center;
-}
-
-/* Footer cards */
-.footer .card-item {
-  background-color: var(--color-bg);
-}
-
-/* Back to top button */
-.scroll-top {
-  position: fixed;
-  visibility: hidden;
-  opacity: 0;
-  right: 15px;
-  bottom: -15px;
-  z-index: 99999;
-  background-color: var(--color-accent);
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all var(--transition-base);
-}
-
-.scroll-top i {
-  font-size: 1.5rem;
-  color: var(--color-white);
-  line-height: 0;
-}
-
-.scroll-top:hover {
-  background-color: var(--color-accent-hover);
-  transform: translateY(-3px);
-}
-
-.scroll-top.active {
-  visibility: visible;
-  opacity: 1;
-  bottom: 15px;
-}
-
-/* Media queries for responsive design would go here */
-
-/* Adding Mobile Optimizations */
-@media (max-width: 768px) {
-  /* General text adjustments */
-  body {
-    font-size: 0.95rem;
-    line-height: 1.5;
-  }
-  
-  /* Section padding adjustment */
-  .section, section {
-    padding: var(--section-padding-y-mobile) 0;
-  }
-  
-  /* Card padding reduction */
-  .card-item, .resume-item {
-    padding: var(--card-padding-mobile);
-    margin-bottom: 20px;
-  }
-  
-  /* Section title size reduction */
-  .section-title h2 {
-    font-size: 1.75rem;
-    padding-bottom: 15px;
-    margin-bottom: 15px;
-  }
-  
-  .section-title p {
-    font-size: 1rem;
-  }
-  
-  /* Headings size reduction */
-  .card-item h3, .card-item h4, .card-heading {
-    font-size: 1.25rem;
-    margin-bottom: 10px;
-  }
-  
-  /* List item spacing */
-  .card-item ul li {
-    padding: 6px 0 6px 20px;
-    font-size: 0.95rem;
-  }
-  
-  /* Form elements */
-  .php-email-form input, .php-email-form textarea {
-    padding: 8px 12px;
-    font-size: 0.95rem;
-  }
-  
-  .php-email-form .form-group {
-    margin-bottom: 15px;
-  }
-  
-  /* Buttons */
-  .btn, .php-email-form button[type=submit] {
-    padding: 8px 20px;
-    font-size: 0.95rem;
-  }
-  
-  /* Resume section */
-  .resume .resume-title {
-    font-size: 1.4rem;
-    margin-top: 15px;
-    margin-bottom: 15px;
-  }
-  
-  /* Portfolio adjustments */
-  .portfolio-card.card-item {
-    padding: 0; /* Keep zero padding for portfolio cards */
-  }
-  
-  /* Portfolio card adjustments */
-  .portfolio-card {
-    height: 384px; /* Increased from 320px (20% larger) */
-    width: 336px; /* Increased from 280px (20% larger) */
-  }
-  
-  .portfolio-img-container {
-    height: 384px; /* Match the mobile card height */
-  }
-  
-  /* Hero section */
-  .hero h2 {
-    font-size: 2.5rem;
-  }
-  
-  .hero p {
-    font-size: 1.25rem;
   }
 }
 
@@ -1518,19 +1405,19 @@ body.mobile-nav-active .navmenu {
     font-size: 1.1rem;
   }
   
-  /* Portfolio items - slightly smaller than tablets but still larger than original */
+  /* Portfolio items - slightly smaller than tablets */
   .portfolio-card {
-    width: 312px; /* Increased from 260px (20% larger) */
-    height: 360px; /* Increased from 300px (20% larger) */
-    max-width: 90vw; /* Prevent overflow on very small screens */
+    width: 312px;
+    height: 360px;
+    max-width: 90vw;
   }
   
   .portfolio-img-container {
-    height: 360px; /* Match the small mobile card height */
+    height: 360px;
   }
   
   .portfolio-card.touched .portfolio-img-container {
-    height: 360px; /* Match the small mobile card height */
+    height: 360px;
   }
   
   /* Portfolio overlay content */
