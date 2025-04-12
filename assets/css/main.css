@@ -69,7 +69,7 @@
   
   /* Shadows */
   --shadow-sm: 0 4px 8px rgba(0, 0, 0, 0.1);
-  --shadow-md: 0 6px 15px rgba(0, 0, 0, 0.15);
+  --shadow-md: 0 12px 30px rgba(0, 0, 0, 0.15);
   --shadow-accent: 0 6px 15px rgba(5, 99, 187, 0.3);
   
   /* Transitions */
@@ -1137,11 +1137,6 @@ body.mobile-nav-active .navmenu {
   color: var(--color-white);
   transition: all 0.3s ease;
   margin: 0;
-}
-
-.portfolio-overlay .tech-stack .badge:hover {
-  background-color: var(--color-accent-hover);
-  transform: translateY(-2px);
 }
 
 .portfolio-actions {
