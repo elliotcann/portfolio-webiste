@@ -939,7 +939,7 @@ body.mobile-nav-active .navmenu {
 
 /* 6.7 Portfolio - Updated hover-based design */
 .portfolio-cards-container {
-  display: flex;
+  display: block;
   justify-content: center;
   flex-wrap: wrap;
   gap: var(--item-gap);
@@ -953,13 +953,15 @@ body.mobile-nav-active .navmenu {
 }
 
 .portfolio-card {
+  display: flex;
+  flex-direction: wrap;
   position: relative;
   overflow: hidden;
   width: 360px; 
   border-radius: var(--border-radius-md);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   background-color: transparent;
-  margin: 0;
+  margin-bottom: var(--item-gap);
 }
 
 .portfolio-img-container {
@@ -1127,6 +1129,20 @@ body.mobile-nav-active .navmenu {
 
 .portfolio-card:hover::after {
   width: 100%;
+}
+
+/* Desktop styling for side-by-side layout */
+@media (min-width: 768px) {
+  .portfolio-cards-container {
+    display: flex; /* Use Flexbox for side-by-side layout */
+    flex-wrap: wrap; /* Allow wrapping if needed */
+    justify-content: center; /* Add spacing between cards */
+    gap: var(--item-gap); /* Maintain consistent gap */
+  }
+
+  .portfolio-card {
+    margin-bottom: var(--item-gap); /* Add spacing between rows */
+  }
 }
 
 /* 6.8 Contact */
@@ -1482,8 +1498,8 @@ body.mobile-nav-active .navmenu {
   
   /* Portfolio items - slightly smaller than tablets */
   .portfolio-card {
-    width: 100%; /* Override the fixed 312px width */
-    max-width: 100%; /* Override the 90vw max-width */
+    width: 100%; 
+    max-width: 100%; 
   }
   
   .portfolio-img-container {
