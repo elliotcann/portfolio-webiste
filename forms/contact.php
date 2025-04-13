@@ -1,11 +1,17 @@
 <?php
 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-require '../vendor/autoload.php'; 
+require __DIR__ . '/../assets/vendor/phpmailer/src/PHPMailer.php';
+require __DIR__ . '/../assets/vendor/phpmailer/src/SMTP.php';
+require __DIR__ . '/../assets/vendor/phpmailer/src/Exception.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = htmlspecialchars($_POST['name']);
@@ -13,23 +19,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $subject = htmlspecialchars($_POST['subject']);
     $message = htmlspecialchars($_POST['message']);
 
+    error_log("Form Data: Name=$name, Email=$email, Subject=$subject, Message=$message");
+
     if (!empty($name) && !empty($email) && !empty($subject) && !empty($message)) {
         $mail = new PHPMailer(true);
 
         try {
             // Server settings
             $mail->isSMTP();
-            $mail->Host = 'smtp.elliotcann.com'; // Replace with your SMTP server
+            $mail->Host = 'mail.elliotcann.com'; // Replace with your SMTP server
             $mail->SMTPAuth = true;
             $mail->Username = 'me@elliotcann.com'; // Replace with your email
             $mail->Password = 'I)8.RefHjg~j'; // Replace with your email password
-            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-            $mail->Port = 587;
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+            $mail->Port = 465;
 
             // Sender and recipient settings
             $mail->setFrom('me@elliotcann.com', 'Elliot Cann'); // Replace with your email
             $mail->addAddress('me@elliotcann.com', 'Elliot Cann'); // Replace with your email
-            $mail->addReplyTo($email, $name);
 
             // Email content for you
             $mail->isHTML(true);
