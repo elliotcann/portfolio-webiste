@@ -886,8 +886,8 @@ body.mobile-nav-active .navmenu {
 /* 6.4 About */
 .about .profile-img-container {
   position: relative;
-  width: 200px;
-  height: 200px;
+  width: 250px;
+  height: 250px;
   margin: 0 auto;
 }
 
@@ -900,8 +900,8 @@ body.mobile-nav-active .navmenu {
 }
 
 .about .profile-img-container .profile-accent {
-  width: 220px;
-  height: 220px;
+  width: 270px;
+  height: 270px;
   background: var(--color-accent-light);
   z-index: -1;
   border: 5px solid var(--color-accent);
