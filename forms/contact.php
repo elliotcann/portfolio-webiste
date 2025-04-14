@@ -44,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $mail->Body = "
                 <h3>New message from your website:</h3>
                 <p><strong>Name:</strong> $name</p>
-                <p><strong>Email:</strong> $email</p>
+                <p><strong>Email:</strong> <a href='mailto:$email'>$email</a></p>
                 <p><strong>Subject:</strong> $subject</p>
                 <p><strong>Message:</strong><br>$message</p>
             ";
