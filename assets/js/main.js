@@ -274,19 +274,24 @@
    */
   document.addEventListener('DOMContentLoaded', function() {
     const portfolioCards = document.querySelectorAll('.portfolio-card');
-    
-    // Function to handle card interaction - simplified without height changes
+
+    // Function to handle card interaction
     function handleCardInteraction(card, event) {
       // Only apply this behavior on mobile devices
       if (window.innerWidth <= 768) {
+        // Check if the clicked element is the "Demo" button or its child
+        if (event.target.closest('.portfolio-actions')) {
+          return; // Skip the "Tap to view" behavior
+        }
+
         event.preventDefault();
-        
+
         // Toggle the touched class on this card
         const wasAlreadyTouched = card.classList.contains('touched');
-        
+
         // First remove touched class from any other cards
         portfolioCards.forEach(c => c.classList.remove('touched'));
-        
+
         // Only add the touched class if it wasn't already touched
         if (!wasAlreadyTouched) {
           card.classList.add('touched');
@@ -294,18 +299,18 @@
         }
       }
     }
-    
+
     // Add both click and touch events for better mobile support
     portfolioCards.forEach(card => {
       card.addEventListener('click', function(e) {
         handleCardInteraction(this, e);
       }, { passive: false });
-      
+
       card.addEventListener('touchend', function(e) {
         handleCardInteraction(this, e);
       }, { passive: false });
     });
-    
+
     // Reset cards when clicking elsewhere
     document.addEventListener('click', function(e) {
       if (!e.target.closest('.portfolio-card')) {
