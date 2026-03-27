@@ -3,7 +3,7 @@ import {
   BsCodeSquare,
   BsPcDisplayHorizontal,
   BsShop,
-  BsGraduationCap,
+  BsFillMortarboardFill,
   BsBriefcase,
 } from "react-icons/bs";
 import SectionTitle from "@/app/components/ui/SectionTitle";
@@ -78,7 +78,7 @@ export default function Resume() {
           {/* Education */}
           <AnimatedSection animation="fade-up" delay={0.1}>
             <h3 className="text-lg font-semibold text-[var(--color-text-heading)] mb-4 flex items-center gap-2">
-              <BsGraduationCap className="text-[var(--color-primary)]" size={20} />
+              <BsFillMortarboardFill className="text-[var(--color-primary)]" size={20} />
               Education
             </h3>
             {education.map((item) => (

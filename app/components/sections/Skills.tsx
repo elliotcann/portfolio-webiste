@@ -1,5 +1,5 @@
 import {
-  SiHtml5, SiCss3, SiJavascript, SiPostgresql,
+  SiHtml5, SiCss, SiJavascript, SiPostgresql,
   SiPython, SiPhp, SiBootstrap, SiJquery,
 } from "react-icons/si";
 import { BsCodeSlash, BsLayers } from "react-icons/bs";
@@ -9,7 +9,7 @@ import { skillCategories } from "@/app/data/skills";
 import type { Skill } from "@/app/data/skills";
 
 const siIconMap: Record<string, React.ElementType> = {
-  SiHtml5, SiCss3, SiJavascript, SiPostgresql,
+  SiHtml5, SiCss, SiJavascript, SiPostgresql,
   SiPython, SiPhp, SiBootstrap, SiJquery,
 };
 

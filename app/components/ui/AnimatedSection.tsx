@@ -2,6 +2,8 @@
 
 import { motion } from "framer-motion";
 
+import type { Variants } from "framer-motion";
+
 type AnimationType = "fade-up" | "fade-in" | "zoom-out";
 
 interface AnimatedSectionProps {
@@ -11,7 +13,7 @@ interface AnimatedSectionProps {
   className?: string;
 }
 
-const variants: Record<AnimationType, { hidden: object; visible: object }> = {
+const variants: Record<AnimationType, Variants> = {
   "fade-up": {
     hidden:  { opacity: 0, y: 40 },
     visible: { opacity: 1, y: 0 },

@@ -32,9 +32,9 @@
   --color-gray-800: #343a40;
   --color-gray-900: #212529;
 
-  /* Fonts — populated by next/font CSS variables in layout.tsx */
-  --font-base: var(--font-roboto), system-ui, -apple-system, sans-serif;
-  --font-heading: var(--font-poppins), sans-serif;
+  /* Fonts — loaded via Google Fonts link tag in layout.tsx */
+  --font-base: "Roboto", system-ui, -apple-system, sans-serif;
+  --font-heading: "Poppins", sans-serif;
 
   /* Shadows */
   --shadow-sm: 0 4px 8px rgba(0, 0, 0, 0.1);
