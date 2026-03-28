@@ -230,6 +230,27 @@ a:hover {
 }
 
 /* -------------------------------------------------------
+   Skills — infinite marquee carousel
+------------------------------------------------------- */
+@keyframes marquee-left {
+  from { transform: translateX(0); }
+  to   { transform: translateX(var(--marquee-offset, -25%)); }
+}
+
+@keyframes marquee-right {
+  from { transform: translateX(calc(var(--marquee-offset, -25%) * -1)); }
+  to   { transform: translateX(0); }
+}
+
+.animate-marquee-left {
+  animation: marquee-left var(--marquee-duration, 25s) linear infinite;
+}
+
+.animate-marquee-right {
+  animation: marquee-right var(--marquee-duration, 25s) linear infinite;
+}
+
+/* -------------------------------------------------------
    Social links
 ------------------------------------------------------- */
 .social-links {

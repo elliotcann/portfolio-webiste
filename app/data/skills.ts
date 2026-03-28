@@ -43,10 +43,12 @@ export const skillCategories: SkillCategory[] = [
     title: "AI & Automation",
     bsIcon: "BsRobot",
     skills: [
-      { name: "OpenAI API",  icon: "SiOpenai" },
-      { name: "Claude API",  icon: "BsRobot" },
-      { name: "Cursor",      icon: "BsTerminalFill" },
-      { name: "Make",        icon: "BsGearFill" },
+      { name: "OpenAI API",       icon: "SiOpenai" },
+      { name: "Claude API",       icon: "BsRobot" },
+      { name: "Cursor",           icon: "BsTerminalFill" },
+      { name: "Make",             icon: "BsGearFill" },
+      { name: "n8n",              icon: "BsDiagram3" },
+      { name: "GitHub Copilot",   icon: "BsStars" },
     ],
   },
 ];

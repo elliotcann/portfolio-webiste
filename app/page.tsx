@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <>
       <Sidebar />
-      <main id="main-content">
+      <main id="main-content" className="xl:pl-[64px]">
         <Hero />
         <About />
         <Portfolio />
