@@ -31,7 +31,7 @@ export default function PortfolioCard({ project }: PortfolioCardProps) {
 
   return (
     <div
-      className="group relative overflow-hidden rounded-lg shadow-[var(--shadow-sm)] cursor-pointer"
+      className="group relative overflow-hidden rounded-xl border border-[var(--color-border)] shadow-[var(--shadow-sm)] cursor-pointer transition-all duration-300 hover:border-[rgba(124,58,237,0.35)] hover:shadow-[var(--shadow-accent)]"
       onTouchEnd={handleTouchEnd}
     >
       {/* Image */}
@@ -49,7 +49,7 @@ export default function PortfolioCard({ project }: PortfolioCardProps) {
       <div
         className={[
           "absolute inset-0 flex flex-col justify-end p-5",
-          "bg-gradient-to-t from-[rgba(5,99,187,0.95)] via-[rgba(5,99,187,0.75)] to-transparent",
+          "bg-gradient-to-t from-[rgba(30,10,60,0.97)] via-[rgba(124,58,237,0.6)] to-transparent",
           "transition-opacity duration-400",
           // Desktop: show on hover; Mobile: show when touched
           isTouched
@@ -80,7 +80,7 @@ export default function PortfolioCard({ project }: PortfolioCardProps) {
               href={project.demoUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full border border-white text-white text-sm font-medium hover:bg-white hover:text-[var(--color-primary)] transition-colors duration-200"
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full border border-white/60 text-white text-sm font-medium hover:bg-white hover:text-[var(--color-primary-dark)] transition-colors duration-200"
               onClick={(e) => e.stopPropagation()}
             >
               <BsGlobe size={14} />

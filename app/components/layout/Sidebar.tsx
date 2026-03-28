@@ -74,7 +74,7 @@ export default function Sidebar() {
     <>
       {/* Hamburger — visible below xl */}
       <button
-        className="fixed top-4 left-4 z-50 xl:hidden flex items-center justify-center w-10 h-10 rounded-md bg-[var(--color-primary)] text-white shadow-md"
+        className="fixed top-4 left-4 z-50 xl:hidden flex items-center justify-center w-10 h-10 rounded-lg bg-[var(--color-bg-section)]/80 backdrop-blur-xl border border-[var(--color-border)] text-[var(--color-text-heading)] shadow-[var(--shadow-sm)] hover:border-[var(--color-primary)] hover:text-[var(--color-primary)] transition-colors duration-200"
         onClick={() => setIsMobileOpen((v) => !v)}
         aria-label={isMobileOpen ? "Close menu" : "Open menu"}
       >
@@ -85,13 +85,14 @@ export default function Sidebar() {
       <header
         ref={navRef}
         className={[
-          // Desktop: fixed left column
           "fixed top-0 left-0 h-full z-40 flex flex-col justify-center",
-          "bg-[var(--color-bg-section)]/80 backdrop-blur-xl border-r border-[var(--color-border)]",
-          "shadow-[var(--shadow-sm)]",
+          "bg-[var(--color-bg-section)]/70 backdrop-blur-2xl",
+          "border-r border-[var(--color-border)]",
+          // Subtle violet glow on the right edge
+          "shadow-[1px_0_20px_rgba(124,58,237,0.08)]",
           // Width: collapsed icon-only on desktop, expands on hover
-          "w-[70px] hover:w-[var(--width-sidebar)]",
-          "transition-[width] duration-300 overflow-hidden",
+          "w-[64px] hover:w-[var(--width-sidebar)]",
+          "transition-[width] duration-300 ease-in-out overflow-hidden",
           // Mobile: full-width drawer
           "xl:translate-x-0",
           isMobileOpen
@@ -100,13 +101,13 @@ export default function Sidebar() {
         ].join(" ")}
       >
         <nav>
-          <ul className="list-none p-0 m-0 py-4">
+          <ul className="list-none p-0 m-0 py-6 flex flex-col gap-1">
             {navItems.map(({ href, label, icon }) => {
               const Icon = iconMap[icon];
               const id = href.slice(1);
               const isActive = activeSection === id;
               return (
-                <li key={href}>
+                <li key={href} className="px-3">
                   <a
                     href={href}
                     onClick={(e) => {
@@ -114,16 +115,24 @@ export default function Sidebar() {
                       handleNavClick(href);
                     }}
                     className={[
-                      "flex items-center gap-8 px-6 py-3 whitespace-nowrap",
-                      "transition-colors duration-200",
+                      "flex items-center gap-3 px-3 py-2.5 rounded-lg whitespace-nowrap",
+                      "transition-all duration-200",
                       isActive
-                        ? "text-[var(--color-primary)] font-semibold border-r-[3px] border-[var(--color-primary)]"
-                        : "text-[var(--color-text-heading)] hover:text-[var(--color-primary)]",
+                        ? "bg-[var(--color-primary-light)] text-[var(--color-primary)] font-medium shadow-[0_0_12px_rgba(124,58,237,0.2)]"
+                        : "text-[var(--color-text-light)] hover:text-[var(--color-text-heading)] hover:bg-white/5",
                     ].join(" ")}
                     aria-current={isActive ? "page" : undefined}
                   >
-                    {Icon && <Icon size={18} className="shrink-0" />}
-                    <span className="text-sm">{label}</span>
+                    {Icon && (
+                      <Icon
+                        size={17}
+                        className={[
+                          "shrink-0 transition-colors duration-200",
+                          isActive ? "text-[var(--color-primary)]" : "",
+                        ].join(" ")}
+                      />
+                    )}
+                    <span className="text-sm tracking-wide">{label}</span>
                   </a>
                 </li>
               );

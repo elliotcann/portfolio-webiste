@@ -10,7 +10,7 @@ export default function Portfolio() {
         <AnimatedSection animation="fade-up">
           <SectionTitle
             title="Portfolio"
-            subtitle="My best projects, demonstrating my expertise in front end, back end, and full stack development"
+            subtitle="A selection of projects spanning full stack web apps, automation tools, and AI experiments"
           />
         </AnimatedSection>
 
