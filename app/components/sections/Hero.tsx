@@ -17,7 +17,7 @@ export default function Hero() {
         priority
       />
       {/* Overlay */}
-      <div className="absolute inset-0 bg-black/55" />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[var(--color-bg-light)]" />
 
       {/* Content */}
       <div className="relative z-10 text-center px-4 max-w-3xl mx-auto">
