@@ -25,17 +25,19 @@ export default function About() {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center mt-6">
           {/* Profile image */}
-          <AnimatedSection animation="fade-up" delay={0.1} className="flex justify-center">
+          <AnimatedSection animation="fade-in" delay={0.1} className="flex justify-center">
             <div className="relative w-52 h-52 lg:w-64 lg:h-64">
+              {/* Violet glow behind image */}
+              <div className="absolute inset-0 rounded-full bg-[var(--color-primary)] opacity-25 blur-2xl scale-110" />
               <Image
                 src="/images/profile-img.jpg"
                 alt="Elliot Cann"
                 fill
-                className="rounded-full object-cover shadow-[var(--shadow-md)]"
+                className="rounded-full object-cover shadow-[var(--shadow-md)] relative z-10"
                 sizes="256px"
               />
               {/* Accent ring */}
-              <div className="absolute inset-[-8px] rounded-full border-2 border-[var(--color-primary)] opacity-30 animate-[subtlePulse_2s_ease-in-out_infinite]" />
+              <div className="absolute inset-[-8px] rounded-full border-2 border-[var(--color-primary)] opacity-40 animate-[subtlePulse_2s_ease-in-out_infinite] z-10" />
             </div>
           </AnimatedSection>
 

@@ -1,3 +1,6 @@
+"use client";
+
+import { motion } from "framer-motion";
 import { BsGeoAlt, BsLink45Deg } from "react-icons/bs";
 import {
   BsCodeSquare,
@@ -74,7 +77,7 @@ function ResumeCard({ item }: { item: ResumeItem }) {
 
 export default function Resume() {
   return (
-    <section id="resume" className="section bg-white">
+    <section id="resume" className="section bg-[var(--color-bg)]">
       <div className="container mx-auto px-4 max-w-5xl">
         <AnimatedSection animation="fade-up">
           <SectionTitle
@@ -86,24 +89,50 @@ export default function Resume() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6">
           {/* Education */}
           <AnimatedSection animation="fade-up" delay={0.1}>
-            <h3 className="text-lg font-semibold text-[var(--color-text-heading)] mb-4 flex items-center gap-2">
+            <h3 className="text-lg font-semibold text-[var(--color-text-heading)] mb-6 flex items-center gap-2">
               <BsFillMortarboardFill className="text-[var(--color-primary)]" size={20} />
               Education
             </h3>
-            {education.map((item) => (
-              <ResumeCard key={item.id} item={item} />
-            ))}
+            <div className="relative pl-8">
+              <div className="absolute left-3 top-0 bottom-0 w-px bg-gradient-to-b from-[var(--color-primary)] via-[rgba(124,58,237,0.3)] to-transparent" />
+              {education.map((item, i) => (
+                <motion.div
+                  key={item.id}
+                  className="relative mb-5"
+                  initial={{ opacity: 0, x: -16 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.15 + i * 0.12 }}
+                >
+                  <div className="absolute -left-[21px] top-4 w-3 h-3 rounded-full bg-[var(--color-primary)] shadow-[0_0_8px_rgba(124,58,237,0.7)] ring-2 ring-[var(--color-bg)] z-10" />
+                  <ResumeCard item={item} />
+                </motion.div>
+              ))}
+            </div>
           </AnimatedSection>
 
           {/* Experience */}
           <AnimatedSection animation="fade-up" delay={0.15}>
-            <h3 className="text-lg font-semibold text-[var(--color-text-heading)] mb-4 flex items-center gap-2">
+            <h3 className="text-lg font-semibold text-[var(--color-text-heading)] mb-6 flex items-center gap-2">
               <BsBriefcase className="text-[var(--color-primary)]" size={20} />
               Professional Experience
             </h3>
-            {experience.map((item) => (
-              <ResumeCard key={item.id} item={item} />
-            ))}
+            <div className="relative pl-8">
+              <div className="absolute left-3 top-0 bottom-0 w-px bg-gradient-to-b from-[var(--color-primary)] via-[rgba(124,58,237,0.3)] to-transparent" />
+              {experience.map((item, i) => (
+                <motion.div
+                  key={item.id}
+                  className="relative mb-5"
+                  initial={{ opacity: 0, x: -16 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.2 + i * 0.12 }}
+                >
+                  <div className="absolute -left-[21px] top-4 w-3 h-3 rounded-full bg-[var(--color-primary)] shadow-[0_0_8px_rgba(124,58,237,0.7)] ring-2 ring-[var(--color-bg)] z-10" />
+                  <ResumeCard item={item} />
+                </motion.div>
+              ))}
+            </div>
           </AnimatedSection>
         </div>
 

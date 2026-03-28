@@ -1,3 +1,6 @@
+"use client";
+
+import { motion } from "framer-motion";
 import {
   SiHtml5, SiCss, SiJavascript, SiTypescript, SiPostgresql,
   SiPython, SiPhp, SiBootstrap, SiReact, SiNextdotjs,
@@ -27,10 +30,16 @@ const categoryIconMap: Record<string, React.ElementType> = {
   BsRobot,
 };
 
-function SkillIcon({ skill }: { skill: Skill }) {
+function SkillIcon({ skill, index }: { skill: Skill; index: number }) {
   const Icon = siIconMap[skill.icon] ?? bsSkillIconMap[skill.icon];
   return (
-    <div className="flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-[var(--color-primary-light)] transition-colors duration-200 group cursor-default">
+    <motion.div
+      initial={{ opacity: 0, y: 12 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.35, delay: index * 0.06 }}
+      className="flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-[var(--color-primary-light)] transition-colors duration-200 group cursor-default"
+    >
       {Icon ? (
         <Icon
           size={40}
@@ -42,7 +51,7 @@ function SkillIcon({ skill }: { skill: Skill }) {
       <span className="text-xs font-medium text-[var(--color-text-light)] group-hover:text-[var(--color-text-heading)] transition-colors duration-200">
         {skill.name}
       </span>
-    </div>
+    </motion.div>
   );
 }
 
@@ -68,8 +77,8 @@ export default function Skills() {
                     {cat.title}
                   </h3>
                   <div className="grid grid-cols-3 gap-1">
-                    {cat.skills.map((skill) => (
-                      <SkillIcon key={`${cat.id}-${skill.name}`} skill={skill} />
+                    {cat.skills.map((skill, idx) => (
+                      <SkillIcon key={`${cat.id}-${skill.name}`} skill={skill} index={idx} />
                     ))}
                   </div>
                 </div>

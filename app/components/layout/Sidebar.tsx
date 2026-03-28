@@ -92,7 +92,7 @@ export default function Sidebar() {
           "shadow-[1px_0_20px_rgba(124,58,237,0.08)]",
           // Width: collapsed icon-only on desktop, expands on hover
           "w-[64px] hover:w-[var(--width-sidebar)]",
-          "transition-[width] duration-300 ease-in-out overflow-hidden",
+          "transition-[width] duration-300 ease-in-out overflow-hidden group",
           // Mobile: full-width drawer
           "xl:translate-x-0",
           isMobileOpen
@@ -132,7 +132,10 @@ export default function Sidebar() {
                         ].join(" ")}
                       />
                     )}
-                    <span className="text-sm tracking-wide">{label}</span>
+                    <span className={[
+                      "text-sm tracking-wide transition-opacity duration-200",
+                      isMobileOpen ? "opacity-100" : "opacity-0 group-hover:opacity-100",
+                    ].join(" ")}>{label}</span>
                   </a>
                 </li>
               );

@@ -136,6 +136,17 @@ a:hover {
 ------------------------------------------------------- */
 .section {
   padding: 80px 0;
+  position: relative;
+}
+
+.section::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(124, 58, 237, 0.18), transparent);
 }
 
 @media (max-width: 768px) {
@@ -144,10 +155,6 @@ a:hover {
   }
 }
 
-/* Legacy bg-white sections become dark */
-section.bg-white {
-  background-color: var(--color-bg) !important;
-}
 
 .section-title {
   text-align: center;

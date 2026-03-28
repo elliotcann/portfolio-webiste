@@ -1,4 +1,4 @@
-import { BsGithub, BsLinkedin, BsEnvelope } from "react-icons/bs";
+import { BsGithub, BsLinkedin, BsEnvelope, BsChevronDown } from "react-icons/bs";
 import TypedText from "@/app/components/ui/TypedText";
 
 export default function Hero() {
@@ -43,27 +43,33 @@ export default function Hero() {
           </span>
         </p>
 
-        <div className="social-links justify-center animate-[fadeIn_0.8s_ease_0.4s_forwards] opacity-0">
+        <div className="flex flex-col items-center gap-6 animate-[fadeIn_0.8s_ease_0.4s_forwards] opacity-0">
+          <div className="social-links justify-center">
+            <a href="https://github.com/elliotcann" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+              <BsGithub size={18} />
+            </a>
+            <a href="https://www.linkedin.com/in/elliotcann" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <BsLinkedin size={18} />
+            </a>
+            <a href="#contact" aria-label="Email">
+              <BsEnvelope size={18} />
+            </a>
+          </div>
+
           <a
-            href="https://github.com/elliotcann"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="GitHub"
+            href="#portfolio"
+            className="inline-flex items-center gap-2 px-7 py-3 rounded-full border border-[rgba(124,58,237,0.5)] text-[var(--color-text-heading)] text-sm font-medium bg-[var(--color-primary-light)] hover:bg-[var(--color-primary)] hover:text-white hover:border-[var(--color-primary)] transition-all duration-300 hover:-translate-y-0.5 shadow-[0_0_20px_rgba(124,58,237,0.15)]"
           >
-            <BsGithub size={18} />
-          </a>
-          <a
-            href="https://www.linkedin.com/in/elliotcann"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="LinkedIn"
-          >
-            <BsLinkedin size={18} />
-          </a>
-          <a href="#contact" aria-label="Email">
-            <BsEnvelope size={18} />
+            View my work
+            <BsChevronDown size={13} />
           </a>
         </div>
+      </div>
+
+      {/* Scroll indicator */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 animate-[subtlePulse_2s_ease-in-out_infinite]">
+        <span className="text-[10px] text-[var(--color-text-light)] tracking-[0.2em] uppercase">Scroll</span>
+        <BsChevronDown className="text-[var(--color-primary)]" size={14} />
       </div>
     </section>
   );
