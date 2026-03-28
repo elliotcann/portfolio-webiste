@@ -97,14 +97,6 @@ body {
   color: var(--color-text);
   background-color: #ffffff;
   line-height: 1.6;
-  /* Offset for fixed sidebar on desktop */
-  padding-left: var(--width-sidebar);
-}
-
-@media (max-width: 1199px) {
-  body {
-    padding-left: 0;
-  }
 }
 
 h1, h2, h3, h4, h5, h6 {

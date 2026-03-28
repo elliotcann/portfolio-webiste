@@ -90,7 +90,7 @@ export default function Sidebar() {
           "bg-white border-r border-[var(--color-border)]",
           "shadow-[var(--shadow-sm)]",
           // Width: collapsed icon-only on desktop, expands on hover
-          "w-[60px] hover:w-[var(--width-sidebar)]",
+          "w-[70px] hover:w-[var(--width-sidebar)]",
           "transition-[width] duration-300 overflow-hidden",
           // Mobile: full-width drawer
           "xl:translate-x-0",
@@ -114,7 +114,7 @@ export default function Sidebar() {
                       handleNavClick(href);
                     }}
                     className={[
-                      "flex items-center gap-3 px-4 py-3 whitespace-nowrap",
+                      "flex items-center gap-8 px-6 py-3 whitespace-nowrap",
                       "transition-colors duration-200",
                       isActive
                         ? "text-[var(--color-primary)] font-semibold border-r-[3px] border-[var(--color-primary)]"
