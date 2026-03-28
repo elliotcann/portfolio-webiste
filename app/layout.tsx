@@ -1,6 +1,21 @@
 import type { Metadata } from "next";
 import { ThemeProvider } from "next-themes";
+import { Roboto, Poppins } from "next/font/google";
 import "./globals.css";
+
+const roboto = Roboto({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "700"],
+  variable: "--font-base",
+  display: "swap",
+});
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-heading",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://elliotcann.com"),
@@ -47,21 +62,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className={`${roboto.variable} ${poppins.variable}`}>
       <head>
         {/* Favicons */}
         <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon.png" />
         <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32x32.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16x16.png" />
         <link rel="manifest" href="/images/favicon/site.webmanifest" />
-
-        {/* Google Fonts — loaded browser-side, no build-time network dependency */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Poppins:wght@400;500;600;700;800&display=swap"
-          rel="stylesheet"
-        />
       </head>
       <body>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>

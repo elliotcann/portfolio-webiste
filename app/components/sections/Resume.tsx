@@ -11,6 +11,13 @@ import AnimatedSection from "@/app/components/ui/AnimatedSection";
 import { education, experience } from "@/app/data/resume";
 import type { ResumeItem } from "@/app/data/resume";
 
+function renderBullet(text: string): React.ReactNode[] {
+  return text.split(/(<strong>.*?<\/strong>)/g).map((part, i) => {
+    const match = part.match(/^<strong>(.*?)<\/strong>$/);
+    return match ? <strong key={i}>{match[1]}</strong> : part;
+  });
+}
+
 const bsIconMap: Record<string, React.ElementType> = {
   BsCodeSquare,
   BsPcDisplayHorizontal,
@@ -51,12 +58,14 @@ function ResumeCard({ item }: { item: ResumeItem }) {
       </p>
 
       <ul className="space-y-1.5">
-        {item.bullets.map((bullet, i) => (
+        {item.bullets.map((bullet) => (
           <li
-            key={i}
+            key={bullet}
             className="text-sm text-[var(--color-text)] flex items-start gap-2"
-            dangerouslySetInnerHTML={{ __html: `<span class="text-[var(--color-primary)] mt-1 shrink-0">›</span> ${bullet}` }}
-          />
+          >
+            <span className="text-[var(--color-primary)] mt-1 shrink-0">›</span>
+            <span>{renderBullet(bullet)}</span>
+          </li>
         ))}
       </ul>
     </div>

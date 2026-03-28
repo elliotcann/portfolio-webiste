@@ -31,7 +31,6 @@ export const skillCategories: SkillCategory[] = [
     skills: [
       { name: "Bootstrap", icon: "SiBootstrap" },
       { name: "jQuery",    icon: "SiJquery" },
-      { name: "PHP",       icon: "SiPhp" },
     ],
   },
 ];

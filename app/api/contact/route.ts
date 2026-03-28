@@ -58,6 +58,20 @@ export async function POST(req: NextRequest) {
 
   const { name, email, subject, message } = parsed.data;
 
+  function escapeHtml(str: string): string {
+    return str
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#x27;");
+  }
+
+  const safeName    = escapeHtml(name);
+  const safeEmail   = escapeHtml(email);
+  const safeSubject = escapeHtml(subject);
+  const safeMessage = escapeHtml(message).replace(/\n/g, "<br>");
+
   // Send email via Nodemailer (same SMTP as the old PHP backend)
   const transporter = nodemailer.createTransport({
     host:   process.env.SMTP_HOST,
@@ -76,10 +90,10 @@ export async function POST(req: NextRequest) {
       subject: `New Contact Form Submission: ${subject}`,
       html: `
         <h3>New message from your website:</h3>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
-        <p><strong>Subject:</strong> ${subject}</p>
-        <p><strong>Message:</strong><br>${message.replace(/\n/g, "<br>")}</p>
+        <p><strong>Name:</strong> ${safeName}</p>
+        <p><strong>Email:</strong> <a href="mailto:${safeEmail}">${safeEmail}</a></p>
+        <p><strong>Subject:</strong> ${safeSubject}</p>
+        <p><strong>Message:</strong><br>${safeMessage}</p>
       `,
     });
 
