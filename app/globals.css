@@ -1,0 +1,270 @@
+@import "tailwindcss";
+
+/* -------------------------------------------------------
+   Dark mode: class-based (next-themes adds .dark to html)
+------------------------------------------------------- */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* -------------------------------------------------------
+   Design tokens — mirrors existing CSS variables exactly
+------------------------------------------------------- */
+@theme {
+  /* Colors */
+  --color-primary: #0563bb;
+  --color-primary-dark: #0353a4;
+  --color-primary-light: #eef7ff;
+  --color-success: #28a745;
+  --color-danger: #dc3545;
+  --color-text: #272829;
+  --color-text-light: #6c757d;
+  --color-text-heading: #45505b;
+  --color-bg-light: #f9f9f9;
+  --color-border: rgba(39, 40, 41, 0.2);
+
+  /* Gray scale */
+  --color-gray-100: #f9f9f9;
+  --color-gray-200: #f0f7ff;
+  --color-gray-300: #e9ecef;
+  --color-gray-400: #ced4da;
+  --color-gray-500: #adb5bd;
+  --color-gray-600: #6c757d;
+  --color-gray-700: #495057;
+  --color-gray-800: #343a40;
+  --color-gray-900: #212529;
+
+  /* Fonts — loaded via Google Fonts link tag in layout.tsx */
+  --font-base: "Roboto", system-ui, -apple-system, sans-serif;
+  --font-heading: "Poppins", sans-serif;
+
+  /* Shadows */
+  --shadow-sm: 0 4px 8px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 12px 30px rgba(0, 0, 0, 0.15);
+  --shadow-accent: 0 6px 15px rgba(5, 99, 187, 0.3);
+
+  /* Sidebar widths */
+  --width-sidebar: 140px;
+  --width-sidebar-mobile: 280px;
+
+  /* Keyframe animations */
+  --animate-fade-in: fadeIn 0.8s ease forwards;
+  --animate-fade-in-up: fadeInUp 0.8s ease forwards;
+  --animate-fade-in-down: fadeInDown 0.8s ease forwards;
+  --animate-subtle-pulse: subtlePulse 2s ease-in-out infinite;
+  --animate-form-loading: formLoading 1.5s linear infinite;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes subtlePulse {
+  0%, 100% { transform: scale(1); }
+  50%       { transform: scale(1.08); }
+}
+
+@keyframes formLoading {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* -------------------------------------------------------
+   Base styles
+------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  overscroll-behavior: none;
+}
+
+body {
+  font-family: var(--font-base);
+  color: var(--color-text);
+  background-color: #ffffff;
+  line-height: 1.6;
+  /* Offset for fixed sidebar on desktop */
+  padding-left: var(--width-sidebar);
+}
+
+@media (max-width: 1199px) {
+  body {
+    padding-left: 0;
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--color-text-heading);
+  line-height: 1.3;
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--color-primary-dark);
+}
+
+/* -------------------------------------------------------
+   Sections
+------------------------------------------------------- */
+.section {
+  padding: 80px 0;
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 50px 0;
+  }
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.section-title h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-text-heading);
+  margin-bottom: 0.5rem;
+  position: relative;
+  display: inline-block;
+}
+
+.section-title h2::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: var(--color-primary);
+  margin: 0.5rem auto 0;
+  border-radius: 2px;
+}
+
+.section-title p {
+  color: var(--color-text-light);
+  max-width: 600px;
+  margin: 0.75rem auto 0;
+}
+
+/* -------------------------------------------------------
+   Cards
+------------------------------------------------------- */
+.card-item {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 30px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--color-border);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.card-item:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-3px);
+}
+
+@media (max-width: 768px) {
+  .card-item {
+    padding: 20px;
+  }
+}
+
+/* -------------------------------------------------------
+   Social links
+------------------------------------------------------- */
+.social-links {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.social-links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  color: #ffffff;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: #ffffff;
+  transform: translateY(-3px);
+}
+
+/* -------------------------------------------------------
+   Skip link (accessibility)
+------------------------------------------------------- */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  background: var(--color-primary);
+  color: #ffffff;
+  padding: 0.5rem 1rem;
+  border-radius: 0 0 4px 4px;
+  font-weight: 600;
+  z-index: 9999;
+  transition: top 0.2s;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* -------------------------------------------------------
+   Scroll-to-top button
+------------------------------------------------------- */
+.scroll-top {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-accent);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 100;
+}
+
+.scroll-top.show {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.scroll-top:hover {
+  transform: translateY(-3px);
+  color: #ffffff;
+}
