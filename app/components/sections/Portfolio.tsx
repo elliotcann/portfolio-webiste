@@ -18,7 +18,7 @@ export default function Portfolio() {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-6">
           {projects.map((project, i) => (
             <AnimatedSection key={project.id} animation="fade-up" delay={i * 0.1}>
-              <PortfolioCard project={project} />
+              <PortfolioCard project={project} featured={i === 0} />
             </AnimatedSection>
           ))}
 

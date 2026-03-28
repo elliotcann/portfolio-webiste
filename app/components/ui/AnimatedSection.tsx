@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 import type { Variants } from "framer-motion";
 
-type AnimationType = "fade-up" | "fade-in" | "zoom-out";
+type AnimationType = "fade-up" | "fade-in" | "zoom-out" | "fade-left" | "fade-right";
 
 interface AnimatedSectionProps {
   children: React.ReactNode;
@@ -25,6 +25,14 @@ const variants: Record<AnimationType, Variants> = {
   "zoom-out": {
     hidden:  { opacity: 0, scale: 1.05 },
     visible: { opacity: 1, scale: 1 },
+  },
+  "fade-left": {
+    hidden:  { opacity: 0, x: -40 },
+    visible: { opacity: 1, x: 0 },
+  },
+  "fade-right": {
+    hidden:  { opacity: 0, x: 40 },
+    visible: { opacity: 1, x: 0 },
   },
 };
 

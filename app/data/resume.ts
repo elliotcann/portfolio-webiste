@@ -8,6 +8,7 @@ export interface ResumeItem {
   description: string;
   bullets: string[];
   icon: string; // react-icons bi name
+  techStack?: string[];
 }
 
 export const education: ResumeItem[] = [
@@ -25,6 +26,7 @@ export const education: ResumeItem[] = [
       "Completed this intensive program <strong>while working full time as a Retail Store Manager</strong>, demonstrating strong time management and dedication",
     ],
     icon: "BsCodeSquare",
+    techStack: ["JavaScript", "PHP", "PostgreSQL", "HTML/CSS", "Bootstrap"],
   },
   {
     id: "codecademy",
@@ -40,6 +42,7 @@ export const education: ResumeItem[] = [
       "Earned <strong>five industry recognised certificates</strong>, validating expertise across multiple technologies",
     ],
     icon: "BsPcDisplayHorizontal",
+    techStack: ["Python", "React", "Node.js", "Git", "Bootstrap", "jQuery"],
   },
 ];
 
@@ -60,5 +63,6 @@ export const experience: ResumeItem[] = [
       "Created a <strong>high energy, motivated team culture</strong>, boosting morale and productivity",
     ],
     icon: "BsShop",
+    techStack: ["Team Leadership", "Sales Strategy", "KPI Management", "Customer Service"],
   },
 ];

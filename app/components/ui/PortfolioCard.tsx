@@ -1,8 +1,7 @@
 "use client";
 
-import { useState } from "react";
 import Image from "next/image";
-import { BsGlobe } from "react-icons/bs";
+import { BsGlobe, BsGithub } from "react-icons/bs";
 import {
   BsPinMap,
   BsDatabase,
@@ -16,26 +15,24 @@ const iconMap: Record<string, React.ElementType> = {
 
 interface PortfolioCardProps {
   project: Project;
+  featured?: boolean;
 }
 
-export default function PortfolioCard({ project }: PortfolioCardProps) {
-  const [isTouched, setIsTouched] = useState(false);
+export default function PortfolioCard({ project, featured = false }: PortfolioCardProps) {
   const Icon = iconMap[project.icon];
 
-  const handleTouchEnd = (e: React.TouchEvent) => {
-    // Allow taps on the demo button to pass through
-    if ((e.target as HTMLElement).closest(".portfolio-actions")) return;
-    e.preventDefault();
-    setIsTouched((v) => !v);
-  };
-
   return (
-    <div
-      className="group relative overflow-hidden rounded-xl border border-[var(--color-border)] shadow-[var(--shadow-sm)] cursor-pointer transition-all duration-300 hover:border-[rgba(124,58,237,0.35)] hover:shadow-[var(--shadow-accent)]"
-      onTouchEnd={handleTouchEnd}
-    >
+    <div className="group relative overflow-hidden rounded-xl border border-[var(--color-border)] bg-[var(--color-bg-card)] backdrop-blur-sm shadow-[var(--shadow-sm)] transition-all duration-300 hover:border-[rgba(124,58,237,0.4)] hover:shadow-[var(--shadow-accent)] hover:-translate-y-1">
+
+      {/* Featured ribbon */}
+      {featured && (
+        <div className="absolute top-4 left-4 z-20 px-2.5 py-1 rounded-full bg-[var(--color-primary)] text-white text-[10px] font-semibold uppercase tracking-wider shadow-[var(--shadow-accent)]">
+          Featured
+        </div>
+      )}
+
       {/* Image */}
-      <div className="relative aspect-video w-full">
+      <div className="relative aspect-video w-full overflow-hidden">
         <Image
           src={project.image}
           alt={project.imageAlt}
@@ -43,48 +40,53 @@ export default function PortfolioCard({ project }: PortfolioCardProps) {
           className="object-cover transition-transform duration-500 group-hover:scale-105"
           sizes="(max-width: 768px) 100vw, 50vw"
         />
+        {/* Subtle always-on gradient at base of image */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-bg-section)]/50 to-transparent" />
       </div>
 
-      {/* Overlay */}
-      <div
-        className={[
-          "absolute inset-0 flex flex-col justify-end p-5",
-          "bg-gradient-to-t from-[rgba(30,10,60,0.97)] via-[rgba(124,58,237,0.6)] to-transparent",
-          "transition-opacity duration-400",
-          // Desktop: show on hover; Mobile: show when touched
-          isTouched
-            ? "opacity-100"
-            : "opacity-0 group-hover:opacity-100",
-        ].join(" ")}
-      >
-        <h3 className="text-white font-semibold text-lg mb-2 flex items-center gap-2">
-          {Icon && <Icon size={18} />}
-          {project.title}
-        </h3>
-        <p className="text-white/90 text-sm mb-3 leading-relaxed">
+      {/* Info panel — always visible */}
+      <div className="p-5">
+        <div className="flex items-center gap-2 mb-2">
+          {Icon && <Icon size={15} className="text-[var(--color-primary)] shrink-0" />}
+          <h3 className="text-base font-semibold text-[var(--color-text-heading)]">{project.title}</h3>
+        </div>
+
+        <p className="text-xs text-[var(--color-text-light)] leading-relaxed mb-3">
           {project.description}
         </p>
-        <div className="flex flex-wrap gap-1.5 mb-3">
+
+        <div className="flex flex-wrap gap-1.5 mb-4">
           {project.techStack.map((tech) => (
             <span
               key={tech}
-              className="text-xs px-2 py-0.5 rounded-full bg-white/20 text-white border border-white/30"
+              className="text-[10px] px-2 py-0.5 rounded-full bg-[var(--color-primary-light)] text-[var(--color-primary)] border border-[rgba(124,58,237,0.2)]"
             >
               {tech}
             </span>
           ))}
         </div>
-        <div className="portfolio-actions">
+
+        <div className="flex gap-2">
           {project.demoUrl && (
             <a
               href={project.demoUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full border border-white/60 text-white text-sm font-medium hover:bg-white hover:text-[var(--color-primary-dark)] transition-colors duration-200"
-              onClick={(e) => e.stopPropagation()}
+              className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[var(--color-primary)] text-white text-xs font-medium btn-shimmer hover:-translate-y-0.5 transition-transform duration-200 shadow-[var(--shadow-accent)]"
             >
-              <BsGlobe size={14} />
-              Demo
+              <BsGlobe size={12} />
+              Live Demo
+            </a>
+          )}
+          {project.repoUrl && (
+            <a
+              href={project.repoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full border border-[var(--color-border)] text-[var(--color-text-light)] text-xs font-medium hover:border-[var(--color-primary)] hover:text-[var(--color-primary)] transition-colors duration-200"
+            >
+              <BsGithub size={12} />
+              Code
             </a>
           )}
         </div>

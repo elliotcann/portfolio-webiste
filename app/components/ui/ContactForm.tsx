@@ -73,6 +73,28 @@ export default function ContactForm() {
         : "border-[var(--color-border)] hover:border-[var(--color-primary)]",
     ].join(" ");
 
+  if (status === "success") {
+    return (
+      <div className="flex flex-col items-center justify-center text-center py-10 gap-4">
+        <div className="w-16 h-16 rounded-full bg-[var(--color-success)]/15 flex items-center justify-center animate-[fadeIn_0.5s_ease_forwards]">
+          <svg viewBox="0 0 24 24" fill="none" className="w-8 h-8 text-[var(--color-success)]" stroke="currentColor" strokeWidth={2.5}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+          </svg>
+        </div>
+        <div className="animate-[fadeInUp_0.5s_ease_0.2s_forwards] opacity-0">
+          <h3 className="text-lg font-semibold text-[var(--color-text-heading)] mb-1">Message sent!</h3>
+          <p className="text-sm text-[var(--color-text-light)]">{serverMsg}</p>
+        </div>
+        <button
+          onClick={() => setStatus("idle")}
+          className="mt-2 text-xs text-[var(--color-primary)] hover:underline animate-[fadeIn_0.5s_ease_0.4s_forwards] opacity-0"
+        >
+          Send another message
+        </button>
+      </div>
+    );
+  }
+
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-5">
 
@@ -162,7 +184,7 @@ export default function ContactForm() {
         <button
           type="submit"
           disabled={status === "loading"}
-          className="inline-flex items-center gap-2 px-8 py-3 rounded-full bg-[var(--color-primary)] text-white font-semibold text-sm shadow-[var(--shadow-accent)] hover:bg-[var(--color-primary-dark)] disabled:opacity-60 disabled:cursor-not-allowed transition-colors duration-200"
+          className="inline-flex items-center gap-2 px-8 py-3 rounded-full bg-[var(--color-primary)] text-white font-semibold text-sm shadow-[var(--shadow-accent)] hover:bg-[var(--color-primary-dark)] disabled:opacity-60 disabled:cursor-not-allowed transition-colors duration-200 btn-shimmer"
         >
           <BsSend size={14} />
           {status === "loading" ? "Sending…" : "Send Message"}

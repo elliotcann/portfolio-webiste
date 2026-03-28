@@ -71,6 +71,18 @@ function ResumeCard({ item }: { item: ResumeItem }) {
           </li>
         ))}
       </ul>
+      {item.techStack && item.techStack.length > 0 && (
+        <div className="flex flex-wrap gap-1.5 mt-4 pt-4 border-t border-[var(--color-border)]">
+          {item.techStack.map((tech) => (
+            <span
+              key={tech}
+              className="text-[10px] px-2 py-0.5 rounded-full bg-[var(--color-primary-light)] text-[var(--color-primary)] border border-[rgba(124,58,237,0.2)]"
+            >
+              {tech}
+            </span>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
@@ -104,7 +116,7 @@ export default function Resume() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: 0.15 + i * 0.12 }}
                 >
-                  <div className="absolute -left-[21px] top-4 w-3 h-3 rounded-full bg-[var(--color-primary)] shadow-[0_0_8px_rgba(124,58,237,0.7)] ring-2 ring-[var(--color-bg)] z-10" />
+                  <div className="absolute -left-[21px] top-4 w-3 h-3 rounded-full bg-[var(--color-primary)] shadow-[0_0_8px_rgba(124,58,237,0.7)] ring-2 ring-[var(--color-bg)] z-10 animate-[subtlePulse_2s_ease-in-out_infinite]" />
                   <ResumeCard item={item} />
                 </motion.div>
               ))}
@@ -128,7 +140,7 @@ export default function Resume() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: 0.2 + i * 0.12 }}
                 >
-                  <div className="absolute -left-[21px] top-4 w-3 h-3 rounded-full bg-[var(--color-primary)] shadow-[0_0_8px_rgba(124,58,237,0.7)] ring-2 ring-[var(--color-bg)] z-10" />
+                  <div className="absolute -left-[21px] top-4 w-3 h-3 rounded-full bg-[var(--color-primary)] shadow-[0_0_8px_rgba(124,58,237,0.7)] ring-2 ring-[var(--color-bg)] z-10 animate-[subtlePulse_2s_ease-in-out_infinite]" />
                   <ResumeCard item={item} />
                 </motion.div>
               ))}
@@ -142,9 +154,9 @@ export default function Resume() {
             <a
               href="/files/Elliot-Cann-CV.docx"
               download
-              className="inline-flex items-center gap-2 px-8 py-3 rounded-full bg-[var(--color-primary)] text-white font-semibold text-sm shadow-[var(--shadow-accent)] hover:bg-[var(--color-primary-dark)] transition-colors duration-200"
+              className="group inline-flex items-center gap-3 px-10 py-4 rounded-2xl bg-[var(--color-primary)] text-white font-semibold text-sm shadow-[var(--shadow-accent)] btn-shimmer hover:-translate-y-0.5 transition-transform duration-200"
             >
-              <BsCodeSquare size={16} />
+              <BsCodeSquare size={16} className="group-hover:animate-bounce" />
               Download CV
             </a>
           </div>

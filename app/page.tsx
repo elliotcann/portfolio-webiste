@@ -1,4 +1,5 @@
 import Sidebar from "@/app/components/layout/Sidebar";
+import CursorGlow from "@/app/components/ui/CursorGlow";
 import Footer from "@/app/components/layout/Footer";
 import ScrollTop from "@/app/components/layout/ScrollTop";
 import Hero from "@/app/components/sections/Hero";
@@ -11,6 +12,7 @@ import Contact from "@/app/components/sections/Contact";
 export default function Home() {
   return (
     <>
+      <CursorGlow />
       <Sidebar />
       <main id="main-content" className="xl:pl-[64px]">
         <Hero />
