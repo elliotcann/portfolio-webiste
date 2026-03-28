@@ -87,7 +87,7 @@ export default function Sidebar() {
         className={[
           // Desktop: fixed left column
           "fixed top-0 left-0 h-full z-40 flex flex-col justify-center",
-          "bg-white border-r border-[var(--color-border)]",
+          "bg-[var(--color-bg-section)]/80 backdrop-blur-xl border-r border-[var(--color-border)]",
           "shadow-[var(--shadow-sm)]",
           // Width: collapsed icon-only on desktop, expands on hover
           "w-[70px] hover:w-[var(--width-sidebar)]",

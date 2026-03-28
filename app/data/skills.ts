@@ -1,6 +1,6 @@
 export interface Skill {
   name: string;
-  icon: string; // react-icons/si name
+  icon: string; // react-icons/si or react-icons/bs name
 }
 
 export interface SkillCategory {
@@ -16,21 +16,37 @@ export const skillCategories: SkillCategory[] = [
     title: "Languages",
     bsIcon: "BsCodeSlash",
     skills: [
+      { name: "TypeScript", icon: "SiTypescript" },
+      { name: "JavaScript", icon: "SiJavascript" },
+      { name: "Python",     icon: "SiPython" },
       { name: "HTML",       icon: "SiHtml5" },
       { name: "CSS",        icon: "SiCss" },
-      { name: "JavaScript", icon: "SiJavascript" },
-      { name: "PostgreSQL", icon: "SiPostgresql" },
-      { name: "Python",     icon: "SiPython" },
       { name: "PHP",        icon: "SiPhp" },
+      { name: "PostgreSQL", icon: "SiPostgresql" },
     ],
   },
   {
     id: "frameworks",
-    title: "Frameworks & Libraries",
+    title: "Frameworks & Tools",
     bsIcon: "BsLayers",
     skills: [
-      { name: "Bootstrap", icon: "SiBootstrap" },
-      { name: "jQuery",    icon: "SiJquery" },
+      { name: "React",      icon: "SiReact" },
+      { name: "Next.js",    icon: "SiNextdotjs" },
+      { name: "Tailwind",   icon: "SiTailwindcss" },
+      { name: "Node.js",    icon: "SiNodedotjs" },
+      { name: "Bootstrap",  icon: "SiBootstrap" },
+      { name: "Git",        icon: "SiGit" },
+    ],
+  },
+  {
+    id: "ai",
+    title: "AI & Automation",
+    bsIcon: "BsRobot",
+    skills: [
+      { name: "OpenAI API",  icon: "SiOpenai" },
+      { name: "Claude API",  icon: "BsRobot" },
+      { name: "Cursor",      icon: "BsTerminalFill" },
+      { name: "Make",        icon: "BsGearFill" },
     ],
   },
 ];

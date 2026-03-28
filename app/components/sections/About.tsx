@@ -7,9 +7,9 @@ import SectionTitle from "@/app/components/ui/SectionTitle";
 import AnimatedSection from "@/app/components/ui/AnimatedSection";
 
 const strengths = [
-  "Experienced in front end and back end development",
-  "Strong leadership and team management skills",
-  "Passionate about creating user friendly digital solutions",
+  "Building AI-powered tools and automation workflows",
+  "Full stack development with React, Next.js, and TypeScript",
+  "Vibe coding mentality — ship fast, learn fast, iterate",
 ];
 
 export default function About() {
@@ -19,7 +19,7 @@ export default function About() {
         <AnimatedSection animation="fade-up">
           <SectionTitle
             title="About Me"
-            subtitle="Blending leadership, adaptability, and a passion for technology, I build seamless digital experiences with a problem solving mindset"
+            subtitle="Builder of web apps and AI tools — combining a technical mindset with the leadership chops of someone who's managed high-performing teams"
           />
         </AnimatedSection>
 
@@ -44,14 +44,14 @@ export default function About() {
             <div className="card-item">
               <h3 className="text-xl font-semibold text-[var(--color-text-heading)] mb-3 flex items-center gap-2">
                 <BsPersonFill className="text-[var(--color-primary)]" />
-                Full Stack Developer
+                Full Stack Developer & AI Enthusiast
               </h3>
               <p className="text-[var(--color-text-light)] leading-relaxed mb-4">
-                I am a full stack developer with a passion for technology, problem
-                solving, and continuous growth. While leading a high performing team
-                as a Retail Store Manager, I mastered adaptability, leadership, and
-                strategic thinking — skills I now apply to building seamless, high
-                impact digital experiences.
+                Full stack developer with a growing focus on AI and automation. I
+                build production web apps, experiment with AI-powered workflows, and
+                embrace the vibe coding mentality — ship fast, learn fast, iterate.
+                The same mindset I developed managing a Vodafone store: adapt
+                quickly, lead decisively, and deliver results.
               </p>
               <ul className="space-y-2">
                 {strengths.map((s) => (

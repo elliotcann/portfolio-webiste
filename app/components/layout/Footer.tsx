@@ -12,9 +12,8 @@ export default function Footer() {
           </h3>
 
           <p className="text-[var(--color-text-light)] max-w-md text-sm leading-relaxed">
-            Web developer with retail management experience creating modern,
-            responsive applications with a focus on clean code and intuitive
-            user experiences.
+            Full stack developer & AI enthusiast — building web apps, automation
+            tools, and anything interesting with code and a bit of curiosity.
           </p>
 
           <div className="social-links justify-center">

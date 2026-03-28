@@ -6,48 +6,64 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 /* -------------------------------------------------------
-   Design tokens — mirrors existing CSS variables exactly
+   Design tokens
 ------------------------------------------------------- */
 @theme {
-  /* Colors */
-  --color-primary: #0563bb;
-  --color-primary-dark: #0353a4;
-  --color-primary-light: #eef7ff;
-  --color-success: #28a745;
-  --color-danger: #dc3545;
-  --color-text: #272829;
-  --color-text-light: #6c757d;
-  --color-text-heading: #45505b;
-  --color-bg-light: #f9f9f9;
-  --color-border: rgba(39, 40, 41, 0.2);
+  /* Primary: electric violet */
+  --color-primary:       #7c3aed;
+  --color-primary-dark:  #6d28d9;
+  --color-primary-light: rgba(124, 58, 237, 0.12);
+
+  /* Secondary accent: cyan */
+  --color-accent: #22d3ee;
+
+  /* Backgrounds */
+  --color-bg:         #05050f;
+  --color-bg-section: #0a0a1a;
+  --color-bg-light:   #0d0d22;
+  --color-bg-card:    rgba(255, 255, 255, 0.04);
+
+  /* Status */
+  --color-success: #10b981;
+  --color-danger:  #ef4444;
+
+  /* Text */
+  --color-text:         #cbd5e1;
+  --color-text-light:   #64748b;
+  --color-text-heading: #f1f5f9;
+
+  /* Borders */
+  --color-border: rgba(255, 255, 255, 0.08);
 
   /* Gray scale */
-  --color-gray-100: #f9f9f9;
-  --color-gray-200: #f0f7ff;
-  --color-gray-300: #e9ecef;
-  --color-gray-400: #ced4da;
-  --color-gray-500: #adb5bd;
-  --color-gray-600: #6c757d;
-  --color-gray-700: #495057;
-  --color-gray-800: #343a40;
-  --color-gray-900: #212529;
+  --color-gray-100: #1a1a2e;
+  --color-gray-200: #1e1e35;
+  --color-gray-300: #252540;
+  --color-gray-400: #3d3d5c;
+  --color-gray-500: #5a5a7a;
+  --color-gray-600: #7a7a9a;
+  --color-gray-700: #a0a0bf;
+  --color-gray-800: #c5c5d8;
+  --color-gray-900: #e8e8f0;
 
-  /* Fonts — loaded via Google Fonts link tag in layout.tsx */
-  --font-base: "Roboto", system-ui, -apple-system, sans-serif;
+  /* Fonts */
+  --font-base:    "Roboto", system-ui, -apple-system, sans-serif;
   --font-heading: "Poppins", sans-serif;
+  --font-mono:    "JetBrains Mono", "Fira Code", monospace;
 
   /* Shadows */
-  --shadow-sm: 0 4px 8px rgba(0, 0, 0, 0.1);
-  --shadow-md: 0 12px 30px rgba(0, 0, 0, 0.15);
-  --shadow-accent: 0 6px 15px rgba(5, 99, 187, 0.3);
+  --shadow-sm:     0 4px 8px rgba(0, 0, 0, 0.4);
+  --shadow-md:     0 12px 40px rgba(0, 0, 0, 0.6);
+  --shadow-accent: 0 0 20px rgba(124, 58, 237, 0.35);
+  --shadow-glow:   0 0 30px rgba(124, 58, 237, 0.4), 0 0 60px rgba(34, 211, 238, 0.1);
 
   /* Sidebar widths */
-  --width-sidebar: 140px;
+  --width-sidebar:        140px;
   --width-sidebar-mobile: 280px;
 
   /* Keyframe animations */
-  --animate-fade-in: fadeIn 0.8s ease forwards;
-  --animate-fade-in-up: fadeInUp 0.8s ease forwards;
+  --animate-fade-in:      fadeIn 0.8s ease forwards;
+  --animate-fade-in-up:   fadeInUp 0.8s ease forwards;
   --animate-fade-in-down: fadeInDown 0.8s ease forwards;
   --animate-subtle-pulse: subtlePulse 2s ease-in-out infinite;
   --animate-form-loading: formLoading 1.5s linear infinite;
@@ -95,7 +111,7 @@ html {
 body {
   font-family: var(--font-base);
   color: var(--color-text);
-  background-color: #ffffff;
+  background-color: var(--color-bg);
   line-height: 1.6;
 }
 
@@ -112,7 +128,7 @@ a {
 }
 
 a:hover {
-  color: var(--color-primary-dark);
+  color: var(--color-accent);
 }
 
 /* -------------------------------------------------------
@@ -126,6 +142,11 @@ a:hover {
   .section {
     padding: 50px 0;
   }
+}
+
+/* Legacy bg-white sections become dark */
+section.bg-white {
+  background-color: var(--color-bg) !important;
 }
 
 .section-title {
@@ -147,7 +168,7 @@ a:hover {
   display: block;
   width: 60px;
   height: 3px;
-  background: var(--color-primary);
+  background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
   margin: 0.5rem auto 0;
   border-radius: 2px;
 }
@@ -159,26 +180,46 @@ a:hover {
 }
 
 /* -------------------------------------------------------
-   Cards
+   Cards — glassmorphism
 ------------------------------------------------------- */
 .card-item {
-  background: #ffffff;
-  border-radius: 8px;
+  background: var(--color-bg-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 12px;
   padding: 30px;
   box-shadow: var(--shadow-sm);
   border: 1px solid var(--color-border);
-  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  transition: box-shadow 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
 }
 
 .card-item:hover {
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--shadow-accent);
   transform: translateY(-3px);
+  border-color: rgba(124, 58, 237, 0.35);
 }
 
 @media (max-width: 768px) {
   .card-item {
     padding: 20px;
   }
+}
+
+/* -------------------------------------------------------
+   Hero — CSS grid background + gradient text
+------------------------------------------------------- */
+.hero-grid {
+  background-image:
+    linear-gradient(rgba(124, 58, 237, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(124, 58, 237, 0.1) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #a78bfa 0%, #22d3ee 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 /* -------------------------------------------------------
@@ -194,19 +235,48 @@ a:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
-  border: 2px solid rgba(255, 255, 255, 0.6);
-  color: #ffffff;
+  border: 1px solid rgba(124, 58, 237, 0.4);
+  color: #a78bfa;
   font-size: 1.1rem;
+  background: rgba(124, 58, 237, 0.08);
+  backdrop-filter: blur(8px);
   transition: all 0.3s ease;
 }
 
 .social-links a:hover {
-  background: rgba(255, 255, 255, 0.2);
-  border-color: #ffffff;
+  background: rgba(124, 58, 237, 0.25);
+  border-color: var(--color-primary);
+  color: #ffffff;
   transform: translateY(-3px);
+  box-shadow: 0 0 15px rgba(124, 58, 237, 0.4);
+}
+
+/* -------------------------------------------------------
+   Form inputs — dark theme
+------------------------------------------------------- */
+input[type="text"],
+input[type="email"],
+textarea {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  border-color: var(--color-border) !important;
+  color: var(--color-text-heading) !important;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+textarea:focus {
+  border-color: var(--color-primary) !important;
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.2) !important;
+  outline: none !important;
+}
+
+input[type="text"]::placeholder,
+input[type="email"]::placeholder,
+textarea::placeholder {
+  color: var(--color-text-light) !important;
 }
 
 /* -------------------------------------------------------
@@ -259,4 +329,5 @@ a:hover {
 .scroll-top:hover {
   transform: translateY(-3px);
   color: #ffffff;
+  box-shadow: var(--shadow-glow);
 }

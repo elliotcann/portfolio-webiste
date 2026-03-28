@@ -71,7 +71,7 @@ export default function RootLayout({
         <link rel="manifest" href="/images/favicon/site.webmanifest" />
       </head>
       <body>
-        <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
+        <ThemeProvider attribute="class" forcedTheme="dark" enableSystem={false}>
           <a href="#main-content" className="skip-link">
             Skip to main content
           </a>

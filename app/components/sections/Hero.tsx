@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { BsGithub, BsLinkedin, BsEnvelope } from "react-icons/bs";
 import TypedText from "@/app/components/ui/TypedText";
 
@@ -6,41 +5,45 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[var(--color-bg)]"
     >
-      {/* Background image */}
-      <Image
-        src="/images/hero-bg.jpg"
-        alt="Hero background"
-        fill
-        className="object-cover"
-        priority
-      />
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[var(--color-bg-light)]" />
+      {/* Radial gradient glow from top */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-5%,_rgba(124,58,237,0.22)_0%,_transparent_65%)]" />
+
+      {/* CSS grid pattern */}
+      <div className="absolute inset-0 hero-grid opacity-40" />
+
+      {/* Ambient glow orbs */}
+      <div className="absolute top-1/3 left-1/5 w-96 h-96 bg-violet-700/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-1/3 right-1/5 w-80 h-80 bg-cyan-500/8 rounded-full blur-3xl pointer-events-none" />
 
       {/* Content */}
       <div className="relative z-10 text-center px-4 max-w-3xl mx-auto">
         <h1
-          className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-4 animate-[fadeInDown_0.8s_ease_forwards]"
+          className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4 animate-[fadeInDown_0.8s_ease_forwards] gradient-text"
           style={{ fontFamily: "var(--font-heading)" }}
         >
           Elliot Cann
         </h1>
-        <p
-          className="text-lg sm:text-xl text-white/90 mb-8 animate-[fadeInUp_0.8s_ease_0.2s_forwards] opacity-0"
-        >
-          I am a{" "}
-          <TypedText
-            strings={["Back End Developer.", "Front End Developer."]}
-            typeSpeed={100}
-            backSpeed={50}
-            backDelay={2000}
-          />
+
+        <p className="text-lg sm:text-xl text-[var(--color-text)] mb-8 animate-[fadeInUp_0.8s_ease_0.2s_forwards] opacity-0">
+          I&apos;m a{" "}
+          <span className="text-[var(--color-accent)] font-semibold">
+            <TypedText
+              strings={[
+                "AI Developer.",
+                "Automation Engineer.",
+                "Full Stack Developer.",
+                "Vibe Coder.",
+              ]}
+              typeSpeed={80}
+              backSpeed={40}
+              backDelay={2000}
+            />
+          </span>
         </p>
-        <div
-          className="social-links justify-center animate-[fadeIn_0.8s_ease_0.4s_forwards] opacity-0"
-        >
+
+        <div className="social-links justify-center animate-[fadeIn_0.8s_ease_0.4s_forwards] opacity-0">
           <a
             href="https://github.com/elliotcann"
             target="_blank"
