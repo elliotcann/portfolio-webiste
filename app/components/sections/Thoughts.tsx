@@ -61,42 +61,23 @@ export default async function Thoughts() {
         {/* Follow CTAs */}
         <AnimatedSection animation="fade-up" delay={0.3}>
           <div className="flex flex-wrap items-center justify-center gap-4 mt-10">
-            <a
-              href="https://x.com/elliot_cann"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-[rgba(124,58,237,0.35)] bg-[var(--color-primary-light)] text-[var(--color-primary)] text-sm font-medium hover:bg-[rgba(124,58,237,0.2)] hover:-translate-y-0.5 transition-all duration-200"
-            >
-              <BsTwitterX size={14} />
-              Follow on X
-            </a>
-            <a
-              href="https://www.linkedin.com/in/elliotcann"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-[rgba(124,58,237,0.35)] bg-[var(--color-primary-light)] text-[var(--color-primary)] text-sm font-medium hover:bg-[rgba(124,58,237,0.2)] hover:-translate-y-0.5 transition-all duration-200"
-            >
-              <BsLinkedin size={14} />
-              Follow on LinkedIn
-            </a>
-            <a
-              href="https://github.com/elliotcann"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-[rgba(124,58,237,0.35)] bg-[var(--color-primary-light)] text-[var(--color-primary)] text-sm font-medium hover:bg-[rgba(124,58,237,0.2)] hover:-translate-y-0.5 transition-all duration-200"
-            >
-              <BsGithub size={14} />
-              Follow on GitHub
-            </a>
-            <a
-              href="https://www.instagram.com/elliot.cann"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-[rgba(124,58,237,0.35)] bg-[var(--color-primary-light)] text-[var(--color-primary)] text-sm font-medium hover:bg-[rgba(124,58,237,0.2)] hover:-translate-y-0.5 transition-all duration-200"
-            >
-              <BsInstagram size={14} />
-              Follow on Instagram
-            </a>
+            {[
+              { href: "https://x.com/elliot_cann", icon: <BsTwitterX size={14} />, label: "Follow on X" },
+              { href: "https://www.linkedin.com/in/elliotcann", icon: <BsLinkedin size={14} />, label: "Follow on LinkedIn" },
+              { href: "https://github.com/elliotcann", icon: <BsGithub size={14} />, label: "Follow on GitHub" },
+              { href: "https://www.instagram.com/elliot.cann", icon: <BsInstagram size={14} />, label: "Follow on Instagram" },
+            ].map(({ href, icon, label }) => (
+              <a
+                key={href}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-7 py-3 rounded-full border border-[rgba(124,58,237,0.5)] text-[var(--color-text-heading)] text-sm font-medium bg-[var(--color-primary-light)] hover:bg-[var(--color-primary)] hover:text-white hover:border-[var(--color-primary)] transition-all duration-300 hover:-translate-y-0.5 shadow-[0_0_20px_rgba(124,58,237,0.15)]"
+              >
+                {icon}
+                {label}
+              </a>
+            ))}
           </div>
         </AnimatedSection>
       </div>

@@ -72,7 +72,7 @@ export default function PortfolioCard({ project, featured = false }: PortfolioCa
               href={project.demoUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[var(--color-primary)] text-white text-xs font-medium btn-shimmer hover:-translate-y-0.5 transition-transform duration-200 shadow-[var(--shadow-accent)]"
+              className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full border border-[rgba(124,58,237,0.5)] text-[var(--color-text-heading)] text-xs font-medium bg-[var(--color-primary-light)] hover:bg-[var(--color-primary)] hover:text-white hover:border-[var(--color-primary)] transition-all duration-300 hover:-translate-y-0.5 shadow-[0_0_20px_rgba(124,58,237,0.15)]"
             >
               <BsGlobe size={12} />
               Live Demo
@@ -83,7 +83,7 @@ export default function PortfolioCard({ project, featured = false }: PortfolioCa
               href={project.repoUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full border border-[var(--color-border)] text-[var(--color-text-light)] text-xs font-medium hover:border-[var(--color-primary)] hover:text-[var(--color-primary)] transition-colors duration-200"
+              className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full border border-[rgba(124,58,237,0.5)] text-[var(--color-text-heading)] text-xs font-medium bg-[var(--color-primary-light)] hover:bg-[var(--color-primary)] hover:text-white hover:border-[var(--color-primary)] transition-all duration-300 hover:-translate-y-0.5 shadow-[0_0_20px_rgba(124,58,237,0.15)]"
             >
               <BsGithub size={12} />
               Code

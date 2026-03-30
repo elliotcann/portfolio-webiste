@@ -154,7 +154,7 @@ export default function Resume() {
             <a
               href="/files/Elliot-Cann-CV.docx"
               download
-              className="group inline-flex items-center gap-3 px-10 py-4 rounded-2xl bg-[var(--color-primary)] text-white font-semibold text-sm shadow-[var(--shadow-accent)] btn-shimmer hover:-translate-y-0.5 transition-transform duration-200"
+              className="group inline-flex items-center gap-2 px-7 py-3 rounded-full border border-[rgba(124,58,237,0.5)] text-[var(--color-text-heading)] text-sm font-medium bg-[var(--color-primary-light)] hover:bg-[var(--color-primary)] hover:text-white hover:border-[var(--color-primary)] transition-all duration-300 hover:-translate-y-0.5 shadow-[0_0_20px_rgba(124,58,237,0.15)]"
             >
               <BsCodeSquare size={16} className="group-hover:animate-bounce" />
               Download CV
