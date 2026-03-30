@@ -64,9 +64,9 @@ title="Latest Thoughts"
         <AnimatedSection animation="fade-up" delay={0.3}>
           <div className="flex flex-wrap items-center justify-center gap-4 mt-10">
             {[
-              { href: "https://x.com/elliot_cann", icon: <BsTwitterX size={14} />, label: "Follow on X" },
-              { href: "https://www.linkedin.com/in/elliotcann", icon: <BsLinkedin size={14} />, label: "Follow on LinkedIn" },
               { href: "https://github.com/elliotcann", icon: <BsGithub size={14} />, label: "Follow on GitHub" },
+              { href: "https://www.linkedin.com/in/elliotcann", icon: <BsLinkedin size={14} />, label: "Follow on LinkedIn" },
+              { href: "https://x.com/elliot_cann", icon: <BsTwitterX size={14} />, label: "Follow on X" },
               { href: "https://www.instagram.com/elliot.cann", icon: <BsInstagram size={14} />, label: "Follow on Instagram" },
             ].map(({ href, icon, label }) => (
               <a

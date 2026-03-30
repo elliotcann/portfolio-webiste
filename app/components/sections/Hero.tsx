@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useCallback } from "react";
-import { BsGithub, BsLinkedin, BsEnvelope, BsChevronDown } from "react-icons/bs";
+import { BsGithub, BsLinkedin, BsTwitterX, BsInstagram, BsEnvelope, BsChevronDown } from "react-icons/bs";
 import TypedText from "@/app/components/ui/TypedText";
 
 // Static particles — defined outside component to avoid hydration mismatch
@@ -113,6 +113,12 @@ export default function Hero() {
             </a>
             <a href="https://www.linkedin.com/in/elliotcann" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
               <BsLinkedin size={18} />
+            </a>
+            <a href="https://x.com/elliot_cann" target="_blank" rel="noopener noreferrer" aria-label="X">
+              <BsTwitterX size={18} />
+            </a>
+            <a href="https://www.instagram.com/elliot.cann" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <BsInstagram size={18} />
             </a>
             <a href="#contact" aria-label="Email">
               <BsEnvelope size={18} />

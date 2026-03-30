@@ -12,7 +12,7 @@ export default function Footer() {
     <footer id="footer" className="bg-[var(--color-bg-light)] border-t border-[var(--color-border)] py-6">
       <div className="container mx-auto px-4 max-w-5xl flex flex-col sm:flex-row items-center justify-between gap-4">
         <p className="text-xs text-[var(--color-text-light)] text-center sm:text-left">
-          © 2025 <strong className="text-[var(--color-text-heading)]">Elliot Cann</strong> — All Rights Reserved
+          © 2025 <strong className="text-[var(--color-text-heading)]">Elliot Cann</strong> — Built with ❤️ — All Rights Reserved 
         </p>
         <div className="social-links">
           {socials.map(({ href, Icon, label }) => (

@@ -1,15 +1,9 @@
-import { BsGithub, BsLinkedin, BsEnvelope, BsArrowUpRight } from "react-icons/bs";
+import { BsGithub, BsLinkedin, BsTwitterX, BsInstagram, BsEnvelope, BsArrowUpRight } from "react-icons/bs";
 import SectionTitle from "@/app/components/ui/SectionTitle";
 import AnimatedSection from "@/app/components/ui/AnimatedSection";
 import ContactForm from "@/app/components/ui/ContactForm";
 
 const contactLinks = [
-  {
-    Icon: BsEnvelope,
-    label: "Email",
-    value: "elliot@elliotcann.com",
-    href: "mailto:elliot@elliotcann.com",
-  },
   {
     Icon: BsGithub,
     label: "GitHub",
@@ -24,6 +18,20 @@ const contactLinks = [
     href: "https://www.linkedin.com/in/elliotcann",
     external: true,
   },
+  {
+    Icon: BsTwitterX,
+    label: "X",
+    value: "x.com/elliot_cann",
+    href: "https://x.com/elliot_cann",
+    external: true,
+  },
+  {
+    Icon: BsInstagram,
+    label: "Instagram",
+    value: "instagram.com/elliot.cann",
+    href: "https://www.instagram.com/elliot.cann",
+    external: true,
+  }
 ];
 
 export default function Contact() {
