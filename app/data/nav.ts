@@ -10,5 +10,6 @@ export const navItems: NavItem[] = [
   { href: "#portfolio", label: "Portfolio", icon: "BsImages" },
   { href: "#skills",    label: "Skills",    icon: "BsHddStack" },
   { href: "#resume",    label: "CV",        icon: "BsFileEarmarkText" },
+  { href: "#thoughts",  label: "Thoughts",  icon: "BsChat" },
   { href: "#contact",   label: "Contact",   icon: "BsEnvelope" },
 ];

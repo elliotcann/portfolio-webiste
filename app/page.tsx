@@ -7,6 +7,7 @@ import About from "@/app/components/sections/About";
 import Portfolio from "@/app/components/sections/Portfolio";
 import Skills from "@/app/components/sections/Skills";
 import Resume from "@/app/components/sections/Resume";
+import Thoughts from "@/app/components/sections/Thoughts";
 import Contact from "@/app/components/sections/Contact";
 
 export default function Home() {
@@ -20,6 +21,7 @@ export default function Home() {
         <Portfolio />
         <Skills />
         <Resume />
+        <Thoughts />
         <Contact />
       </main>
       <Footer />

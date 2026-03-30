@@ -7,6 +7,7 @@ import {
   BsImages,
   BsHddStack,
   BsFileEarmarkText,
+  BsChat,
   BsEnvelope,
   BsList,
   BsX,
@@ -19,6 +20,7 @@ const iconMap: Record<string, React.ElementType> = {
   BsImages,
   BsHddStack,
   BsFileEarmarkText,
+  BsChat,
   BsEnvelope,
 };
 
