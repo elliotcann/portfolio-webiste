@@ -1,4 +1,4 @@
-import { BsTwitterX, BsLinkedin } from "react-icons/bs";
+import { BsTwitterX, BsLinkedin, BsGithub, BsInstagram } from "react-icons/bs";
 import SectionTitle from "@/app/components/ui/SectionTitle";
 import AnimatedSection from "@/app/components/ui/AnimatedSection";
 import ThoughtsCards, { type TweetData } from "@/app/components/ui/ThoughtsCards";
@@ -60,9 +60,9 @@ export default async function Thoughts() {
 
         {/* Follow CTAs */}
         <AnimatedSection animation="fade-up" delay={0.3}>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-10">
+          <div className="flex flex-wrap items-center justify-center gap-4 mt-10">
             <a
-              href="https://twitter.com/yourusername"
+              href="https://x.com/elliot_cann"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-[rgba(124,58,237,0.35)] bg-[var(--color-primary-light)] text-[var(--color-primary)] text-sm font-medium hover:bg-[rgba(124,58,237,0.2)] hover:-translate-y-0.5 transition-all duration-200"
@@ -71,13 +71,31 @@ export default async function Thoughts() {
               Follow on X
             </a>
             <a
-              href="https://linkedin.com/in/yourusername"
+              href="https://www.linkedin.com/in/elliotcann"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-[rgba(124,58,237,0.35)] bg-[var(--color-primary-light)] text-[var(--color-primary)] text-sm font-medium hover:bg-[rgba(124,58,237,0.2)] hover:-translate-y-0.5 transition-all duration-200"
             >
               <BsLinkedin size={14} />
               Follow on LinkedIn
+            </a>
+            <a
+              href="https://github.com/elliotcann"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-[rgba(124,58,237,0.35)] bg-[var(--color-primary-light)] text-[var(--color-primary)] text-sm font-medium hover:bg-[rgba(124,58,237,0.2)] hover:-translate-y-0.5 transition-all duration-200"
+            >
+              <BsGithub size={14} />
+              Follow on GitHub
+            </a>
+            <a
+              href="https://www.instagram.com/elliot.cann"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-[rgba(124,58,237,0.35)] bg-[var(--color-primary-light)] text-[var(--color-primary)] text-sm font-medium hover:bg-[rgba(124,58,237,0.2)] hover:-translate-y-0.5 transition-all duration-200"
+            >
+              <BsInstagram size={14} />
+              Follow on Instagram
             </a>
           </div>
         </AnimatedSection>
