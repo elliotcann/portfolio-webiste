@@ -6,16 +6,19 @@ import { projects } from "@/app/data/portfolio";
 
 export default function Portfolio() {
   return (
-    <section id="portfolio" className="section bg-[var(--color-bg)]">
-      <div className="container mx-auto px-4 max-w-5xl">
+    <section id="portfolio" className="section bg-[var(--color-bg)] relative overflow-hidden">
+      {/* Ambient glows */}
+      <div aria-hidden className="absolute top-1/4 left-0 w-[400px] h-[400px] bg-violet-700/8 rounded-full blur-3xl pointer-events-none -translate-x-1/2" />
+      <div aria-hidden className="absolute bottom-1/4 right-0 w-[300px] h-[300px] bg-cyan-500/6 rounded-full blur-3xl pointer-events-none translate-x-1/3" />
+      <div className="container mx-auto px-4 max-w-5xl relative z-10">
         <AnimatedSection animation="fade-up">
           <SectionTitle
-            title="Portfolio"
+title="Portfolio"
             subtitle="A selection of projects spanning full stack web apps, automation tools, and AI experiments"
           />
         </AnimatedSection>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-8">
           {projects.map((project, i) => (
             <AnimatedSection key={project.id} animation="fade-up" delay={i * 0.1}>
               <PortfolioCard project={project} featured={i === 0} />

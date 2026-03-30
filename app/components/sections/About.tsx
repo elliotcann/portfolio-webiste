@@ -34,11 +34,13 @@ export default function About() {
   const handleMouseLeave = useCallback(() => setTilt({ x: 0, y: 0 }), []);
 
   return (
-    <section id="about" className="section bg-[var(--color-bg-light)]">
-      <div className="container mx-auto px-4 max-w-5xl">
+    <section id="about" className="section bg-[var(--color-bg-light)] relative overflow-hidden">
+      {/* Ambient glow */}
+      <div aria-hidden className="absolute top-0 right-0 w-[500px] h-[500px] bg-violet-700/8 rounded-full blur-3xl pointer-events-none -translate-y-1/2 translate-x-1/3" />
+      <div className="container mx-auto px-4 max-w-5xl relative z-10">
         <AnimatedSection animation="fade-up">
           <SectionTitle
-            title="About Me"
+title="About Me"
             subtitle="Builder of web apps and AI tools — combining a technical mindset with the leadership chops of someone who's managed high-performing teams"
           />
         </AnimatedSection>

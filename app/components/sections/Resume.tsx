@@ -89,11 +89,13 @@ function ResumeCard({ item }: { item: ResumeItem }) {
 
 export default function Resume() {
   return (
-    <section id="resume" className="section bg-[var(--color-bg)]">
-      <div className="container mx-auto px-4 max-w-5xl">
+    <section id="resume" className="section bg-[var(--color-bg)] relative overflow-hidden">
+      {/* Ambient glow */}
+      <div aria-hidden className="absolute top-0 right-0 w-[450px] h-[450px] bg-violet-700/7 rounded-full blur-3xl pointer-events-none translate-x-1/3 -translate-y-1/4" />
+      <div className="container mx-auto px-4 max-w-5xl relative z-10">
         <AnimatedSection animation="fade-up">
           <SectionTitle
-            title="Curriculum Vitae"
+title="Curriculum Vitae"
             subtitle="A snapshot of my education and experience, highlighting my journey from retail leadership to full stack development"
           />
         </AnimatedSection>

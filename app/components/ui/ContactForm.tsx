@@ -173,9 +173,6 @@ export default function ContactForm() {
       {status === "loading" && (
         <p className="text-sm text-[var(--color-text-light)] animate-pulse">Sending…</p>
       )}
-      {status === "success" && (
-        <p className="text-sm text-[var(--color-success)] font-medium">{serverMsg}</p>
-      )}
       {status === "error" && (
         <p className="text-sm text-[var(--color-danger)]">{serverMsg}</p>
       )}

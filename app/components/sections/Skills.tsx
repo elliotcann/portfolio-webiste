@@ -114,16 +114,18 @@ function BentoCard({ skill, index }: { skill: BentoSkill; index: number }) {
 
 export default function Skills() {
   return (
-    <section id="skills" className="section bg-[var(--color-bg-light)] overflow-hidden">
-      <div className="container mx-auto px-4 max-w-5xl">
+    <section id="skills" className="section bg-[var(--color-bg-light)] overflow-hidden relative">
+      {/* Ambient glow */}
+      <div aria-hidden className="absolute top-0 left-0 w-[400px] h-[400px] bg-cyan-500/6 rounded-full blur-3xl pointer-events-none -translate-x-1/3 -translate-y-1/3" />
+      <div className="container mx-auto px-4 max-w-5xl relative z-10">
         <AnimatedSection animation="fade-up">
           <SectionTitle
-            title="Skills"
+title="Skills"
             subtitle="A growing tech stack spanning full stack development, AI tooling, and automation — built for shipping things that actually work"
           />
         </AnimatedSection>
 
-        <div className="mt-10 grid grid-cols-2 sm:grid-cols-4 [grid-auto-rows:minmax(110px,auto)] gap-3">
+        <div className="mt-10 grid grid-cols-2 sm:grid-cols-4 [grid-auto-rows:minmax(110px,auto)] gap-4">
           {skills.map((skill, i) => (
             <BentoCard key={skill.name} skill={skill} index={i} />
           ))}
